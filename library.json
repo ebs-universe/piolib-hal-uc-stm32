@@ -1,0 +1,27 @@
+{
+    "name": "ebs-hal-uc-stm32",
+    "version": "0.1.0",
+    "description": "EBS uC HAL implementation for ST STM32 uCs",
+    "keywords": "ebs",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/ebs-universe/piolib-hal-uc-stm32"
+    },
+    "authors": {
+        "name": "Chintalagiri Shashank",
+        "email": "shashank.chintalagiri@gmail.com",
+        "url": "https://github.com/chintal",
+        "maintainer": true
+    },
+    "license": "LGPL-3.0-or-later",
+    "homepage": "https://ebs-universe.github.io/piolib-hal-uc-stm32",
+    "frameworks": "*",
+    "platforms": ["ststm32"],
+    "dependencies": [
+        { 
+            "owner": "chintal",
+            "name": "ebs-ds",
+            "version": "^0.2.0"
+        }
+    ]
+  }
