@@ -50,7 +50,7 @@ static inline size_t board_usb_get_serial(uint16_t desc_str1[], size_t max_chars
 
 static inline void usb_init(void){
     hpcd_FS.Instance = USB_OTG_FS;
-    hpcd_FS.Init.dev_endpoints = 4;
+    hpcd_FS.Init.dev_endpoints = CFG_TUD_ENDPOINTS;
     hpcd_FS.Init.speed = PCD_SPEED_FULL;
     hpcd_FS.Init.dma_enable = DISABLE;
     hpcd_FS.Init.phy_itface = PCD_PHY_EMBEDDED;
