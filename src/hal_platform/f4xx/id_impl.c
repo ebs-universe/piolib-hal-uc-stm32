@@ -40,6 +40,8 @@ void id_init(void){
                 current_value = current_char - 'A';
             } else if (current_char >= '0' && current_char <= '9'){
                 current_value = current_char - '0' + 26;
+            } else if (current_char == ' ') {
+                ;
             } else {
                 current_value = 0;
                 die();
