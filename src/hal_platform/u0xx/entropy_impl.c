@@ -37,15 +37,59 @@ static inline void _entropy_state_init(void){
     entropy_state.entropy = &entropy_pool;
 }
 
-void entropy_init(void) {
-    _entropy_state_init();
+static inline void _entropy_clocks_init(void){
+    // TODO This may need to be modified to use clock configuration 
+    //   infrastructure in core instead of hardcoding STMCube HAL calls 
+    RCC_PeriphCLKInitTypeDef clk_cfg_rng = {0};
+    clk_cfg_rng.PeriphClockSelection = RCC_PERIPHCLK_RNG;
+    clk_cfg_rng.RngClockSelection = RCC_RNGCLKSOURCE_MSI;
+    if (HAL_RCCEx_PeriphCLKConfig(&clk_cfg_rng) != HAL_OK){
+        die();
+    }
+}
+
+/*
+ * Configure for NIST SP 800‑90B per ST AN4230
+ *     CR 0x00F00D00
+ *   HTCR 0xAAC7 @ 48MHz RNG clk
+ * Note that the datasheet suggests this is is configuration C, optimized 
+ * for speed. Validation may be needed for critical applications.
+ * 
+ * Additionally, we set bit 13 of CR since we expect the TRNG will typically
+ * be left off post entropy pool filling. This may need to be configurable. 
+ * 
+ * This function is provided by the HAL implementation in addition to the 
+ * usual API for use in case the hardware reports a seed error and the TRNG 
+ * needs to be reset.
+ * 
+ * We don't actually do the reset if the entropy buffer is full for modes 1 
+ * and 2. Here, just deinit the TRNG until it is needed next.
+ */
+void entropy_reset(void){
+    #if uC_ENTROPY_MODE <= 2
     if (!bytebuf_cGetFree(entropy_state.entropy)){
         return;
     }
+    #endif
     __HAL_RCC_RNG_CLK_ENABLE();
+    NVIC_DisableIRQ(RNG_CRYP_IRQn);
+    RNG->CR &= ~(RNG_CR_RNGEN | RNG_CR_IE);
+    RNG->CR |= (RNG_CR_CONDRST | 
+                (0x0F << RNG_CR_RNG_CONFIG1_Pos) | 
+                (0x0D << RNG_CR_RNG_CONFIG3_Pos) |
+                (0x01 << RNG_CR_RNG_CONFIG2_Pos));
+    RNG->HTCR = 0xAAC7;
+    RNG->CR &= ~RNG_CR_CONDRST;
     RNG->CR |= (RNG_CR_RNGEN | RNG_CR_IE);
-    NVIC_EnableIRQ(HASH_RNG_IRQn);
+    NVIC_EnableIRQ(RNG_CRYP_IRQn);
     entropy_state.accumulating = 1;
+}
+
+void entropy_init(void) {
+    _entropy_state_init();
+    _entropy_clocks_init();
+    HAL_NVIC_SetPriority(RNG_CRYP_IRQn, 0, 0);
+    entropy_reset();
 }
 
 void entropy_deinit(void) {

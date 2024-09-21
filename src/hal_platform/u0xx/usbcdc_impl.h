@@ -4,9 +4,9 @@
 #define USBCDC_IMPL_H
 
 #include <hal/uc/usbcdc.h>
-#include <tusb.h>
 
 #if uC_USB_ENABLED && uC_USBCDC_ENABLED 
+#include <tusb.h>
 
 
 static inline void usbcdc_init(uint8_t intfnum){

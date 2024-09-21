@@ -1,3 +1,2 @@
-#ifdef STM32F4
-#include "f4xx/exti_handlers.h"
-#endif
+#include "families.h"
+#include STRINGIFY(FAMILY/exti_handlers.h)

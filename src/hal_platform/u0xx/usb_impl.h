@@ -4,13 +4,12 @@
 #define USB_IMPL_H
 
 #include <hal/uc/usb.h>
-#include <tusb.h>
-
 #include <hal/uc/id.h>
 #include <iomap.h>
 
 
 #if uC_USB_ENABLED
+#include <tusb.h>
 
 extern uint8_t usb_status;
 extern PCD_HandleTypeDef hpcd_FS;

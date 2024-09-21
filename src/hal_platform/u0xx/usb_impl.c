@@ -2,10 +2,10 @@
 
 #include "usb_impl.h"
 #include <hal/uc/gpio.h>
-#include <tusb.h>
-
 
 #if uC_USB_ENABLED
+#include <tusb.h>
+
 
 uint8_t usb_status = USB_ST_DISCONNECTED;
 PCD_HandleTypeDef hpcd_FS;

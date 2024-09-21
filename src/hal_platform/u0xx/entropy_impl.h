@@ -49,6 +49,7 @@ typedef struct {
 
 extern entropy_state_t entropy_state;
 
+void entropy_reset(void);
 
 static inline uint8_t entropy_available(void) {
     return bytebuf_cPopulation(entropy_state.entropy);
@@ -62,7 +63,7 @@ static inline uint8_t entropy_get_byte(void){
     #if uC_ENTROPY_MODE == 2
         // If there is atleast 32 bits of free space, trigger refill.
         if (bytebuf_cGetFree(entropy_state.entropy) >= 4U) {
-            entropy_init();
+            entropy_reset();
         }
     #endif
     return byte;

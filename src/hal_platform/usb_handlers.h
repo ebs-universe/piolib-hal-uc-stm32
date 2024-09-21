@@ -1,3 +1,2 @@
-#ifdef STM32F4
-#include "f4xx/usb_handlers.h"
-#endif
+#include "families.h"
+#include STRINGIFY(FAMILY/usb_handlers.h)

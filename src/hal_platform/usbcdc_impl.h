@@ -1,3 +1,2 @@
-#ifdef STM32F4
-#include "f4xx/usbcdc_impl.h"
-#endif
+#include "families.h"
+#include STRINGIFY(FAMILY/usbcdc_impl.h)

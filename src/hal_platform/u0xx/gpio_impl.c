@@ -30,40 +30,23 @@ static void enable_gpio_exti_irqs(void);
 
 
 static void enable_gpio_clocks(void){
-   // Need to compare with actual port availability and 
-    // usage, and work out which clocks actually need to be 
-    // enabled and why.
     __HAL_RCC_GPIOA_CLK_ENABLE();
     __HAL_RCC_GPIOB_CLK_ENABLE();
     __HAL_RCC_GPIOC_CLK_ENABLE();
     __HAL_RCC_GPIOD_CLK_ENABLE();
     __HAL_RCC_GPIOE_CLK_ENABLE();
     __HAL_RCC_GPIOF_CLK_ENABLE();
-    __HAL_RCC_GPIOG_CLK_ENABLE();
-    __HAL_RCC_GPIOH_CLK_ENABLE();
 }
 
 static void enable_gpio_exti_irqs(void){
-    HAL_NVIC_SetPriority(EXTI0_IRQn, 0, 0);
-    HAL_NVIC_EnableIRQ(EXTI0_IRQn);
+    HAL_NVIC_SetPriority(EXTI0_1_IRQn, 0, 0);
+    HAL_NVIC_EnableIRQ(EXTI0_1_IRQn);
 
-    HAL_NVIC_SetPriority(EXTI1_IRQn, 0, 0);
-    HAL_NVIC_EnableIRQ(EXTI1_IRQn);
+    HAL_NVIC_SetPriority(EXTI2_3_IRQn, 0, 0);
+    HAL_NVIC_EnableIRQ(EXTI2_3_IRQn);
 
-    HAL_NVIC_SetPriority(EXTI2_IRQn, 0, 0);
-    HAL_NVIC_EnableIRQ(EXTI2_IRQn);
-
-    HAL_NVIC_SetPriority(EXTI3_IRQn, 0, 0);
-    HAL_NVIC_EnableIRQ(EXTI3_IRQn);
-
-    HAL_NVIC_SetPriority(EXTI4_IRQn, 0, 0);
-    HAL_NVIC_EnableIRQ(EXTI4_IRQn);
-
-    HAL_NVIC_SetPriority(EXTI9_5_IRQn, 0, 0);
-    HAL_NVIC_EnableIRQ(EXTI9_5_IRQn);
-
-    HAL_NVIC_SetPriority(EXTI15_10_IRQn, 0, 0);
-    HAL_NVIC_EnableIRQ(EXTI15_10_IRQn);
+    HAL_NVIC_SetPriority(EXTI4_15_IRQn, 0, 0);
+    HAL_NVIC_EnableIRQ(EXTI4_15_IRQn);
 }
 
 void gpio_init(void){

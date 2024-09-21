@@ -1,3 +1,2 @@
-#ifdef STM32F4
-#include "f4xx/eeprom_impl.h"
-#endif
+#include "families.h"
+#include STRINGIFY(FAMILY/eeprom_impl.h)

@@ -147,21 +147,21 @@ static inline void gpio_conf_interrupt(
     PORTSELECTOR_t port, PINSELECTOR_t pin, HAL_BASE_t edge)
 {
    // Configure EXTI Source Port Selection
-   HAL_SFR_t *exticr = (HAL_SFR_t *)(&(SYSCFG->EXTICR[pin >> 2U]));
-   uint32_t bit_position = (pin & 0x03U) * 4U;
-   *exticr = (*exticr & ~(0x0FU << bit_position)) | (gpio_get_port_index(port) << bit_position);
+   HAL_SFR_t *exticr = (HAL_SFR_t *)(EXTI_BASE + EXTI_OFS_EXTICR1 + 4U * (pin >> 2));
+   uint32_t bit_position = (pin & 0x03U) * 8U;
+   *exticr = (*exticr & ~(0xFFU << bit_position)) | (gpio_get_port_index(port) << bit_position);
 
    // Configure Trigger Edge Selection
    if (edge & GPIO_INT_EDGE_RISING) { 
-        *(HAL_SFR_t *)(EXTI_BASE + EXTI_OFS_RTSR) |= (1 << pin);                            
+        *(HAL_SFR_t *)(EXTI_BASE + EXTI_OFS_RTSR1) |= (1 << pin);                            
    } else {
-        *(HAL_SFR_t *)(EXTI_BASE + EXTI_OFS_RTSR) &= ~(1 << pin);                            
+        *(HAL_SFR_t *)(EXTI_BASE + EXTI_OFS_RTSR1) &= ~(1 << pin);                            
    }
 
    if (edge & GPIO_INT_EDGE_FALLING) {
-        *(HAL_SFR_t *)(EXTI_BASE + EXTI_OFS_FTSR) |= (1 << pin);                            
+        *(HAL_SFR_t *)(EXTI_BASE + EXTI_OFS_FTSR1) |= (1 << pin);                            
    } else {
-        *(HAL_SFR_t *)(EXTI_BASE + EXTI_OFS_FTSR) &= ~(1 << pin);                            
+        *(HAL_SFR_t *)(EXTI_BASE + EXTI_OFS_FTSR1) &= ~(1 << pin);                            
    }
 }
 
@@ -175,14 +175,15 @@ static inline void gpio_conf_interrupt_handler(
 static inline void gpio_interrupt_arm(
     PORTSELECTOR_t port, PINSELECTOR_t pin)
 {
-    *(HAL_SFR_t *)(EXTI_BASE + EXTI_OFS_PR) = (1 << pin);
-    *(HAL_SFR_t *)(EXTI_BASE + EXTI_OFS_IMR) |= (1 << pin);
+    *(HAL_SFR_t *)(EXTI_BASE + EXTI_OFS_RPR1) = (1 << pin);
+    *(HAL_SFR_t *)(EXTI_BASE + EXTI_OFS_FPR1) = (1 << pin);
+    *(HAL_SFR_t *)(EXTI_BASE + EXTI_OFS_IMR1) |= (1 << pin);
 }
 
 static inline void gpio_interrupt_disarm(
     PORTSELECTOR_t port, PINSELECTOR_t pin)
 {
-    *(HAL_SFR_t *)(EXTI_BASE + EXTI_OFS_IMR) &= ~(1 << pin);
+    *(HAL_SFR_t *)(EXTI_BASE + EXTI_OFS_IMR1) &= ~(1 << pin);
 }
 
 #endif

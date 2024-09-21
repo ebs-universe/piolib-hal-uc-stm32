@@ -54,15 +54,34 @@
 #endif
 
 #if APP_ENABLE_EEPROM
+    #error "STM32U0 has no EEPROM, no backup SRAM. Use external nvstorage or the 9 backup registers instead."
     #define uC_EEPROM_ENABLED           1
-    #define uC_EEPROM_PROVIDER          APP_EEPROM_PROVIDER
-    #define uC_EEPROM_SIZE              APP_EEPROM_SIZE
-    #define uC_EEPROM_SIZE_t            APP_EEPROM_SIZETYPE
+    #define uC_EEPROM_PROVIDER          0
+    #define uC_EEPROM_SIZE              0
+    #define uC_EEPROM_SIZE_t            uint16_t
 #endif
 
 #if APP_ENABLE_ID
     #define uC_ID_ENABLED               1
     #define uC_ID_TRIMFUNC              APP_ID_TRIMFUNC
+#endif
+
+#if APP_ENABLE_CRYPTO
+    #define uC_CRYPTO_ENABLED              APP_ENABLE_CRYPTO
+    #define uC_CRYPTO_HARDWARE             APP_CRYPTO_HARDWARE
+    #define uC_CRYPTO_INTERRUPT            APP_CRYPTO_INTERRUPT
+    #ifndef APP_CRYPTO_NO_DEFAULT_CONTEXT
+        #define uC_CRYPTO_DEFAULT_CTX          1
+        #define uC_CRYPTO_DEFAULT_ALG          APP_CRYPTO_ALG
+        #define uC_CRYPTO_DEFAULT_KEYSIZE      APP_CRYPTO_KEYSIZE / 8
+        #define uC_CRYPTO_DEFAULT_IVSIZE       APP_CRYPTO_IVSIZE  / 8
+        #define uC_CRYPTO_DEFAULT_INGESTSIZE   APP_CRYPTO_INGESTSIZE / 8
+        #define uC_CRYPTO_DEFAULT_BLOCKSIZE    APP_CRYPTO_BLOCKSIZE / 8
+        #define uC_CRYPTO_DEFAULT_HEADERSIZE   APP_CRYPTO_HEADERSIZE / 8 
+        #define uC_CRYPTO_DEFAULT_MACSIZE      APP_CRYPTO_MACSIZE / 8
+        #define uC_CRYPTO_DEFAULT_SWAP         APP_CRYPTO_SWAP
+        #define uC_CRYPTO_DEFAULT_MODE         APP_CRYPTO_MODE
+    #endif
 #endif
 
 #if APP_ENABLE_USB

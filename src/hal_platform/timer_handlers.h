@@ -1,3 +1,2 @@
-#ifdef STM32F4
-#include "f4xx/timer_handlers.h"
-#endif
+#include "families.h"
+#include STRINGIFY(FAMILY/timer_handlers.h)

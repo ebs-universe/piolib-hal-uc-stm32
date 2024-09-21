@@ -1,3 +1,2 @@
-#ifdef STM32F4
-#include "f4xx/entropy_impl.h"
-#endif
+#include "families.h"
+#include STRINGIFY(FAMILY/entropy_impl.h)

@@ -1,5 +1,4 @@
 
-#include "stm32f4xx_hal.h"
 #include <application.h>
 #include <irq_handlers.h>
 #include <platform/debug.h>
@@ -17,83 +16,59 @@ static inline void exti_handler(uint8_t exti_line) {
 }
 
 /**
-  * @brief This function handles EXTI line0 interrupt.
+  * @brief This function handles EXTI lines 0-1 interrupts.
+  * 
   */
-void EXTI0_IRQHandler(void)
+void EXTI0_1_IRQHandler(void)
 {
-    if (EXTI->PR & EXTI_PR_PR0) { 
-        EXTI->PR |= EXTI_PR_PR0;
-        exti_handler(0);
-    }
-}
-
-/**
-  * @brief This function handles EXTI line1 interrupt.
-  */
-void EXTI1_IRQHandler(void)
-{
-    if (EXTI->PR & EXTI_PR_PR1) { 
-        EXTI->PR |= EXTI_PR_PR1;
-        exti_handler(1);
-    }
-}
-
-/**
-  * @brief This function handles EXTI line2 interrupt.
-  */
-void EXTI2_IRQHandler(void)
-{
-    if (EXTI->PR & EXTI_PR_PR2) { 
-        EXTI->PR |= EXTI_PR_PR2;
-        exti_handler(2);
-    }
-}
-
-/**
-  * @brief This function handles EXTI line3 interrupt.
-  */
-void EXTI3_IRQHandler(void)
-{
-    if (EXTI->PR & EXTI_PR_PR3) { 
-        EXTI->PR |= EXTI_PR_PR3;
-        exti_handler(3);
-    }
-}
-
-/**
-  * @brief This function handles EXTI line4 interrupts.
-  */
-void EXTI4_IRQHandler(void)
-{
-    if (EXTI->PR & EXTI_PR_PR4) { 
-        EXTI->PR |= EXTI_PR_PR4;
-        exti_handler(4);
-    }
-}
-
-/**
-  * @brief This function handles EXTI line 5-9 interrupts.
-  */
-void EXTI9_5_IRQHandler(void)
-{
-    for (uint32_t line = 5; line <= 9; ++line) {
-        if (EXTI->PR & (1 << line)) { 
-            EXTI->PR |= (1 << line); 
-            exti_handler(line);
+    uint32_t rpr = EXTI->RPR1;
+    uint32_t fpr = EXTI->FPR1; 
+    for (uint32_t line = 0; line <= 1; ++line) {
+        if (rpr & (1 << line)) { 
+            EXTI->RPR1 |= (1 << line); 
+            exti_handler(line | GPIO_INT_ON_RISING);
+        }
+        if (fpr & (1 << line)) { 
+            EXTI->FPR1 |= (1 << line); 
+            exti_handler(line | GPIO_INT_ON_FALLING);
         }
     }
 }
 
+/**
+  * @brief This function handles EXTI lines 2-3 interrupts.
+  */
+void EXTI2_3_IRQHandler(void)
+{
+    uint32_t rpr = EXTI->RPR1;
+    uint32_t fpr = EXTI->FPR1; 
+    for (uint32_t line = 2; line <= 3; ++line) {
+        if (rpr & (1 << line)) { 
+            EXTI->RPR1 |= (1 << line); 
+            exti_handler(line | GPIO_INT_ON_RISING);
+        }
+        if (fpr & (1 << line)) { 
+            EXTI->FPR1 |= (1 << line); 
+            exti_handler(line | GPIO_INT_ON_FALLING);
+        }
+    }
+}
 
 /**
-  * @brief This function handles EXTI line 10-15 interrupts.
+  * @brief This function handles EXTI line 4-15 interrupts.
   */
-void EXTI15_10_IRQHandler(void)
+void EXTI4_15_IRQHandler(void)
 {
-    for (uint32_t line = 10; line <= 15; ++line) {
-        if (EXTI->PR & (1 << line)) { 
-            EXTI->PR |= (1 << line); 
-            exti_handler(line);
+    uint32_t rpr = EXTI->RPR1;
+    uint32_t fpr = EXTI->FPR1;   
+    for (uint32_t line = 4; line <= 15; ++line) {
+        if (rpr & (1 << line)) { 
+            EXTI->RPR1 |= (1 << line); 
+            exti_handler(line | GPIO_INT_ON_RISING);
+        }
+        if (fpr & (1 << line)) { 
+            EXTI->FPR1 |= (1 << line); 
+            exti_handler(line | GPIO_INT_ON_FALLING);
         }
     }
 }
