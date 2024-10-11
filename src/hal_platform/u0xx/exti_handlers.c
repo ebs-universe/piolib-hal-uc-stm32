@@ -1,7 +1,7 @@
 
+
 #include <application.h>
 #include <irq_handlers.h>
-#include <platform/debug.h>
 #include <hal/uc/gpio.h>
 #include "exti_handlers.h"
 

@@ -33,7 +33,6 @@ void RNG_CRYP_IRQHandler(void){
     #endif
 }
 
-
 /**
   * @brief This function is not an IRQ handler, but used by the 
   *        STM32 Cube HAL to report errors.
