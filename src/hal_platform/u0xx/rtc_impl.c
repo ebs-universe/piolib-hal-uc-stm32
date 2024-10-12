@@ -180,7 +180,7 @@ uint8_t rtc_read(tm_real_t * target, void(*cb)(void)){
     if (rtc_state.state != RTC_ST_IDLE) {
       return 2;
     }
-    tm_clear_rtime(target);
+    memset(target, 0, sizeof(tm_real_t));    
     rtc_state.iobuffer = target;
     rtc_state.state = RTC_ST_WAIT_READ;
     _rtc_wait_sync();
