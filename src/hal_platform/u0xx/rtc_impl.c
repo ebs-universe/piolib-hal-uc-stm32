@@ -24,6 +24,7 @@
 
 #if uC_RTC_ENABLED 
 
+#include <string.h>
 #include "stm32u0xx_hal.h"
 #include <hal/uc/gpio.h>
 
