@@ -385,12 +385,12 @@ $(document).ready(function(){initNavTree('u0xx_2uart__impl_8h_source.html',''); 
 <div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160; </div>
 <div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> uart_send_trigger(HAL_BASE_t intfnum){</div>
 <div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;    <span class="keywordflow">if</span> (!(uart_if[intfnum]-&gt;state-&gt;triggered)){</div>
-<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;        <span class="keywordflow">if</span> (uart_if[intfnum]-&gt;hwif-&gt;fifomode){</div>
-<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;            * (HAL_SFR_t *) (uart_if[intfnum]-&gt;hwif-&gt;base + OFS_UART_CR3) |= USART_CR3_TXFTIE;</div>
-<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;        } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;            * (HAL_SFR_t *) (uart_if[intfnum]-&gt;hwif-&gt;base + OFS_UART_CR1) |= USART_CR1_TXEIE;</div>
-<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;        }</div>
-<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;        uart_if[intfnum]-&gt;state-&gt;triggered = 1;</div>
+<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;        uart_if[intfnum]-&gt;state-&gt;triggered = 1;</div>
+<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;        <span class="keywordflow">if</span> (uart_if[intfnum]-&gt;hwif-&gt;fifomode){</div>
+<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;            * (HAL_SFR_t *) (uart_if[intfnum]-&gt;hwif-&gt;base + OFS_UART_CR3) |= USART_CR3_TXFTIE;</div>
+<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;            * (HAL_SFR_t *) (uart_if[intfnum]-&gt;hwif-&gt;base + OFS_UART_CR1) |= USART_CR1_TXEIE;</div>
+<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;        }</div>
 <div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;    }</div>
 <div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;}</div>
 <div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160; </div>
@@ -429,7 +429,7 @@ $(document).ready(function(){initNavTree('u0xx_2uart__impl_8h_source.html',''); 
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_7da9fa3e46f3496e22e0d53e72e5a458.html">hal_platform</a></li><li class="navelem"><a class="el" href="dir_e6e81f65b81118890ab216e7e6c72be2.html">u0xx</a></li><li class="navelem"><b>uart_impl.h</b></li>
-    <li class="footer">Generated on Sat Oct 12 2024 06:07:24 for ebs-hal-uc-stm32 by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Sat Oct 12 2024 14:06:10 for ebs-hal-uc-stm32 by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>
