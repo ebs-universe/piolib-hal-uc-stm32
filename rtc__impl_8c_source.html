@@ -271,7 +271,7 @@ $(document).ready(function(){initNavTree('rtc__impl_8c_source.html',''); initRes
 <div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;    <span class="keywordflow">if</span> (rtc_state.state != RTC_ST_IDLE) {</div>
 <div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;      <span class="keywordflow">return</span> 2;</div>
 <div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;    }</div>
-<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;    tm_clear_rtime(target);</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;    memset(target, 0, <span class="keyword">sizeof</span>(tm_real_t));    </div>
 <div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;    rtc_state.iobuffer = target;</div>
 <div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;    rtc_state.state = RTC_ST_WAIT_READ;</div>
 <div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;    _rtc_wait_sync();</div>
@@ -304,7 +304,7 @@ $(document).ready(function(){initNavTree('rtc__impl_8c_source.html',''); initRes
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_7da9fa3e46f3496e22e0d53e72e5a458.html">hal_platform</a></li><li class="navelem"><a class="el" href="dir_e6e81f65b81118890ab216e7e6c72be2.html">u0xx</a></li><li class="navelem"><b>rtc_impl.c</b></li>
-    <li class="footer">Generated on Fri Oct 11 2024 18:37:48 for ebs-hal-uc-stm32 by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Sat Oct 12 2024 06:01:33 for ebs-hal-uc-stm32 by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>
