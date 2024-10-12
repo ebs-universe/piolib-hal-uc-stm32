@@ -18,12 +18,14 @@ static inline void _uart_handler_fifo(const HAL_BASE_t intfnum);
 
 static inline void _uart_handler_tx_norm(const HAL_BASE_t intfnum){
     // TXE in single byte mode
+    uint8_t wbyte;
     if (bytebuf_cPopulation(uart_if[intfnum]->txbuf) <= 1){
         *(HAL_SFR_t *) (uart_if[intfnum]->hwif->base + OFS_UART_CR1) &= ~USART_CR1_TXEIE;
         uart_if[intfnum]->state->triggered = 0;
     }
     if (bytebuf_cPopulation(uart_if[intfnum]->txbuf)) {
-        *(HAL_SFR_t *) (uart_if[intfnum]->hwif->base + OFS_UART_TDR) = bytebuf_cPopByte(uart_if[intfnum]->txbuf);
+        wbyte = bytebuf_cPopByte(uart_if[intfnum]->txbuf);
+        *(HAL_SFR_t *) (uart_if[intfnum]->hwif->base + OFS_UART_TDR) = wbyte;
     }
 }
 

@@ -294,12 +294,12 @@ static inline void uart_discard_rxb(HAL_BASE_t intfnum){
 
 static inline void uart_send_trigger(HAL_BASE_t intfnum){
     if (!(uart_if[intfnum]->state->triggered)){
+        uart_if[intfnum]->state->triggered = 1;
         if (uart_if[intfnum]->hwif->fifomode){
             * (HAL_SFR_t *) (uart_if[intfnum]->hwif->base + OFS_UART_CR3) |= USART_CR3_TXFTIE;
         } else {
             * (HAL_SFR_t *) (uart_if[intfnum]->hwif->base + OFS_UART_CR1) |= USART_CR1_TXEIE;
         }
-        uart_if[intfnum]->state->triggered = 1;
     }
 }
 
