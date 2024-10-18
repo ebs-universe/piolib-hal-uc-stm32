@@ -99,8 +99,7 @@ typedef struct _UART_HWIF_t{
 } _uart_hwif_t;
 
 typedef struct _UART_STATE_t{
-    HAL_BASE_t triggered;
-    uint16_t overrun_counter;
+    volatile uint16_t overrun_counter;
 } uart_state_t;
 
 typedef struct UART_IF_t {
@@ -293,11 +292,12 @@ static inline void uart_discard_rxb(HAL_BASE_t intfnum){
 }
 
 static inline void uart_send_trigger(HAL_BASE_t intfnum){
-    if (!(uart_if[intfnum]->state->triggered)){
-        uart_if[intfnum]->state->triggered = 1;
-        if (uart_if[intfnum]->hwif->fifomode){
+    if (uart_if[intfnum]->hwif->fifomode){
+        if (!(* (HAL_SFR_t *) (uart_if[intfnum]->hwif->base + OFS_UART_CR3) & USART_CR3_TXFTIE)) {
             * (HAL_SFR_t *) (uart_if[intfnum]->hwif->base + OFS_UART_CR3) |= USART_CR3_TXFTIE;
-        } else {
+        }
+    } else {
+        if (!(* (HAL_SFR_t *) (uart_if[intfnum]->hwif->base + OFS_UART_CR1) & USART_CR1_TXEIE)){
             * (HAL_SFR_t *) (uart_if[intfnum]->hwif->base + OFS_UART_CR1) |= USART_CR1_TXEIE;
         }
     }

@@ -240,7 +240,7 @@ static inline void _uart_init(
         UART_HWIF_FULL, uC_UART2_USE_HWFIFO, USART2_BASE 
     };
     
-    uart_state_t uart2_state = {0, 0};
+    uart_state_t uart2_state = {0};
     
     void _uart2_init(void);
     

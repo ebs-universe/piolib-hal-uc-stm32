@@ -21,7 +21,6 @@ static inline void _uart_handler_tx_norm(const HAL_BASE_t intfnum){
     uint8_t wbyte;
     if (bytebuf_cPopulation(uart_if[intfnum]->txbuf) <= 1){
         *(HAL_SFR_t *) (uart_if[intfnum]->hwif->base + OFS_UART_CR1) &= ~USART_CR1_TXEIE;
-        uart_if[intfnum]->state->triggered = 0;
     }
     if (bytebuf_cPopulation(uart_if[intfnum]->txbuf)) {
         wbyte = bytebuf_cPopByte(uart_if[intfnum]->txbuf);
@@ -53,7 +52,6 @@ static inline void _uart_handler_tx_fifo(const HAL_BASE_t intfnum){
     }
     if (!n){
         *(HAL_SFR_t *) (uart_if[intfnum]->hwif->base + OFS_UART_CR3) &= ~USART_CR3_TXFTIE;
-        uart_if[intfnum]->state->triggered = 0;
     }
 }
 
