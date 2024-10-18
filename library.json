@@ -1,6 +1,6 @@
 {
     "name": "ebs-hal-uc-stm32",
-    "version": "0.1.5",
+    "version": "0.2.0",
     "description": "EBS uC HAL implementation for ST STM32 uCs",
     "keywords": "ebs",
     "repository": {
