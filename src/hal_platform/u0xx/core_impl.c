@@ -61,6 +61,158 @@ void core_init(void) {
     enable_core_clocks();
 }
 
+#define CLOCKSWITCH_TIMEOUT_VALUE  ((uint32_t)5000U) /* 5 s    */
+
+HAL_StatusTypeDef hal_rcc_clockconfig(const RCC_ClkInitTypeDef  *const RCC_ClkInitStruct, uint32_t FLatency)
+{
+  HAL_StatusTypeDef halstatus;
+  uint32_t tickstart;
+
+  /* Check the parameters */
+  assert_param(RCC_ClkInitStruct != NULL);
+  assert_param(IS_RCC_CLOCKTYPE((uint8_t)RCC_ClkInitStruct->ClockType));
+  assert_param(IS_FLASH_LATENCY(FLatency));
+
+  /* To correctly read data from FLASH memory, the number of wait states (LATENCY)
+    must be correctly programmed according to the frequency of the CPU clock
+    (HCLK) and the supply voltage of the device. */
+
+  /* Increasing the number of wait states because of higher CPU frequency */
+  if (FLatency > __HAL_FLASH_GET_LATENCY())
+  {
+    /* Program the new number of wait states to the LATENCY bits in the FLASH_ACR register */
+    __HAL_FLASH_SET_LATENCY(FLatency);
+
+    /* Check that the new number of wait states is taken into account to access the Flash
+    memory by reading the FLASH_ACR register */
+    uint32_t timeout = 100;
+    
+    while (__HAL_FLASH_GET_LATENCY() != FLatency)
+    {
+      timeout --;
+    }
+
+    if (!timeout) {
+        die();
+    }
+  }
+
+  /*------------------------- SYSCLK Configuration ---------------------------*/
+  if (((RCC_ClkInitStruct->ClockType) & RCC_CLOCKTYPE_SYSCLK) == RCC_CLOCKTYPE_SYSCLK)
+  {
+    assert_param(IS_RCC_SYSCLKSOURCE(RCC_ClkInitStruct->SYSCLKSource));
+
+    /* PLL is selected as System Clock Source */
+    if (RCC_ClkInitStruct->SYSCLKSource == RCC_SYSCLKSOURCE_PLLCLK)
+    {
+      /* Check the PLL ready flag */
+      if (READ_BIT(RCC->CR, RCC_CR_PLLRDY) == 0U)
+      {
+        die();
+      }
+    }
+    else
+    {
+      if (RCC_ClkInitStruct->SYSCLKSource == RCC_SYSCLKSOURCE_HSE)
+      {
+        /* Check the HSE ready flag */
+        if (READ_BIT(RCC->CR, RCC_CR_HSERDY) == 0U)
+        {
+          die();
+        }
+      }
+      /* MSI is selected as System Clock Source */
+      else if (RCC_ClkInitStruct->SYSCLKSource == RCC_SYSCLKSOURCE_MSI)
+      {
+        /* Check the MSI ready flag */
+        if (READ_BIT(RCC->CR, RCC_CR_MSIRDY) == 0U)
+        {
+          die();
+        }
+      }
+      /* HSI is selected as System Clock Source */
+      else if (RCC_ClkInitStruct->SYSCLKSource == RCC_SYSCLKSOURCE_HSI)
+      {
+        /* Check the HSI ready flag */
+        if (READ_BIT(RCC->CR, RCC_CR_HSIRDY) == 0U)
+        {
+          die();
+        }
+      }
+
+      /* LSI is selected as System Clock Source */
+      else if (RCC_ClkInitStruct->SYSCLKSource == RCC_SYSCLKSOURCE_LSI)
+      {
+        /* Check the LSI ready flag */
+        if (READ_BIT(RCC->CSR, RCC_CSR_LSIRDY) == 0U)
+        {
+          die();
+        }
+      }
+
+      /* LSE is selected as System Clock Source */
+      else
+      {
+        /* Check the LSE ready flag */
+        if (READ_BIT(RCC->BDCR, RCC_BDCR_LSERDY) == 0U)
+        {
+          die();
+        }
+      }
+    }
+
+    MODIFY_REG(RCC->CFGR, RCC_CFGR_SW, RCC_ClkInitStruct->SYSCLKSource);
+
+    /* Get Start Tick */
+    tickstart = HAL_GetTick();
+
+    while (__HAL_RCC_GET_SYSCLK_SOURCE() != (RCC_ClkInitStruct->SYSCLKSource << RCC_CFGR_SWS_Pos))
+    {
+      if ((HAL_GetTick() - tickstart) > CLOCKSWITCH_TIMEOUT_VALUE)
+      {
+        die();
+      }
+    }
+  }
+
+  /*-------------------------- HCLK Configuration --------------------------*/
+  if (((RCC_ClkInitStruct->ClockType) & RCC_CLOCKTYPE_HCLK) == RCC_CLOCKTYPE_HCLK)
+  {
+    /* Set the new HCLK clock divider */
+    assert_param(IS_RCC_HCLK(RCC_ClkInitStruct->AHBCLKDivider));
+    MODIFY_REG(RCC->CFGR, RCC_CFGR_HPRE, RCC_ClkInitStruct->AHBCLKDivider);
+  }
+
+  /* Decreasing the number of wait states because of lower CPU frequency */
+  if (FLatency < __HAL_FLASH_GET_LATENCY())
+  {
+    /* Program the new number of wait states to the LATENCY bits in the FLASH_ACR register */
+    __HAL_FLASH_SET_LATENCY(FLatency);
+
+    /* Check that the new number of wait states is taken into account to access the Flash
+    memory by reading the FLASH_ACR register */
+    if (__HAL_FLASH_GET_LATENCY() != FLatency)
+    {
+      die();
+    }
+  }
+
+  /*-------------------------- PCLK Configuration ---------------------------*/
+  if (((RCC_ClkInitStruct->ClockType) & RCC_CLOCKTYPE_PCLK1) == RCC_CLOCKTYPE_PCLK1)
+  {
+    assert_param(IS_RCC_PCLK(RCC_ClkInitStruct->APB1CLKDivider));
+    MODIFY_REG(RCC->CFGR, RCC_CFGR_PPRE, RCC_ClkInitStruct->APB1CLKDivider);
+  }
+
+  /* Update the SystemCoreClock global variable */
+  SystemCoreClock = HAL_RCC_GetSysClockFreq() >> (AHBPrescTable[READ_BIT(RCC->CFGR, RCC_CFGR_HPRE) \
+                                                                >> RCC_CFGR_HPRE_Pos] & 0x1FU);
+
+  /* Configure the source of time base considering new system clocks settings*/
+  halstatus = HAL_InitTick(TICK_INT_PRIORITY);
+
+  return halstatus;
+}
 
 /**
 * @brief Sets the MCU Power controls to defaults.

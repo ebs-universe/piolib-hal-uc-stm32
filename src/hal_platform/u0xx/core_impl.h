@@ -25,6 +25,12 @@
 
 #include <hal/uc/core.h>
 
+// This is replicated from the STM32 HAL implementation because the HAL 
+// implementation breaks with -Os. This only happens under some 
+// circumstances, and it's not clear why exactly this happens or what 
+// triggers it. 
+HAL_StatusTypeDef hal_rcc_clockconfig(const RCC_ClkInitTypeDef  *const RCC_ClkInitStruct, uint32_t FLatency);
+
 #if uC_WDT_ENABLED
 
 static inline void watchdog_clear(void) {
