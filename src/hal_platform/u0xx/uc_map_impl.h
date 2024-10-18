@@ -89,15 +89,6 @@
     #define uC_RTC_1HZ_OUT_ENABLED      APP_ENABLE_RTC_1HZ_OUT
 #endif
 
-#if APP_ENABLE_USB
-    #define uC_USB_ENABLED              1
-    #define uC_USBCDC_ENABLED           1
-    #define uC_PT_USBCDC_ENABLED        0
-    #define uC_USBCDC_IF0               1
-    #define uC_USBCDC_IF1               0
-    #define uC_USBCDC_IF2               0
-#endif
-
 #if APP_ENABLE_UART
 
     #define uC_UART1_ENABLED            APP_ENABLE_UART1
@@ -114,6 +105,21 @@
         #define uC_UART_ENABLED         1
     #endif
 
+    #define uC_UART1_PT_ENABLED         APP_ENABLE_UART1_PT
+    #define uC_UART2_PT_ENABLED         APP_ENABLE_UART2_PT
+    #define uC_UART3_PT_ENABLED         APP_ENABLE_UART3_PT
+    #define uC_UART4_PT_ENABLED         APP_ENABLE_UART4_PT
+    #define uC_UART5_PT_ENABLED         APP_ENABLE_UART5_PT
+    #define uC_UART6_PT_ENABLED         APP_ENABLE_UART6_PT
+    #define uC_UART7_PT_ENABLED         APP_ENABLE_UART7_PT
+
+    #define uC_UART_PTS_ENABLED         (uC_UART1_PT_ENABLED + uC_UART2_PT_ENABLED + uC_UART3_PT_ENABLED + uC_PT_UART4_ENABLED + uC_PT_UART5_ENABLED + uC_PT_UART6_ENABLED + uC_PT_UART7_ENABLED)
+
+
+    #if uC_UART_PTS_ENABLED
+        #define uC_UART_PT_ENABLED         1
+    #endif
+    
 #endif
 
 
@@ -121,11 +127,18 @@
 #define uC_WDT_ENABLED                  0
 #define uC_TIMER_ENABLED                0
 #define uC_ADC_ENABLED                  0
-#define uC_UART_PT_ENABLED              0
 #define uC_SPI_ENABLED                  0
 #define uC_SPI_PT_ENABLED               0
 #define uC_I2C_ENABLED                  0
 #define uC_I2C_PT_ENABLED               0
 
+#if APP_ENABLE_USB
+    #define uC_USB_ENABLED              1
+    #define uC_USBCDC_ENABLED           1
+    #define uC_PT_USBCDC_ENABLED        0
+    #define uC_USBCDC_IF0               1
+    #define uC_USBCDC_IF1               0
+    #define uC_USBCDC_IF2               0
+#endif
 
 #endif
