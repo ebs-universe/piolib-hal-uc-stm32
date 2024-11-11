@@ -1,7 +1,10 @@
 var dir_7da9fa3e46f3496e22e0d53e72e5a458 =
 [
     [ "f4xx", "dir_69912b4012e9148154fd04a54a84b30d.html", "dir_69912b4012e9148154fd04a54a84b30d" ],
+    [ "h7rsxx", "dir_ecba37078b2646ad8615f0f92eab48bb.html", "dir_ecba37078b2646ad8615f0f92eab48bb" ],
     [ "u0xx", "dir_e6e81f65b81118890ab216e7e6c72be2.html", "dir_e6e81f65b81118890ab216e7e6c72be2" ],
+    [ "adc_handlers.h", "adc__handlers_8h_source.html", null ],
+    [ "adc_impl.h", "adc__impl_8h_source.html", null ],
     [ "core_handlers.h", "core__handlers_8h_source.html", null ],
     [ "core_impl.h", "core__impl_8h_source.html", null ],
     [ "crypto_handlers.h", "crypto__handlers_8h_source.html", null ],
