@@ -7,8 +7,8 @@
     #define FAMILY f4xx
 #elif defined STM32U0
     #define FAMILY u0xx
-#elif defined STM32H7
-    #define FAMILY h7xx
+#elif defined STM32H7RS
+    #define FAMILY h7rsxx
 #else
     #error "STM32 family not recognized"
 #endif
