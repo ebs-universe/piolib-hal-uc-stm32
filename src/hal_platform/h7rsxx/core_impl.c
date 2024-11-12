@@ -21,6 +21,7 @@
 */
 
 
+#include <string.h>
 #include "core_impl.h"
  
 #if uC_CORE_ENABLED
@@ -61,6 +62,23 @@ __weak void mpu_init(void){
     HAL_MPU_Enable(MPU_PRIVILEGED_DEFAULT);
 }
 
+#pragma GCC push_options
+#pragma GCC optimize("O0")
+void prepare_itcm_memory(void){
+    /* Copy ITCM code */
+    extern const unsigned char _sitcm;
+    extern const unsigned char _eitcm;
+    extern const unsigned char _siitcm;
+    void * sitcm = (void *)&_sitcm;
+    void * eitcm = (void *)&_eitcm;
+    void * siitcm = (void *)&_siitcm;
+    int size = eitcm - sitcm;
+    if (size){
+        memcpy(sitcm, siitcm, size);
+    }
+}
+#pragma GCC pop_options
+
 __weak void configure_memory_layout(void){
     FLASH_OBProgramInitTypeDef pOBInit = {0};
     
@@ -81,6 +99,7 @@ __weak void configure_memory_layout(void){
     if (HAL_FLASHEx_OBProgram(&pOBInit) != HAL_OK) { die(); }
     if (HAL_FLASH_OB_Lock() != HAL_OK) { die(); }
     if (HAL_FLASH_Lock() != HAL_OK)    { die(); }
+    prepare_itcm_memory();
 }
 
 __weak void cpu_init(void){

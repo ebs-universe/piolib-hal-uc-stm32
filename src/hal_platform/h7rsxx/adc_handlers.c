@@ -2,50 +2,66 @@
 #include "adc_handlers.h"
 #include <irq_handlers.h>
 
-
 volatile uint8_t __adc_handler_inclusion;
 
 #if uC_ADC_ENABLED
-// This interrupt handler is probably way too long. At the default
-// sampling speed, there is significant ADC read overrun. This appears 
-// to be resolved with -O1, but it is somewhat uncertain. 
 
-// We appear to be generating one extra ADC interrupt on adc trigger 
-// scan. This is screwing up the ADC data mapping.
+// This interrupt handler is probably way too long. At the target
+// sampling speed, there is significant ADC read overrun. 
 
+
+// __attribute__((section(".itcm_irqs")))
+#pragma GCC push_options
+#pragma GCC optimize("O3")
 static inline void _adc1_handler(void){
-    const uint32_t hwif_base = adc1_if.hwif->base;
-    adc_state_t *const state = adc1_if.state;
-    uint32_t flags = *(HAL_SFR_t *)(hwif_base + OFS_ADCn_ISR);
+    uint32_t flags = *(HAL_SFR_t *)(ADC1_BASE + OFS_ADCn_ISR);
     uint16_t data;
+
     if (flags & ADC_FLAG_OVR){
-        state->overrun += 1;
+        *(HAL_SFR_t *)(ADC1_BASE + OFS_ADCn_ISR) |= ADC_ISR_OVR;
+        adc1_state.overrun ++;
     }
+
     if (flags & ADC_FLAG_EOC){
-        data = *(HAL_SFR_t *)(hwif_base + OFS_ADCn_DR);
-        state->lastresult = data;
-        // dispatch result
-        if (state->handler){
-            state->handler(uC_ADC1_INTFNUM, state->nextchn, &state->lastresult);
+        data = *(HAL_SFR_t *)(ADC1_BASE + OFS_ADCn_DR);
+        adc1_state.lastresult = data;
+        
+        // Dispatch result if handler is set
+        if (adc1_state.handler_eoc){
+            adc1_state.handler_eoc(adc1_state.nextchn, &adc1_state.lastresult);
         }
-        // prepare for next
-        uint32_t seqstate = state->seqstate;
-        uint8_t nextchn = state->nextchn;
+
+        // Prepare for next
+        uint32_t seqstate = adc1_state.seqstate;
         seqstate >>= 1;
-        nextchn ++;
-        if (!seqstate){
-            seqstate = state->chnmask;
-            nextchn = 0;
+        if (seqstate){
+            uint8_t offset = __builtin_ctz(seqstate); 
+            seqstate >>= offset;
+            adc1_state.nextchn += (1 + offset);
+            adc1_state.seqstate = seqstate;
         }
-        while ((seqstate & 1) == 0){
-            seqstate >>= 1;
-            nextchn ++;
+    }
+
+    if (flags & ADC_FLAG_EOS){
+        // Clear EOS flag
+        *(HAL_SFR_t *)(ADC1_BASE + OFS_ADCn_ISR) |= ADC_ISR_EOS;
+        if (adc1_state.mode != ADC_MODE_CONTINUOUS) {
+            adc1_state.mode = ADC_MODE_IDLE;
         }
-        adc1_if.state->nextchn = nextchn;
-        adc1_if.state->seqstate = seqstate;
+    
+        if (adc1_state.handler_eos){
+            adc1_state.handler_eos();
+        }
+    
+        // Reset sequence state
+        adc1_state.nextchn = adc1_state.chnmask;
+        adc1_state.seqstate = adc1_state.firstchn;
     }
 }
+#pragma GCC pop_options
 
+
+// __attribute__((section(".itcm_irqs")))
 void ADC1_2_IRQHandler(void)
 {  
     #if uC_ADC1_ENABLED

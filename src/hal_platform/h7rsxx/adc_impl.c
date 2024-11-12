@@ -15,7 +15,7 @@ __weak void adc_clock_init(void){
     __HAL_RCC_ADC12_CLK_ENABLE();
     
     HAL_SFR_t *ccr = (HAL_SFR_t *)(ADC12_COMMON_BASE + OFS_ADC_CCR);
-    *ccr = (*ccr & ~(ADC_CCR_PRESC | ADC_CCR_CKMODE)) | (uC_ADC_DEFAULT_CLOCKCONF);
+    *ccr = (*ccr & ~(ADC_CCR_PRESC | ADC_CCR_CKMODE)) | (uC_ADC_CLOCK_PRESCALER);
 }
 
 static void adc_interrupt_enable(void){
@@ -101,7 +101,6 @@ static void _adc_init(
         EBS_BOOL_t dataalignleft,
         EBS_BOOL_t en_injectq,
         EBS_BOOL_t en_enjectq_auto,
-        ADC_MODE_t default_mode,
         EBS_BOOL_t overrun_latest,
         EBS_BOOL_t en_os_reg,
         EBS_BOOL_t en_os_inj,
@@ -128,21 +127,6 @@ static void _adc_init(
         cfgrval |= ADC_CFGR_ALIGN;
     }
 
-    switch (default_mode)
-    {
-    case ADC_MODE_SCAN:
-        cfgrval &= ~ADC_CFGR_CONT;
-        break;
-    case ADC_MODE_CONTINUOUS:
-        cfgrval |= ADC_CFGR_CONT;
-        break;
-    case ADC_MODE_SINGLE:
-    case ADC_MODE_DISABLED:
-    default:
-        // Unexpected or unsupported mode
-        die();
-    }
-
     if (overrun_latest){ cfgrval |= ADC_CFGR_OVRMOD; }
 
     if (en_os_reg){      cfgr2val |= ADC_CFGR2_ROVSE;}
@@ -153,12 +137,11 @@ static void _adc_init(
     *cfgr = cfgrval;
     *cfgr2 = cfgr2val;
 
-    *cr |= ADC_CR_ADEN;
     while (!(*isr & ADC_ISR_ADRDY)){
-        __NOP();
+        *cr |= ADC_CR_ADEN;
     }
 
-    *ier |= ADC_IER_EOCIE;
+    *ier |= (ADC_IER_EOCIE);
 };
 
 static void _adc_configure_sampling_time(const _adc_hwif_t *const hwif){
@@ -227,6 +210,7 @@ static const _adc_hwif_t _adc1_hwif = {
        .chnmask = uC_ADC1_CHNMASK
 };
 
+__attribute__((section(".dtcm")))
 adc_state_t adc1_state = {0};
     
 void _adc1_init(void);
@@ -241,6 +225,7 @@ void _adc1_init(void){
     // adc_common_init needs to be called as well
     // we don't do it here because it must only be 
     // called once for all ADCs
+    memset(&adc1_state, 0, sizeof(adc_state_t));
     _adc_power_up(&_adc1_hwif);
     #if uC_ADC1_EN_CALIB
     _adc_calibrate_internal(&_adc1_hwif);
@@ -250,7 +235,6 @@ void _adc1_init(void){
         uC_ADC1_DATAALIGNLEFT,
         uC_ADC1_EN_INJECTQ,
         uC_ADC1_EN_INJECTQ_AUTO,
-        uC_ADC1_DEFAULT_MODE,
         uC_ADC1_OVERRUN_LATEST,
         uC_ADC1_EN_OS_REG,
         uC_ADC1_EN_OS_INJ,
@@ -262,6 +246,7 @@ void _adc1_init(void){
     _adc_configure_channels(1);
     #endif
     _adc_configure_sampling_time(&_adc1_hwif);
+    adc1_if.state->mode = ADC_MODE_IDLE;
 }
 #endif
 
@@ -291,8 +276,12 @@ void adc_init(){
     #endif
 }
 
-void adc_register_handler(HAL_BASE_t intfnum, void (*handler)(HAL_BASE_t, HAL_BASE_t, void *)){
-    adc_if[uC_ADC1_INTFNUM]->state->handler = handler;
+void adc_install_eoc_handler(HAL_BASE_t intfnum, void (*handler)(HAL_BASE_t, void *)){
+    adc_if[uC_ADC1_INTFNUM]->state->handler_eoc = handler;
+};
+
+void adc_install_eos_handler(HAL_BASE_t intfnum, void (*handler)(void)){
+    adc_if[uC_ADC1_INTFNUM]->state->handler_eos = handler;
 };
 
 
@@ -370,12 +359,27 @@ static void _adc_configure_channels(uint32_t selector){
     _adc_write_regseq(adc_if[intfnum]);
 };
 
-void adc_trigger_scan(HAL_BASE_t intfnum){
-    if (adc_if[intfnum]->state->chnmask == 0) {
+void adc_trigger_single(HAL_BASE_t intfnum, HAL_BASE_t chnum){
+    if (adc_if[intfnum]->state->mode != ADC_MODE_IDLE){
+        return;
+    }
+    if (!(adc_if[intfnum]->hwif->chnmask & (1 << chnum))){
         return;
     }
     adc_if[intfnum]->state->lastresult = 0;
+    // Not implemented
+    die();
+}
 
+void adc_trigger_scan(HAL_BASE_t intfnum){
+    if (adc_if[intfnum]->state->mode != ADC_MODE_IDLE){
+        return;
+    }
+    if (adc_if[intfnum]->state->chnmask == 0) {
+        return;
+    }
+    adc_if[intfnum]->state->overrun = 0;
+    adc_if[intfnum]->state->lastresult = 0;
     uint32_t seqstate = adc_if[intfnum]->state->chnmask;
     uint8_t nextchn = 0;
     while ((seqstate & 1) == 0){
@@ -384,9 +388,43 @@ void adc_trigger_scan(HAL_BASE_t intfnum){
     }
     adc_if[intfnum]->state->nextchn = nextchn;
     adc_if[intfnum]->state->seqstate = seqstate;
+    adc_if[intfnum]->state->mode = ADC_MODE_SCAN;
+
+    HAL_SFR_t * cfgr = (HAL_SFR_t *)(adc_if[intfnum]->hwif->base + OFS_ADCn_CFGR);
+    *cfgr &= ~ADC_CFGR_CONT;
+
+    // TODO Mode needs to be reset when done
     HAL_SFR_t * cr = (HAL_SFR_t *)(adc_if[intfnum]->hwif->base + OFS_ADCn_CR);
     *cr |= ADC_CR_ADSTART;
 }
+
+
+void adc_trigger_autoscan(HAL_BASE_t intfnum){
+    if (adc_if[intfnum]->state->mode != ADC_MODE_IDLE){
+        return;
+    }
+    if (adc_if[intfnum]->state->chnmask == 0) {
+        return;
+    }
+    adc_if[intfnum]->state->lastresult = 0;
+    adc_if[intfnum]->state->overrun = 0;
+    uint32_t seqstate = adc_if[intfnum]->state->chnmask;
+    uint8_t nextchn = __builtin_ctz(seqstate);
+    if (nextchn) {
+        seqstate >>= nextchn;
+    }
+    adc_if[intfnum]->state->firstchn = nextchn;
+    adc_if[intfnum]->state->nextchn = nextchn;
+    adc_if[intfnum]->state->seqstate = seqstate;
+    adc_if[intfnum]->state->mode = ADC_MODE_CONTINUOUS;
+    
+    HAL_SFR_t * cfgr = (HAL_SFR_t *)(adc_if[intfnum]->hwif->base + OFS_ADCn_CFGR);
+    *cfgr |= ADC_CFGR_CONT;
+
+    HAL_SFR_t * cr = (HAL_SFR_t *)(adc_if[intfnum]->hwif->base + OFS_ADCn_CR);
+    *cr |= ADC_CR_ADSTART;
+}
+
 
 
 #endif

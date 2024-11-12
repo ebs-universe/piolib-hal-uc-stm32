@@ -118,10 +118,12 @@ typedef struct _ADC_STATE_t{
     ADC_MODE_t mode;
     uint8_t overrun;
     uint8_t nextchn;
+    uint8_t firstchn;
+    uint16_t lastresult;
     uint32_t seqstate;
     uint32_t chnmask;
-    uint32_t lastresult;
-    void (*handler)(HAL_BASE_t, HAL_BASE_t, void *);
+    void (*handler_eoc)(HAL_BASE_t, void *);
+    void (*handler_eos)(void);
 } adc_state_t;
 
 typedef struct ADC_IF_t {
@@ -131,14 +133,17 @@ typedef struct ADC_IF_t {
 } adc_if_t;
 
 extern const adc_if_t adc1_if;
+extern adc_state_t adc1_state;
+extern const adc_if_t adc2_if;
+extern adc_state_t adc2_state;
+
 extern const adc_if_t *const adc_if[uC_ADCS_ENABLED + 1];
 
-#define uC_ADC_DEFAULT_CLOCKCONF            ADC_CCR_PRESC_2
+#define uC_ADC_DEFAULT_CLOCK_PRESCALER      ADC_CCR_PRESC_3
 #define uC_ADC_DEFAULT_DATAALIGNLEFT        EBS_FALSE
 #define uC_ADC_DEFAULT_EN_CALIB             EBS_TRUE
 #define uC_ADC_DEFAULT_EN_INJECTQ           EBS_TRUE
 #define uC_ADC_DEFAULT_EN_INJECTQ_AUTO      EBS_TRUE
-#define uC_ADC_DEFAULT_MODE                 ADC_MODE_SCAN
 #define uC_ADC_DEFAULT_OVERRUN_LATEST       EBS_TRUE
 #define uC_ADC_DEFAULT_EN_OS_REG            EBS_FALSE
 #define uC_ADC_DEFAULT_EN_OS_INJ            EBS_FALSE
@@ -205,6 +210,10 @@ extern const adc_if_t *const adc_if[uC_ADCS_ENABLED + 1];
 #define OFS_ADC_IPDR        0xF8
 #define OFS_ADC_SIDR        0xFC
 
+#ifndef uC_ADC_CLOCK_PRESCALER
+    #define uC_ADC_CLOCK_PRESCALER      uC_ADC_DEFAULT_CLOCK_PRESCALER
+#endif
+
 #if uC_ADC1_ENABLED
     #ifndef uC_ADC1_DATAALIGNLEFT
         #define uC_ADC1_DATAALIGNLEFT   uC_ADC_DEFAULT_DATAALIGNLEFT
@@ -217,11 +226,6 @@ extern const adc_if_t *const adc_if[uC_ADCS_ENABLED + 1];
     #endif
     #ifndef uC_ADC1_EN_INJECTQ_AUTO
         #define uC_ADC1_EN_INJECTQ_AUTO uC_ADC_DEFAULT_EN_INJECTQ_AUTO
-    #endif
-    #ifdef APP_ADC1_MODE
-        #define uC_ADC1_DEFAULT_MODE    APP_ADC1_MODE
-    #else
-        #define uC_ADC1_DEFAULT_MODE    uC_ADC_DEFAULT_MODE
     #endif
     #ifndef uC_ADC1_OVERRUN_LATEST
         #define uC_ADC1_OVERRUN_LATEST  uC_ADC_DEFAULT_OVERRUN_LATEST
@@ -266,19 +270,29 @@ extern const adc_if_t *const adc_if[uC_ADCS_ENABLED + 1];
  * and live with the potential sampling jitter. Alternative is to drop HCLK 
  * itself, which reduces all AHB, AXI, and APB clocks.
  * 
- * Implemented (__weak) Clock Configuration : 
+ * Implemented (__weak) Default Clock Configuration : 
  *   - Async clock derived from PLL2P
- *   - Prescaler of /8
+ *   - Prescaler of /32
  *   - ADC clk of 25MHz
  * 
  * This should be fine for all channels at max sampling rate for this clock, 
- * which is probably somewhere between 1MSPS and 2MSPS depending on sampling 
- * time and other configurations.
+ * which is probably somewhere between 0.25 and 0.5 MSPS (cumulative) depending 
+ * on sampling time and other configurations.
+ * 
+ * The target clock, however, is a prescaler of /8, which should produce 
+ * between 1 and 2 MSPS. At present, however, the ADC interupt handler 
+ * implemented here is not fast enough and causes ADC overrun. The interrupt
+ * handler does seem to work in scan mode at -O1, but breaks in continous 
+ * mode. This needs to be investigated more closely. Use of DMA is probably
+ * required.
  * 
  * If the clock speed needs to be changed, the ADC clock configured by the 
- * default implementation of adc_clock_init() should be adjusted. This can 
- * be done by implementing the same function in the application. Note that 
- * changing the clock may have other unhandled side effects, for example: 
+ * default implementation of adc_clock_init() can be adjusted. This can 
+ * be done by implementing the same function in the application. Also, the 
+ * ADC clock prescaler can be overridden in application.h (uC_ADC_CLOCK_PRESCALER).
+ * 
+ * Note that changing the clock may have other unhandled side effects, for 
+ * example: 
  *   - mimimum sample time will change
  * 
  */
