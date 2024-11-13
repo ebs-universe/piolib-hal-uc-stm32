@@ -64,17 +64,27 @@ __weak void mpu_init(void){
 
 #pragma GCC push_options
 #pragma GCC optimize("O0")
-void prepare_itcm_memory(void){
+void prepare_tcm_memory(void){
     /* Copy ITCM code */
     extern const unsigned char _sitcm;
     extern const unsigned char _eitcm;
     extern const unsigned char _siitcm;
+    extern const unsigned char _sdtcm;
+    extern const unsigned char _edtcm;
+    
     void * sitcm = (void *)&_sitcm;
     void * eitcm = (void *)&_eitcm;
     void * siitcm = (void *)&_siitcm;
+    void * sdtcm = (void *)&_sdtcm;
+    void * edtcm = (void *)&_edtcm;
+    
     int size = eitcm - sitcm;
-    if (size){
+    if (size) {
         memcpy(sitcm, siitcm, size);
+    }
+    size = edtcm - sdtcm;
+    if (size) {
+        memset(sdtcm, 0, size);
     }
 }
 #pragma GCC pop_options
@@ -99,7 +109,7 @@ __weak void configure_memory_layout(void){
     if (HAL_FLASHEx_OBProgram(&pOBInit) != HAL_OK) { die(); }
     if (HAL_FLASH_OB_Lock() != HAL_OK) { die(); }
     if (HAL_FLASH_Lock() != HAL_OK)    { die(); }
-    prepare_itcm_memory();
+    prepare_tcm_memory();
 }
 
 __weak void cpu_init(void){
