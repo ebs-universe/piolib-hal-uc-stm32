@@ -9,11 +9,11 @@ volatile uint8_t __adc_handler_inclusion;
 // This interrupt handler is probably way too long. At the target
 // sampling speed, there is significant ADC read overrun. 
 
-
-// __attribute__((section(".itcm_irqs")))
 #pragma GCC push_options
 #pragma GCC optimize("O3")
-static inline void _adc1_handler(void){
+
+// __attribute__((section(".itcm_irqs")))
+static void _adc1_handler(void){
     uint32_t flags = *(HAL_SFR_t *)(ADC1_BASE + OFS_ADCn_ISR);
     uint16_t data;
 

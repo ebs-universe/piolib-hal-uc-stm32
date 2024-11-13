@@ -5,7 +5,30 @@
 
 #if uC_ADC_ENABLED
 
-static void _adc_configure_channels(uint32_t selector);
+/**
+ * @name Hardcoded Initialization Functions
+ * 
+ */
+/**@{*/ 
+static void _adc_builtin_channels_enable(void);
+static void _adc_dual_config(void);
+static void _adc_power_up(const _adc_hwif_t *const hwif);
+static void _adc_calibrate_internal(const _adc_hwif_t *const hwif);
+static void _adc_configure_sampling_time(const _adc_hwif_t *const hwif);
+static void _adc_configure_channels(HAL_BASE_t intfnum);
+static void _adc_init(
+        const _adc_hwif_t *const hwif,
+        EBS_BOOL_t dataalignleft,
+        EBS_BOOL_t en_injectq,
+        EBS_BOOL_t en_enjectq_auto,
+        EBS_BOOL_t overrun_latest,
+        EBS_BOOL_t en_os_reg,
+        EBS_BOOL_t en_os_inj,
+        EBS_BOOL_t os_trig_each,
+        uint32_t os_ratio,
+        uint8_t os_shift
+);
+/**@}*/
 
 __weak void adc_clock_init(void){
     RCC_PeriphCLKInitTypeDef PeriphClkInit = {0};
@@ -18,9 +41,13 @@ __weak void adc_clock_init(void){
     *ccr = (*ccr & ~(ADC_CCR_PRESC | ADC_CCR_CKMODE)) | (uC_ADC_CLOCK_PRESCALER);
 }
 
-static void adc_interrupt_enable(void){
+void adc_interrupt_enable(void){
     HAL_NVIC_SetPriority(ADC1_2_IRQn, 0, 0);
     HAL_NVIC_EnableIRQ(ADC1_2_IRQn);
+}
+
+void adc_interrupt_disable(void){
+    HAL_NVIC_DisableIRQ(ADC1_2_IRQn);
 }
 
 static void _adc_builtin_channels_enable(void){
@@ -53,6 +80,68 @@ void adc_common_init(void){
     _adc_builtin_channels_enable();
     _adc_dual_config();
 }
+
+#if uC_ADC1_ENABLED
+static const _adc_hwif_t _adc1_hwif = {
+       .type = ADC12_HWIF, 
+       .base = ADC1_BASE,
+       .common = ADC12_COMMON_BASE,
+       .chnmask = uC_ADC1_CHNMASK
+};
+
+__attribute__((section(".dtcm")))
+adc_state_t adc1_state = {0};
+    
+void _adc1_init(void);
+
+const adc_if_t adc1_if = {
+    &_adc1_hwif,
+    &adc1_state,
+    _adc1_init
+};
+
+void _adc1_init(void){
+    // adc_common_init needs to be called as well
+    // we don't do it here because it must only be 
+    // called once for all ADCs
+    _adc_power_up(&_adc1_hwif);
+    #if uC_ADC1_EN_CALIB
+    _adc_calibrate_internal(&_adc1_hwif);
+    #endif
+    _adc_init(
+        &_adc1_hwif,
+        uC_ADC1_DATAALIGNLEFT,
+        uC_ADC1_EN_INJECTQ,
+        uC_ADC1_EN_INJECTQ_AUTO,
+        uC_ADC1_OVERRUN_LATEST,
+        uC_ADC1_EN_OS_REG,
+        uC_ADC1_EN_OS_INJ,
+        uC_ADC1_OS_TRIG_EACH,
+        uC_ADC1_OS_RATIO,
+        uC_ADC1_OS_SHIFT
+    );
+    #if uC_ADC_CONFIGURE_CHANNELS
+    _adc_configure_channels(uC_ADC1_INTFNUM);
+    #endif
+    _adc_configure_sampling_time(&_adc1_hwif);
+    adc1_state.mode = ADC_MODE_IDLE;
+    return;
+}
+#endif
+
+#if uC_ADC2_ENABLED
+
+#endif
+
+const adc_if_t *const adc_if[uC_ADCS_ENABLED + 1] = {
+    #if uC_ADC1_ENABLED
+        &adc1_if,
+    #endif
+    #if uC_ADC2_ENABLED
+        &adc2_if,
+    #endif
+    NULL
+};
 
 static void _adc_power_up(const _adc_hwif_t *const hwif){
     HAL_SFR_t * cr = (HAL_SFR_t *)(hwif->base + OFS_ADCn_CR);
@@ -144,6 +233,18 @@ static void _adc_init(
     *ier |= (ADC_IER_EOCIE);
 };
 
+void adc_init(){
+    #if uC_ADC_ENABLED
+        adc_common_init();
+        #if uC_ADC1_ENABLED
+            _adc1_init();
+        #endif
+        #if uC_ADC2_ENABLED
+            _adc2_init();
+        #endif
+    #endif
+}
+
 static void _adc_configure_sampling_time(const _adc_hwif_t *const hwif){
     (void)uC_ADC_SAMPLETIME;
     HAL_SFR_t * smpr = (HAL_SFR_t *)(hwif->base + OFS_ADCn_SMPR1);
@@ -201,103 +302,10 @@ void _adc_write_regseq(const adc_if_t * const aif) {
     *adc_sqr[0] |= (chncount - 1) & 0x0F;
 }
 
-
-#if uC_ADC1_ENABLED
-static const _adc_hwif_t _adc1_hwif = {
-       .type = ADC12_HWIF, 
-       .base = ADC1_BASE,
-       .common = ADC12_COMMON_BASE,
-       .chnmask = uC_ADC1_CHNMASK
+static void _adc_configure_channels(HAL_BASE_t intfnum){
+    adc_if[intfnum]->state->chnmask = adc_if[intfnum]->hwif->chnmask;
+    _adc_write_regseq(adc_if[intfnum]);
 };
-
-__attribute__((section(".dtcm")))
-adc_state_t adc1_state = {0};
-    
-void _adc1_init(void);
-
-const adc_if_t adc1_if = {
-    &_adc1_hwif,
-    &adc1_state,
-    _adc1_init
-};
-
-void _adc1_init(void){
-    // adc_common_init needs to be called as well
-    // we don't do it here because it must only be 
-    // called once for all ADCs
-    memset(&adc1_state, 0, sizeof(adc_state_t));
-    _adc_power_up(&_adc1_hwif);
-    #if uC_ADC1_EN_CALIB
-    _adc_calibrate_internal(&_adc1_hwif);
-    #endif
-    _adc_init(
-        &_adc1_hwif,
-        uC_ADC1_DATAALIGNLEFT,
-        uC_ADC1_EN_INJECTQ,
-        uC_ADC1_EN_INJECTQ_AUTO,
-        uC_ADC1_OVERRUN_LATEST,
-        uC_ADC1_EN_OS_REG,
-        uC_ADC1_EN_OS_INJ,
-        uC_ADC1_OS_TRIG_EACH,
-        uC_ADC1_OS_RATIO,
-        uC_ADC1_OS_SHIFT
-    );
-    #if uC_ADC_CONFIGURE_CHANNELS
-    _adc_configure_channels(1);
-    #endif
-    _adc_configure_sampling_time(&_adc1_hwif);
-    adc1_if.state->mode = ADC_MODE_IDLE;
-}
-#endif
-
-#if uC_ADC2_ENABLED
-
-#endif
-
-const adc_if_t *const adc_if[uC_ADCS_ENABLED + 1] = {
-    #if uC_ADC1_ENABLED
-        &adc1_if,
-    #endif
-    #if uC_ADC2_ENABLED
-        &adc2_if,
-    #endif
-    NULL
-};
-
-void adc_init(){
-    #if uC_ADC_ENABLED
-        adc_common_init();
-        #if uC_ADC1_ENABLED
-            _adc1_init();
-        #endif
-        #if uC_ADC2_ENABLED
-            _adc2_init();
-        #endif
-    #endif
-}
-
-void adc_install_eoc_handler(HAL_BASE_t intfnum, void (*handler)(HAL_BASE_t, void *)){
-    adc_if[uC_ADC1_INTFNUM]->state->handler_eoc = handler;
-};
-
-void adc_install_eos_handler(HAL_BASE_t intfnum, void (*handler)(void)){
-    adc_if[uC_ADC1_INTFNUM]->state->handler_eos = handler;
-};
-
-
-void adc_watchdog(void){
-    #if uC_ADC1_ENABLED
-    if (adc1_if.state->overrun) {
-        die();
-    }
-    #endif
-    #if uC_ADC2_ENABLED
-    if (adc2_if.state->overrun) {
-        die();
-    }
-    #endif
-}
-
 
 void adc_enable_channel(HAL_BASE_t intfnum, HAL_BASE_t chnum) {
     uint32_t newchn = (1 << chnum);
@@ -334,30 +342,26 @@ void adc_disable_channel(HAL_BASE_t intfnum, HAL_BASE_t chnum) {
     _adc_write_regseq(adc_if[intfnum]);
 }
 
-static void _adc_configure_channels(uint32_t selector){
-    // This could be done by just using the hwif chnmask instead,
-    // if there is a better approach to dealing with the sampling
-    // time setting, which we presently do this in enable_channel.
-    uint32_t intfnum = 0xF0;
-    
+void adc_install_eoc_handler(HAL_BASE_t intfnum, void (*handler)(HAL_BASE_t, void *)){
+    adc_if[uC_ADC1_INTFNUM]->state->handler_eoc = handler;
+};
+
+void adc_install_eos_handler(HAL_BASE_t intfnum, void (*handler)(void)){
+    adc_if[uC_ADC1_INTFNUM]->state->handler_eos = handler;
+};
+
+void adc_poll(void){
     #if uC_ADC1_ENABLED
-    if (selector == 1){
-        intfnum = uC_ADC1_INTFNUM;
+    if (adc1_state.overrun) {
+        die();
     }
     #endif
     #if uC_ADC2_ENABLED
-    if (selector == 2){
-        intfnum = uC_ADC2_INTFNUM;
-    }
-    #endif
-
-    if (intfnum == 0xF0) {
+    if (adc2_state.overrun) {
         die();
     }
-
-    adc_if[intfnum]->state->chnmask = adc_if[intfnum]->hwif->chnmask;
-    _adc_write_regseq(adc_if[intfnum]);
-};
+    #endif
+}
 
 void adc_trigger_single(HAL_BASE_t intfnum, HAL_BASE_t chnum){
     if (adc_if[intfnum]->state->mode != ADC_MODE_IDLE){
@@ -366,7 +370,6 @@ void adc_trigger_single(HAL_BASE_t intfnum, HAL_BASE_t chnum){
     if (!(adc_if[intfnum]->hwif->chnmask & (1 << chnum))){
         return;
     }
-    adc_if[intfnum]->state->lastresult = 0;
     // Not implemented
     die();
 }
@@ -378,14 +381,15 @@ void adc_trigger_scan(HAL_BASE_t intfnum){
     if (adc_if[intfnum]->state->chnmask == 0) {
         return;
     }
+    
+    uint32_t seqstate = adc_if[intfnum]->state->chnmask;
+    uint8_t nextchn = __builtin_ctz(seqstate);
+    if (nextchn) {
+        seqstate >>= nextchn;
+    }
     adc_if[intfnum]->state->overrun = 0;
     adc_if[intfnum]->state->lastresult = 0;
-    uint32_t seqstate = adc_if[intfnum]->state->chnmask;
-    uint8_t nextchn = 0;
-    while ((seqstate & 1) == 0){
-        seqstate >>= 1;
-        nextchn ++;
-    }
+    adc_if[intfnum]->state->firstchn = nextchn;
     adc_if[intfnum]->state->nextchn = nextchn;
     adc_if[intfnum]->state->seqstate = seqstate;
     adc_if[intfnum]->state->mode = ADC_MODE_SCAN;
@@ -393,11 +397,9 @@ void adc_trigger_scan(HAL_BASE_t intfnum){
     HAL_SFR_t * cfgr = (HAL_SFR_t *)(adc_if[intfnum]->hwif->base + OFS_ADCn_CFGR);
     *cfgr &= ~ADC_CFGR_CONT;
 
-    // TODO Mode needs to be reset when done
     HAL_SFR_t * cr = (HAL_SFR_t *)(adc_if[intfnum]->hwif->base + OFS_ADCn_CR);
     *cr |= ADC_CR_ADSTART;
 }
-
 
 void adc_trigger_autoscan(HAL_BASE_t intfnum){
     if (adc_if[intfnum]->state->mode != ADC_MODE_IDLE){
@@ -406,13 +408,14 @@ void adc_trigger_autoscan(HAL_BASE_t intfnum){
     if (adc_if[intfnum]->state->chnmask == 0) {
         return;
     }
-    adc_if[intfnum]->state->lastresult = 0;
-    adc_if[intfnum]->state->overrun = 0;
+    
     uint32_t seqstate = adc_if[intfnum]->state->chnmask;
     uint8_t nextchn = __builtin_ctz(seqstate);
     if (nextchn) {
         seqstate >>= nextchn;
     }
+    adc_if[intfnum]->state->overrun = 0;
+    adc_if[intfnum]->state->lastresult = 0;
     adc_if[intfnum]->state->firstchn = nextchn;
     adc_if[intfnum]->state->nextchn = nextchn;
     adc_if[intfnum]->state->seqstate = seqstate;
@@ -424,7 +427,5 @@ void adc_trigger_autoscan(HAL_BASE_t intfnum){
     HAL_SFR_t * cr = (HAL_SFR_t *)(adc_if[intfnum]->hwif->base + OFS_ADCn_CR);
     *cr |= ADC_CR_ADSTART;
 }
-
-
 
 #endif

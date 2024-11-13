@@ -150,7 +150,6 @@ extern const adc_if_t *const adc_if[uC_ADCS_ENABLED + 1];
 #define uC_ADC_DEFAULT_OS_TRIG_EACH         EBS_FALSE
 #define uC_ADC_DEFAULT_OS_RATIO             ADC_OVERSAMPLING_RATIO_4     
 #define uC_ADC_DEFAULT_OS_SHIFT             1
-
 /** 
  * Minimum sample time chosen for: 
  *   - 100ohm RAIN 
@@ -245,11 +244,20 @@ extern const adc_if_t *const adc_if[uC_ADCS_ENABLED + 1];
     #ifndef uC_ADC1_OS_SHIFT
         #define uC_ADC1_OS_SHIFT        uC_ADC_DEFAULT_OS_SHIFT
     #endif
+    #ifndef uC_ADC1_MARK_POLL_OVERRUN
+        #define uC_ADC1_MARK_POLL_OVERRUN   uC_ADC_DEFAULT_MARK_POLL_OVERRUN
+    #endif
 #endif
 
 #if uC_ADC2_ENABLED
 
 #endif
+
+/**
+ * @name Specialized Initialization and Control Functions
+ * 
+ */
+/**@{*/ 
 
 /**
  * @brief Configure ADC Clock
@@ -297,6 +305,13 @@ extern const adc_if_t *const adc_if[uC_ADCS_ENABLED + 1];
  * 
  */
 void adc_clock_init(void);
+
+void adc_common_init(void);
+
+void adc_interrupt_enable(void);
+
+void adc_interrupt_disable(void);
+/**@}*/
 
 
 #endif
