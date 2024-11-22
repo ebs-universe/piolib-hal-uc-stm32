@@ -160,6 +160,59 @@
     
 #endif
 
+#if APP_ENABLE_TIMER
+
+    #define uC_TIM2_ENABLED     APP_ENABLE_TIM2   // GP 32b 4CC DMA
+    #define uC_TIM3_ENABLED     APP_ENABLE_TIM3   // GP 32b 4CC DMA
+    #define uC_TIM4_ENABLED     APP_ENABLE_TIM4   // GP 32b 4CC DMA
+    #define uC_TIM5_ENABLED     APP_ENABLE_TIM5   // GP 32b 4CC DMA
+    
+    #define uC_TIM6_ENABLED     APP_ENABLE_TIM6   // Basic 16b 0CC DMA
+    #define uC_TIM7_ENABLED     APP_ENABLE_TIM7   // Basic 16b 0CC DMA
+    
+    #define uC_TIM9_ENABLED     APP_ENABLE_TIM9   // GP 16b 2CC
+    #define uC_TIM12_ENABLED    APP_ENABLE_TIM12  // GP 16b 2CC
+    #define uC_TIM13_ENABLED    APP_ENABLE_TIM13  // GP 16b 1CC
+    #define uC_TIM14_ENABLED    APP_ENABLE_TIM14  // GP 16b 1CC
+
+    #define uC_TIM15_ENABLED    APP_ENABLE_TIM15  // GP 16b 2CC DMA
+    #define uC_TIM16_ENABLED    APP_ENABLE_TIM16  // GP 16b 1CC DMA
+    #define uC_TIM17_ENABLED    APP_ENABLE_TIM17  // GP 16b 1CC DMA
+
+    #define uC_LPTIM1_ENABLED   APP_ENABLE_LPTIM1  // LP 16b 2CC DMA
+    #define uC_LPTIM2_ENABLED   APP_ENABLE_LPTIM2  // LP 16b 2CC DMA
+    #define uC_LPTIM3_ENABLED   APP_ENABLE_LPTIM3  // LP 16b 2CC DMA
+    #define uC_LPTIM4_ENABLED   APP_ENABLE_LPTIM4  // LP 16b 2CC DMA
+    #define uC_LPTIM5_ENABLED   APP_ENABLE_LPTIM5  // LP 16b 2CC DMA
+
+    #define uC_TIMERS_ENABLED   ( \
+        uC_TIM2_ENABLED + uC_TIM3_ENABLED + uC_TIM4_ENABLED + uC_TIM5_ENABLED + \
+        uC_TIM6_ENABLED + uC_TIM7_ENABLED + \
+        uC_TIM9_ENABLED + uC_TIM12_ENABLED + uC_TIM13_ENABLED + uC_TIM14_ENABLED + \
+        uC_TIM15_ENABLED + uC_TIM16_ENABLED + uC_TIM17_ENABLED \
+    )
+    
+    #if uC_TIMERS_ENABLED
+        #define uC_TIMER_ENABLED        1
+    #endif
+    
+#endif
+
+#if APP_ENABLE_LPTIM
+    // Not Implemented
+    #define uC_LPTIM1_ENABLED   APP_ENABLE_LPTIM1  // LP 16b 2CC DMA
+    #define uC_LPTIM2_ENABLED   APP_ENABLE_LPTIM2  // LP 16b 2CC DMA
+    #define uC_LPTIM3_ENABLED   APP_ENABLE_LPTIM3  // LP 16b 2CC DMA
+    #define uC_LPTIM4_ENABLED   APP_ENABLE_LPTIM4  // LP 16b 2CC DMA
+    #define uC_LPTIM5_ENABLED   APP_ENABLE_LPTIM5  // LP 16b 2CC DMA
+
+    #define uC_LPTIMERS_ENABLED   ( \
+        uC_LPTIM1_ENABLED + uC_LPTIM2_ENABLED + uC_LPTIM3_ENABLED + \
+        uC_LPTIM4_ENABLED + uC_LPTIM4_ENABLED \
+    )
+#endif
+
+
 #if APP_ENABLE_ADC
     #define uC_ADC_ENABLED                  1
     #define uC_ADC_CONFIGURE_CHANNELS       APP_ADC_CONFIGURE_CHANNELS
@@ -338,7 +391,6 @@
 
 // Peripherals not yet implemented for this platform
 #define uC_WDT_ENABLED                  0
-#define uC_TIMER_ENABLED                0
 #define uC_SPI_ENABLED                  0
 #define uC_SPI_PT_ENABLED               0
 #define uC_I2C_ENABLED                  0

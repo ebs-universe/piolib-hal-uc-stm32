@@ -9,7 +9,7 @@ volatile uint8_t __adc_handler_inclusion;
 // This interrupt handler is probably way too long. At the target
 // sampling speed, there is significant ADC read overrun. 
 
-#pragma GCC push_options
+#pragma GCC push_options 
 #pragma GCC optimize("O3")
 
 // __attribute__((section(".itcm_irqs")))

@@ -140,6 +140,7 @@ extern adc_state_t adc2_state;
 extern const adc_if_t *const adc_if[uC_ADCS_ENABLED + 1];
 
 #define uC_ADC_DEFAULT_CLOCK_PRESCALER      ADC_CCR_PRESC_3
+#define uC_ADC_DEFAULT_CLOCK_PRESCALER_VAL  8
 #define uC_ADC_DEFAULT_DATAALIGNLEFT        EBS_FALSE
 #define uC_ADC_DEFAULT_EN_CALIB             EBS_TRUE
 #define uC_ADC_DEFAULT_EN_INJECTQ           EBS_TRUE
@@ -211,7 +212,10 @@ extern const adc_if_t *const adc_if[uC_ADCS_ENABLED + 1];
 
 #ifndef uC_ADC_CLOCK_PRESCALER
     #define uC_ADC_CLOCK_PRESCALER      uC_ADC_DEFAULT_CLOCK_PRESCALER
+    #define uC_ADC_CLOCK_PRESCALER_VAL  uC_ADC_DEFAULT_CLOCK_PRESCALER_VAL
 #endif
+
+#define uC_ADC_CLOCK_FREQUENCY          (CLOCKTREE_ADC_FREQ / uC_ADC_CLOCK_PRESCALER_VAL)
 
 #if uC_ADC1_ENABLED
     #ifndef uC_ADC1_DATAALIGNLEFT
