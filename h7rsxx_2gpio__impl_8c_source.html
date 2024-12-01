@@ -141,52 +141,52 @@ $(document).ready(function(){initNavTree('h7rsxx_2gpio__impl_8c_source.html','')
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="keyword">static</span> <span class="keywordtype">void</span> enable_gpio_exti_irqs(<span class="keywordtype">void</span>){</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="comment">// TODO Enable IRQs when interrupt is configured instead.</span></div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="comment">// Consequences of simply enabling all IRQs unknown. </span></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    HAL_NVIC_SetPriority(EXTI0_IRQn, 0, 0);</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    HAL_NVIC_SetPriority(EXTI0_IRQn, PRIO_GPIO0, 0);</div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    HAL_NVIC_EnableIRQ(EXTI0_IRQn);</div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    HAL_NVIC_SetPriority(EXTI1_IRQn, 0, 0);</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    HAL_NVIC_SetPriority(EXTI1_IRQn, PRIO_GPIO1, 0);</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    HAL_NVIC_EnableIRQ(EXTI1_IRQn);</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    HAL_NVIC_SetPriority(EXTI2_IRQn, 0, 0);</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    HAL_NVIC_SetPriority(EXTI2_IRQn, PRIO_GPIO2, 0);</div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    HAL_NVIC_EnableIRQ(EXTI2_IRQn);</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    HAL_NVIC_SetPriority(EXTI3_IRQn, 0, 0);</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    HAL_NVIC_SetPriority(EXTI3_IRQn, PRIO_GPIO3, 0);</div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    HAL_NVIC_EnableIRQ(EXTI3_IRQn);</div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    HAL_NVIC_SetPriority(EXTI4_IRQn, 0, 0);</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    HAL_NVIC_SetPriority(EXTI4_IRQn, PRIO_GPIO4, 0);</div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    HAL_NVIC_EnableIRQ(EXTI4_IRQn);</div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    HAL_NVIC_SetPriority(EXTI5_IRQn, 0, 0);</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    HAL_NVIC_SetPriority(EXTI5_IRQn, PRIO_GPIO5, 0);</div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    HAL_NVIC_EnableIRQ(EXTI5_IRQn);</div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    HAL_NVIC_SetPriority(EXTI6_IRQn, 0, 0);</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    HAL_NVIC_SetPriority(EXTI6_IRQn, PRIO_GPIO6, 0);</div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    HAL_NVIC_EnableIRQ(EXTI6_IRQn);</div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    HAL_NVIC_SetPriority(EXTI7_IRQn, 0, 0);</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    HAL_NVIC_SetPriority(EXTI7_IRQn, PRIO_GPIO7, 0);</div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    HAL_NVIC_EnableIRQ(EXTI7_IRQn);</div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160; </div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    HAL_NVIC_SetPriority(EXTI8_IRQn, 0, 0);</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    HAL_NVIC_SetPriority(EXTI8_IRQn, PRIO_GPIO8, 0);</div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    HAL_NVIC_EnableIRQ(EXTI8_IRQn);</div>
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160; </div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    HAL_NVIC_SetPriority(EXTI9_IRQn, 0, 0);</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    HAL_NVIC_SetPriority(EXTI9_IRQn, PRIO_GPIO9, 0);</div>
 <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    HAL_NVIC_EnableIRQ(EXTI9_IRQn);</div>
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160; </div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    HAL_NVIC_SetPriority(EXTI10_IRQn, 0, 0);</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    HAL_NVIC_SetPriority(EXTI10_IRQn, PRIO_GPIO10, 0);</div>
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    HAL_NVIC_EnableIRQ(EXTI10_IRQn);</div>
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160; </div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    HAL_NVIC_SetPriority(EXTI11_IRQn, 0, 0);</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    HAL_NVIC_SetPriority(EXTI11_IRQn, PRIO_GPIO11, 0);</div>
 <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    HAL_NVIC_EnableIRQ(EXTI11_IRQn);</div>
 <div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; </div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    HAL_NVIC_SetPriority(EXTI12_IRQn, 0, 0);</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    HAL_NVIC_SetPriority(EXTI12_IRQn, PRIO_GPIO12, 0);</div>
 <div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    HAL_NVIC_EnableIRQ(EXTI12_IRQn);</div>
 <div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160; </div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    HAL_NVIC_SetPriority(EXTI13_IRQn, 0, 0);</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    HAL_NVIC_SetPriority(EXTI13_IRQn, PRIO_GPIO13, 0);</div>
 <div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    HAL_NVIC_EnableIRQ(EXTI13_IRQn);</div>
 <div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160; </div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    HAL_NVIC_SetPriority(EXTI14_IRQn, 0, 0);</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    HAL_NVIC_SetPriority(EXTI14_IRQn, PRIO_GPIO14, 0);</div>
 <div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    HAL_NVIC_EnableIRQ(EXTI14_IRQn);</div>
 <div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160; </div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    HAL_NVIC_SetPriority(EXTI15_IRQn, 0, 0);</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    HAL_NVIC_SetPriority(EXTI15_IRQn, PRIO_GPIO15, 0);</div>
 <div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    HAL_NVIC_EnableIRQ(EXTI15_IRQn);</div>
 <div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;}</div>
 <div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160; </div>
@@ -316,7 +316,7 @@ $(document).ready(function(){initNavTree('h7rsxx_2gpio__impl_8c_source.html','')
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_7da9fa3e46f3496e22e0d53e72e5a458.html">hal_platform</a></li><li class="navelem"><a class="el" href="dir_ecba37078b2646ad8615f0f92eab48bb.html">h7rsxx</a></li><li class="navelem"><b>gpio_impl.c</b></li>
-    <li class="footer">Generated on Fri Nov 22 2024 11:06:21 for ebs-hal-uc-stm32 by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Sun Dec 1 2024 08:09:42 for ebs-hal-uc-stm32 by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

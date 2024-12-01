@@ -9,6 +9,8 @@ var dir_7da9fa3e46f3496e22e0d53e72e5a458 =
     [ "core_impl.h", "core__impl_8h_source.html", null ],
     [ "crypto_handlers.h", "crypto__handlers_8h_source.html", null ],
     [ "crypto_impl.h", "crypto__impl_8h_source.html", null ],
+    [ "dma_handlers.h", "dma__handlers_8h_source.html", null ],
+    [ "dma_impl.h", "dma__impl_8h_source.html", null ],
     [ "eeprom_impl.h", "eeprom__impl_8h_source.html", null ],
     [ "entropy_handlers.h", "entropy__handlers_8h_source.html", null ],
     [ "entropy_impl.h", "entropy__impl_8h_source.html", null ],
