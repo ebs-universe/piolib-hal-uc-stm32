@@ -292,7 +292,7 @@ static inline void _uart_init(
             uC_UART3_POLARITY_RX,
             uC_UART3_SWAP_TXRX
         );
-        HAL_NVIC_SetPriority(USART3_IRQn, 0, 0);
+        HAL_NVIC_SetPriority(USART3_IRQn, PRIO_USART3, 0);
         HAL_NVIC_EnableIRQ(USART3_IRQn);
     }
 #endif

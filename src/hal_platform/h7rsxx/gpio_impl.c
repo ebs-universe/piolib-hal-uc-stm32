@@ -50,52 +50,52 @@ static void enable_gpio_clocks(void){
 static void enable_gpio_exti_irqs(void){
     // TODO Enable IRQs when interrupt is configured instead.
     // Consequences of simply enabling all IRQs unknown. 
-    HAL_NVIC_SetPriority(EXTI0_IRQn, 0, 0);
+    HAL_NVIC_SetPriority(EXTI0_IRQn, PRIO_GPIO0, 0);
     HAL_NVIC_EnableIRQ(EXTI0_IRQn);
 
-    HAL_NVIC_SetPriority(EXTI1_IRQn, 0, 0);
+    HAL_NVIC_SetPriority(EXTI1_IRQn, PRIO_GPIO1, 0);
     HAL_NVIC_EnableIRQ(EXTI1_IRQn);
 
-    HAL_NVIC_SetPriority(EXTI2_IRQn, 0, 0);
+    HAL_NVIC_SetPriority(EXTI2_IRQn, PRIO_GPIO2, 0);
     HAL_NVIC_EnableIRQ(EXTI2_IRQn);
 
-    HAL_NVIC_SetPriority(EXTI3_IRQn, 0, 0);
+    HAL_NVIC_SetPriority(EXTI3_IRQn, PRIO_GPIO3, 0);
     HAL_NVIC_EnableIRQ(EXTI3_IRQn);
 
-    HAL_NVIC_SetPriority(EXTI4_IRQn, 0, 0);
+    HAL_NVIC_SetPriority(EXTI4_IRQn, PRIO_GPIO4, 0);
     HAL_NVIC_EnableIRQ(EXTI4_IRQn);
 
-    HAL_NVIC_SetPriority(EXTI5_IRQn, 0, 0);
+    HAL_NVIC_SetPriority(EXTI5_IRQn, PRIO_GPIO5, 0);
     HAL_NVIC_EnableIRQ(EXTI5_IRQn);
 
-    HAL_NVIC_SetPriority(EXTI6_IRQn, 0, 0);
+    HAL_NVIC_SetPriority(EXTI6_IRQn, PRIO_GPIO6, 0);
     HAL_NVIC_EnableIRQ(EXTI6_IRQn);
 
-    HAL_NVIC_SetPriority(EXTI7_IRQn, 0, 0);
+    HAL_NVIC_SetPriority(EXTI7_IRQn, PRIO_GPIO7, 0);
     HAL_NVIC_EnableIRQ(EXTI7_IRQn);
 
-    HAL_NVIC_SetPriority(EXTI8_IRQn, 0, 0);
+    HAL_NVIC_SetPriority(EXTI8_IRQn, PRIO_GPIO8, 0);
     HAL_NVIC_EnableIRQ(EXTI8_IRQn);
 
-    HAL_NVIC_SetPriority(EXTI9_IRQn, 0, 0);
+    HAL_NVIC_SetPriority(EXTI9_IRQn, PRIO_GPIO9, 0);
     HAL_NVIC_EnableIRQ(EXTI9_IRQn);
 
-    HAL_NVIC_SetPriority(EXTI10_IRQn, 0, 0);
+    HAL_NVIC_SetPriority(EXTI10_IRQn, PRIO_GPIO10, 0);
     HAL_NVIC_EnableIRQ(EXTI10_IRQn);
 
-    HAL_NVIC_SetPriority(EXTI11_IRQn, 0, 0);
+    HAL_NVIC_SetPriority(EXTI11_IRQn, PRIO_GPIO11, 0);
     HAL_NVIC_EnableIRQ(EXTI11_IRQn);
 
-    HAL_NVIC_SetPriority(EXTI12_IRQn, 0, 0);
+    HAL_NVIC_SetPriority(EXTI12_IRQn, PRIO_GPIO12, 0);
     HAL_NVIC_EnableIRQ(EXTI12_IRQn);
 
-    HAL_NVIC_SetPriority(EXTI13_IRQn, 0, 0);
+    HAL_NVIC_SetPriority(EXTI13_IRQn, PRIO_GPIO13, 0);
     HAL_NVIC_EnableIRQ(EXTI13_IRQn);
 
-    HAL_NVIC_SetPriority(EXTI14_IRQn, 0, 0);
+    HAL_NVIC_SetPriority(EXTI14_IRQn, PRIO_GPIO14, 0);
     HAL_NVIC_EnableIRQ(EXTI14_IRQn);
 
-    HAL_NVIC_SetPriority(EXTI15_IRQn, 0, 0);
+    HAL_NVIC_SetPriority(EXTI15_IRQn, PRIO_GPIO15, 0);
     HAL_NVIC_EnableIRQ(EXTI15_IRQn);
 }
 

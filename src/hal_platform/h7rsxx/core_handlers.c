@@ -2,6 +2,8 @@
 
 #include "core_handlers.h"
 #include <irq_handlers.h>
+#include <hal/uc/gpio.h>
+#include <platform/sections.h>
 
 volatile uint8_t __core_handler_inclusion;
 
@@ -89,6 +91,7 @@ void DebugMon_Handler(void){
 /**
   * @brief This function handles System Tick Timer Interrupts.
   */
+FASTEXEC
 void SysTick_Handler(void) {
     // HAL IncTick is only needed if we're using HAL timing primitives 
     //  (directly or indirectly). Ideally, most of those uses should
@@ -98,12 +101,14 @@ void SysTick_Handler(void) {
     //  done using the weak functions it provides.   
     //  
     // For now, keeping both running.  
-    HAL_IncTick();
+    // HAL_IncTick();
+    // gpio_set_output_high(GPIO_DBG_SCOPE1);
     #if APP_USE_CORE_SYSTICK
         #ifdef uC_SYSTICK_TIMER_IRQH
             uC_SYSTICK_TIMER_IRQH();
         #endif
     #endif
+    // gpio_set_output_low(GPIO_DBG_SCOPE1);
 }
 
 #endif

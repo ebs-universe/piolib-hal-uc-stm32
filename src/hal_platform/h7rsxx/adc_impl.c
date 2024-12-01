@@ -2,6 +2,7 @@
 
 #include "adc_impl.h"
 #include <time/time.h>
+#include <platform/sections.h>
 
 #if uC_ADC_ENABLED
 
@@ -26,7 +27,8 @@ static void _adc_init(
         EBS_BOOL_t en_os_inj,
         EBS_BOOL_t os_trig_each,
         uint32_t os_ratio,
-        uint8_t os_shift
+        uint8_t os_shift,
+        uint8_t trigger_src
 );
 /**@}*/
 
@@ -42,7 +44,7 @@ __weak void adc_clock_init(void){
 }
 
 void adc_interrupt_enable(void){
-    HAL_NVIC_SetPriority(ADC1_2_IRQn, 0, 0);
+    HAL_NVIC_SetPriority(ADC1_2_IRQn, PRIO_ADC, 0);
     HAL_NVIC_EnableIRQ(ADC1_2_IRQn);
 }
 
@@ -89,8 +91,7 @@ static const _adc_hwif_t _adc1_hwif = {
        .chnmask = uC_ADC1_CHNMASK
 };
 
-__attribute__((section(".dtcm")))
-adc_state_t adc1_state = {0};
+adc_state_t adc1_state FASTDATA;
     
 void _adc1_init(void);
 
@@ -108,6 +109,7 @@ void _adc1_init(void){
     #if uC_ADC1_EN_CALIB
     _adc_calibrate_internal(&_adc1_hwif);
     #endif
+    
     _adc_init(
         &_adc1_hwif,
         uC_ADC1_DATAALIGNLEFT,
@@ -118,13 +120,17 @@ void _adc1_init(void){
         uC_ADC1_EN_OS_INJ,
         uC_ADC1_OS_TRIG_EACH,
         uC_ADC1_OS_RATIO,
-        uC_ADC1_OS_SHIFT
+        uC_ADC1_OS_SHIFT,
+        uC_ADC1_TRIGSRC
     );
+    
     #if uC_ADC_CONFIGURE_CHANNELS
     _adc_configure_channels(uC_ADC1_INTFNUM);
     #endif
+    
     _adc_configure_sampling_time(&_adc1_hwif);
     adc1_state.mode = ADC_MODE_IDLE;
+
     return;
 }
 #endif
@@ -189,13 +195,14 @@ static void _adc_init(
         const _adc_hwif_t *const hwif,
         EBS_BOOL_t dataalignleft,
         EBS_BOOL_t en_injectq,
-        EBS_BOOL_t en_enjectq_auto,
+        EBS_BOOL_t en_injectq_auto,
         EBS_BOOL_t overrun_latest,
         EBS_BOOL_t en_os_reg,
         EBS_BOOL_t en_os_inj,
         EBS_BOOL_t os_trig_each,
         uint32_t os_ratio,
-        uint8_t os_shift
+        uint8_t os_shift,
+        uint8_t trigger_src
     )
 {
     HAL_SFR_t * cfgr = (HAL_SFR_t *)(hwif->base + OFS_ADCn_CFGR);
@@ -208,7 +215,7 @@ static void _adc_init(
 
     if (!en_injectq){
         cfgrval |= ADC_CFGR_JQDIS;
-    } else if (en_enjectq_auto) {
+    } else if (en_injectq_auto) {
         cfgrval |= ADC_CFGR_JAUTO;
     };
 
@@ -217,6 +224,24 @@ static void _adc_init(
     }
 
     if (overrun_latest){ cfgrval |= ADC_CFGR_OVRMOD; }
+    
+    if (trigger_src != 0xFF) {
+        if (trigger_src & 0x80){
+            cfgrval |= ADC_CFGR_EXTEN_1;
+        }
+        if (trigger_src & 0x40) {
+            cfgrval |= ADC_CFGR_EXTEN_0;
+        }
+        cfgrval |= ((trigger_src & 0x1F) << ADC_CFGR_EXTSEL_Pos);
+    }
+
+    // This bit is set as configured to work with the trigger, but is 
+    // overidden by individual software ADC start functions if they are used. 
+    // #if APP_ADC1_MODE == ADC_MODE_SCAN || APP_ADC1_MODE == ADC_MODE_SINGLE
+    //     cfgrval &= ~ADC_CFGR_CONT;
+    // #elif APP_ADC1_MODE == ADC_MODE_CONTINUOUS 
+    //     cfgrval |= ADC_CFGR_CONT;
+    // #endif
 
     if (en_os_reg){      cfgr2val |= ADC_CFGR2_ROVSE;}
     if (en_os_inj){      cfgr2val |= ADC_CFGR2_JOVSE;}
@@ -374,14 +399,7 @@ void adc_trigger_single(HAL_BASE_t intfnum, HAL_BASE_t chnum){
     die();
 }
 
-void adc_trigger_scan(HAL_BASE_t intfnum){
-    if (adc_if[intfnum]->state->mode != ADC_MODE_IDLE){
-        return;
-    }
-    if (adc_if[intfnum]->state->chnmask == 0) {
-        return;
-    }
-    
+static inline void _adc_prep_conv(HAL_BASE_t intfnum){
     uint32_t seqstate = adc_if[intfnum]->state->chnmask;
     uint8_t nextchn = __builtin_ctz(seqstate);
     if (nextchn) {
@@ -392,6 +410,35 @@ void adc_trigger_scan(HAL_BASE_t intfnum){
     adc_if[intfnum]->state->firstchn = nextchn;
     adc_if[intfnum]->state->nextchn = nextchn;
     adc_if[intfnum]->state->seqstate = seqstate;
+}
+
+void adc_arm_trigger(HAL_BASE_t intfnum){
+    if (adc_if[intfnum]->state->mode != ADC_MODE_IDLE){
+        return;
+    }
+    if (adc_if[intfnum]->state->chnmask == 0) {
+        return;
+    }
+    
+    _adc_prep_conv(intfnum);
+    adc_if[intfnum]->state->mode = ADC_MODE_CONTINUOUS;
+    
+    HAL_SFR_t * cfgr = (HAL_SFR_t *)(adc_if[intfnum]->hwif->base + OFS_ADCn_CFGR);
+    *cfgr &= ~ADC_CFGR_CONT;
+
+    HAL_SFR_t * cr = (HAL_SFR_t *)(adc_if[intfnum]->hwif->base + OFS_ADCn_CR);
+    *cr |= ADC_CR_ADSTART;
+}   
+
+void adc_trigger_scan(HAL_BASE_t intfnum){
+    if (adc_if[intfnum]->state->mode != ADC_MODE_IDLE){
+        return;
+    }
+    if (adc_if[intfnum]->state->chnmask == 0) {
+        return;
+    }
+    
+    _adc_prep_conv(intfnum);
     adc_if[intfnum]->state->mode = ADC_MODE_SCAN;
 
     HAL_SFR_t * cfgr = (HAL_SFR_t *)(adc_if[intfnum]->hwif->base + OFS_ADCn_CFGR);
@@ -409,16 +456,7 @@ void adc_trigger_autoscan(HAL_BASE_t intfnum){
         return;
     }
     
-    uint32_t seqstate = adc_if[intfnum]->state->chnmask;
-    uint8_t nextchn = __builtin_ctz(seqstate);
-    if (nextchn) {
-        seqstate >>= nextchn;
-    }
-    adc_if[intfnum]->state->overrun = 0;
-    adc_if[intfnum]->state->lastresult = 0;
-    adc_if[intfnum]->state->firstchn = nextchn;
-    adc_if[intfnum]->state->nextchn = nextchn;
-    adc_if[intfnum]->state->seqstate = seqstate;
+    _adc_prep_conv(intfnum);
     adc_if[intfnum]->state->mode = ADC_MODE_CONTINUOUS;
     
     HAL_SFR_t * cfgr = (HAL_SFR_t *)(adc_if[intfnum]->hwif->base + OFS_ADCn_CFGR);

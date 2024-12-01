@@ -1,6 +1,8 @@
 
 #include "adc_handlers.h"
 #include <irq_handlers.h>
+#include <hal/uc/gpio.h>
+#include <platform/sections.h>
 
 volatile uint8_t __adc_handler_inclusion;
 
@@ -12,8 +14,18 @@ volatile uint8_t __adc_handler_inclusion;
 #pragma GCC push_options 
 #pragma GCC optimize("O3")
 
-// __attribute__((section(".itcm_irqs")))
+/** 
+ * This is still pretty strange. 
+ * When set to prescaler _2 with FASTEXEC, the gpio_set functions seem to have 
+ * no effect. This also seems to happen with the systick handler.
+ * It is unclear if everything is actually working as intended.
+ */ 
+
+FASTEXEC
+__attribute__((target("thumb")))
 static void _adc1_handler(void){
+    gpio_set_output_high(GPIO_DBG_SCOPE1);
+
     uint32_t flags = *(HAL_SFR_t *)(ADC1_BASE + OFS_ADCn_ISR);
     uint16_t data;
 
@@ -57,11 +69,12 @@ static void _adc1_handler(void){
         adc1_state.nextchn = adc1_state.chnmask;
         adc1_state.seqstate = adc1_state.firstchn;
     }
+
+    gpio_set_output_low(GPIO_DBG_SCOPE1);
 }
 #pragma GCC pop_options
 
-
-// __attribute__((section(".itcm_irqs")))
+FASTEXEC
 void ADC1_2_IRQHandler(void)
 {  
     #if uC_ADC1_ENABLED

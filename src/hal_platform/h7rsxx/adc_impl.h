@@ -143,12 +143,12 @@ extern const adc_if_t *const adc_if[uC_ADCS_ENABLED + 1];
 #define uC_ADC_DEFAULT_CLOCK_PRESCALER_VAL  8
 #define uC_ADC_DEFAULT_DATAALIGNLEFT        EBS_FALSE
 #define uC_ADC_DEFAULT_EN_CALIB             EBS_TRUE
-#define uC_ADC_DEFAULT_EN_INJECTQ           EBS_TRUE
-#define uC_ADC_DEFAULT_EN_INJECTQ_AUTO      EBS_TRUE
+#define uC_ADC_DEFAULT_EN_INJECTQ           EBS_FALSE
+#define uC_ADC_DEFAULT_EN_INJECTQ_AUTO      EBS_FALSE
 #define uC_ADC_DEFAULT_OVERRUN_LATEST       EBS_TRUE
 #define uC_ADC_DEFAULT_EN_OS_REG            EBS_FALSE
 #define uC_ADC_DEFAULT_EN_OS_INJ            EBS_FALSE
-#define uC_ADC_DEFAULT_OS_TRIG_EACH         EBS_FALSE
+#define uC_ADC_DEFAULT_OS_TRIG_EACH         EBS_FALSE   // Not sure what exactly this is
 #define uC_ADC_DEFAULT_OS_RATIO             ADC_OVERSAMPLING_RATIO_4     
 #define uC_ADC_DEFAULT_OS_SHIFT             1
 /** 
@@ -315,6 +315,8 @@ void adc_common_init(void);
 void adc_interrupt_enable(void);
 
 void adc_interrupt_disable(void);
+
+void adc_arm_trigger(HAL_BASE_t intfnum);
 /**@}*/
 
 

@@ -25,7 +25,6 @@
 
 #if uC_ENTROPY_ENABLED
 
-
 uint8_t entropy_buffer[uC_ENTROPY_POOL_SIZE];
 bytebuf entropy_pool;
 entropy_state_t entropy_state;
@@ -44,6 +43,7 @@ void entropy_init(void) {
     }
     __HAL_RCC_RNG_CLK_ENABLE();
     RNG->CR |= (RNG_CR_RNGEN | RNG_CR_IE);
+    HAL_NVIC_SetPriority(RNG_IRQn, PRIO_ENTROPY, 0);
     NVIC_EnableIRQ(RNG_IRQn);
     entropy_state.accumulating = 1;
 }

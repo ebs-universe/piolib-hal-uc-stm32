@@ -55,7 +55,7 @@ static void usb_gpio_deinit(void){
 }
 
 static void usb_nvic_init(void){
-    HAL_NVIC_SetPriority(USB_IRQn, 0, 0);
+    HAL_NVIC_SetPriority(USB_IRQn, PRIO_USB, 0);
     HAL_NVIC_EnableIRQ(USB_IRQn);
 }
 

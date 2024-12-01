@@ -6,6 +6,8 @@
 
 volatile uint8_t __uart_handler_inclusion;
 
+// TODO Move ISR handlers to ITCM, buffers to DTCM?
+
 #if uC_UART_ENABLED
 
 static inline void _uart_handler_tx_norm(const HAL_BASE_t intfnum);

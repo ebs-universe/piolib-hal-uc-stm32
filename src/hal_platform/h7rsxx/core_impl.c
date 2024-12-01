@@ -87,6 +87,7 @@ void prepare_tcm_memory(void){
         memset(sdtcm, 0, size);
     }
 }
+
 #pragma GCC pop_options
 
 __weak void configure_memory_layout(void){
@@ -133,7 +134,7 @@ __weak void cpu_init(void){
 }
 
 __weak void nvic_init(void) {
-    HAL_NVIC_SetPriorityGrouping(NVIC_PRIORITYGROUP_2);
+    HAL_NVIC_SetPriorityGrouping(uC_NVIC_PRIORITY_CONF);
 }
 
 static void enable_core_clocks(void){
@@ -245,7 +246,7 @@ void watchdog_hold(void){
 #if uC_SYSTICK_TIMER_ENABLED
 
 void core_systick_start(void) {
-    HAL_InitTick(TICK_INT_PRIORITY);
+    HAL_InitTick(PRIO_SYSTICK);
 }
 
 #endif

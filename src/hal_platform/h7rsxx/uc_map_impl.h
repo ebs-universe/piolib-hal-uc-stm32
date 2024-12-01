@@ -161,6 +161,7 @@
 #endif
 
 #if APP_ENABLE_TIMER
+    #define uC_TIMER_CCR_t      uint32_t
 
     #define uC_TIM2_ENABLED     APP_ENABLE_TIM2   // GP 32b 4CC DMA
     #define uC_TIM3_ENABLED     APP_ENABLE_TIM3   // GP 32b 4CC DMA
@@ -195,6 +196,12 @@
     #if uC_TIMERS_ENABLED
         #define uC_TIMER_ENABLED        1
     #endif
+
+    #if uC_TIM15_CH1_OUTPUT_MODE != TIMER_OUTMODE_NONE
+        #define uC_TIM15_CH1_OUTPUT_ENABLED     1
+    #else
+        #define uC_TIM15_CH1_OUTPUT_ENABLED     0
+    #endif
     
 #endif
 
@@ -225,6 +232,14 @@
         #define uC_ENABLE_AIN0          APP_ENABLE_AIN0
     #else
         #define uC_ENABLE_AIN0          0
+    #endif
+
+    #ifndef uC_ADC1_TRIGSRC
+        #define uC_ADC1_TRIGSRC         0xFF
+    #endif
+
+    #ifndef uC_ADC2_TRIGSRC
+        #define uC_ADC2_TRIGSRC         0xFF
     #endif
 
     #ifdef APP_ENABLE_AIN1          
