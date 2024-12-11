@@ -26,14 +26,21 @@ var NAVTREE =
 [
   [ "ebs-hal-uc-stm32", "index.html", [
     [ "Files", "files.html", [
-      [ "File List", "files.html", "files_dup" ]
+      [ "File List", "files.html", "files_dup" ],
+      [ "Globals", "globals.html", [
+        [ "All", "globals.html", null ],
+        [ "Functions", "globals_func.html", null ],
+        [ "Variables", "globals_vars.html", null ],
+        [ "Macros", "globals_defs.html", null ]
+      ] ]
     ] ]
   ] ]
 ];
 
 var NAVTREEINDEX =
 [
-"adc__handlers_8c_source.html"
+"adc__handlers_8c.html",
+"h7rsxx_2shared__handlers_8c.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

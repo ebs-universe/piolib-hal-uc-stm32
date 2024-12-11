@@ -89,16 +89,16 @@ $(document).ready(function(){initNavTree('f4xx_2usb__handlers_8c_source.html',''
 <div class="title">usb_handlers.c</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<a href="f4xx_2usb__handlers_8c.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160; </div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &quot;usb_handlers.h&quot;</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="usb__handlers_8h.html">usb_handlers.h</a>&quot;</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;irq_handlers.h&gt;</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keyword">volatile</span> uint8_t __usb_handler_inclusion;</div>
+<div class="line"><a name="l00007"></a><span class="lineno"><a class="line" href="f4xx_2usb__handlers_8c.html#a556c147cd5ab9fc5d4ccfc67d0899875">    7</a></span>&#160;<span class="keyword">volatile</span> uint8_t <a class="code" href="f4xx_2usb__handlers_8c.html#a556c147cd5ab9fc5d4ccfc67d0899875">__usb_handler_inclusion</a>;</div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keywordtype">void</span> OTG_FS_IRQHandler(<span class="keywordtype">void</span>) {</div>
+<div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="f4xx_2usb__handlers_8c.html#a75135d7a041e2932e9903e8a345b3fc4">   10</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="f4xx_2usb__handlers_8c.html#a75135d7a041e2932e9903e8a345b3fc4">OTG_FS_IRQHandler</a>(<span class="keywordtype">void</span>) {</div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">    #if APP_ENABLE_USB</span></div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">    #if APP_ENABLE_USB_DEVICE</span></div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;        tud_int_handler(APP_USB_DEVICE_RHPORT);</div>
@@ -108,13 +108,16 @@ $(document).ready(function(){initNavTree('f4xx_2usb__handlers_8c_source.html',''
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">    #endif</span></div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">    #endif</span></div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;}</div>
+<div class="ttc" id="af4xx_2usb__handlers_8c_html_a556c147cd5ab9fc5d4ccfc67d0899875"><div class="ttname"><a href="f4xx_2usb__handlers_8c.html#a556c147cd5ab9fc5d4ccfc67d0899875">__usb_handler_inclusion</a></div><div class="ttdeci">volatile uint8_t __usb_handler_inclusion</div><div class="ttdef"><b>Definition:</b> <a href="f4xx_2usb__handlers_8c_source.html#l00007">usb_handlers.c:7</a></div></div>
+<div class="ttc" id="af4xx_2usb__handlers_8c_html_a75135d7a041e2932e9903e8a345b3fc4"><div class="ttname"><a href="f4xx_2usb__handlers_8c.html#a75135d7a041e2932e9903e8a345b3fc4">OTG_FS_IRQHandler</a></div><div class="ttdeci">void OTG_FS_IRQHandler(void)</div><div class="ttdef"><b>Definition:</b> <a href="f4xx_2usb__handlers_8c_source.html#l00010">usb_handlers.c:10</a></div></div>
+<div class="ttc" id="ausb__handlers_8h_html"><div class="ttname"><a href="usb__handlers_8h.html">usb_handlers.h</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_7da9fa3e46f3496e22e0d53e72e5a458.html">hal_platform</a></li><li class="navelem"><a class="el" href="dir_69912b4012e9148154fd04a54a84b30d.html">f4xx</a></li><li class="navelem"><b>usb_handlers.c</b></li>
-    <li class="footer">Generated on Sun Dec 1 2024 08:09:42 for ebs-hal-uc-stm32 by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="navelem"><a class="el" href="dir_7da9fa3e46f3496e22e0d53e72e5a458.html">hal_platform</a></li><li class="navelem"><a class="el" href="dir_69912b4012e9148154fd04a54a84b30d.html">f4xx</a></li><li class="navelem"><a class="el" href="f4xx_2usb__handlers_8c.html">usb_handlers.c</a></li>
+    <li class="footer">Generated on Wed Dec 11 2024 03:04:59 for ebs-hal-uc-stm32 by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

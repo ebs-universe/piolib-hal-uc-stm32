@@ -89,7 +89,7 @@ $(document).ready(function(){initNavTree('u0xx_2uc__map__impl_8h_source.html',''
 <div class="title">uc_map_impl.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/* </span></div>
+<a href="u0xx_2uc__map__impl_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/* </span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">   Copyright 2015 Quazar Technologies Pvt. Ltd.</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">   Copyright 2015 Chintalagiri Shashank</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">   </span></div>
@@ -118,15 +118,15 @@ $(document).ready(function(){initNavTree('u0xx_2uc__map__impl_8h_source.html',''
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#include &quot;stm32u0xx_hal.h&quot;</span></div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="comment">// All applications will need these</span></div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="preprocessor">#define uC_CORE_ENABLED                1</span></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="preprocessor">#define uC_GPIO_ENABLED                1</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="u0xx_2uc__map__impl_8h.html#a4367050e965db04a89f3d56b4f88e317">   39</a></span>&#160;<span class="preprocessor">#define uC_CORE_ENABLED                1</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="u0xx_2uc__map__impl_8h.html#a858f78dab843ea9b434ec32b5f46d813">   40</a></span>&#160;<span class="preprocessor">#define uC_GPIO_ENABLED                1</span></div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="preprocessor">#if APP_ENABLE_SYSTICK</span></div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="preprocessor">    #define uC_SYSTICK_TIMER_ENABLED   1</span></div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="preprocessor">    #define uC_SYSTICK_TIMER_IRQH      time_systick_handler</span></div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="preprocessor">#else</span></div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="comment">// The timer still needs to be enabled for the STM32 Cube HAL Tick. </span></div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="preprocessor">    #define uC_SYSTICK_TIMER_ENABLED   1</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="u0xx_2uc__map__impl_8h.html#abc2eea14771994a105b56fb11f7ececf">   47</a></span>&#160;<span class="preprocessor">    #define uC_SYSTICK_TIMER_ENABLED   1</span></div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="preprocessor">#if APP_ENABLE_ENTROPY</span></div>
@@ -206,13 +206,13 @@ $(document).ready(function(){initNavTree('u0xx_2uc__map__impl_8h_source.html',''
 <div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160; </div>
 <div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160; </div>
 <div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;<span class="comment">// Peripherals not yet implemented for this platform</span></div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;<span class="preprocessor">#define uC_WDT_ENABLED                  0</span></div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;<span class="preprocessor">#define uC_TIMER_ENABLED                0</span></div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;<span class="preprocessor">#define uC_ADC_ENABLED                  0</span></div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;<span class="preprocessor">#define uC_SPI_ENABLED                  0</span></div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;<span class="preprocessor">#define uC_SPI_PT_ENABLED               0</span></div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;<span class="preprocessor">#define uC_I2C_ENABLED                  0</span></div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;<span class="preprocessor">#define uC_I2C_PT_ENABLED               0</span></div>
+<div class="line"><a name="l00127"></a><span class="lineno"><a class="line" href="u0xx_2uc__map__impl_8h.html#a8a5b675d5e0ed37efabe88a9f57c18e9">  127</a></span>&#160;<span class="preprocessor">#define uC_WDT_ENABLED                  0</span></div>
+<div class="line"><a name="l00128"></a><span class="lineno"><a class="line" href="u0xx_2uc__map__impl_8h.html#a966440722c3205c2a5cf4ae5f7d42f7b">  128</a></span>&#160;<span class="preprocessor">#define uC_TIMER_ENABLED                0</span></div>
+<div class="line"><a name="l00129"></a><span class="lineno"><a class="line" href="u0xx_2uc__map__impl_8h.html#a2419270569a0ce79711f687ac12bb122">  129</a></span>&#160;<span class="preprocessor">#define uC_ADC_ENABLED                  0</span></div>
+<div class="line"><a name="l00130"></a><span class="lineno"><a class="line" href="u0xx_2uc__map__impl_8h.html#adcbe10f1cc120a23bcc7bcb22887a184">  130</a></span>&#160;<span class="preprocessor">#define uC_SPI_ENABLED                  0</span></div>
+<div class="line"><a name="l00131"></a><span class="lineno"><a class="line" href="u0xx_2uc__map__impl_8h.html#a58fc5762ec334807f352e61f77db8144">  131</a></span>&#160;<span class="preprocessor">#define uC_SPI_PT_ENABLED               0</span></div>
+<div class="line"><a name="l00132"></a><span class="lineno"><a class="line" href="u0xx_2uc__map__impl_8h.html#a07da55874e93cd6af716961c768ad5eb">  132</a></span>&#160;<span class="preprocessor">#define uC_I2C_ENABLED                  0</span></div>
+<div class="line"><a name="l00133"></a><span class="lineno"><a class="line" href="u0xx_2uc__map__impl_8h.html#ac720fa670a90b83d87b628f583bce1a1">  133</a></span>&#160;<span class="preprocessor">#define uC_I2C_PT_ENABLED               0</span></div>
 <div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160; </div>
 <div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;<span class="preprocessor">#if APP_ENABLE_USB</span></div>
 <div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;<span class="preprocessor">    #define uC_USB_ENABLED              1</span></div>
@@ -229,8 +229,8 @@ $(document).ready(function(){initNavTree('u0xx_2uc__map__impl_8h_source.html',''
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_7da9fa3e46f3496e22e0d53e72e5a458.html">hal_platform</a></li><li class="navelem"><a class="el" href="dir_e6e81f65b81118890ab216e7e6c72be2.html">u0xx</a></li><li class="navelem"><b>uc_map_impl.h</b></li>
-    <li class="footer">Generated on Sun Dec 1 2024 08:09:42 for ebs-hal-uc-stm32 by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="navelem"><a class="el" href="dir_7da9fa3e46f3496e22e0d53e72e5a458.html">hal_platform</a></li><li class="navelem"><a class="el" href="dir_e6e81f65b81118890ab216e7e6c72be2.html">u0xx</a></li><li class="navelem"><a class="el" href="u0xx_2uc__map__impl_8h.html">uc_map_impl.h</a></li>
+    <li class="footer">Generated on Wed Dec 11 2024 03:04:59 for ebs-hal-uc-stm32 by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

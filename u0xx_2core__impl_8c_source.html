@@ -89,7 +89,7 @@ $(document).ready(function(){initNavTree('u0xx_2core__impl_8c_source.html',''); 
 <div class="title">core_impl.c</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/* </span></div>
+<a href="u0xx_2core__impl_8c.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/* </span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">   Copyright (c)</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">     (c) 2024 Chintalagiri Shashank</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">     (c) 2015-2016 Chintalagiri Shashank, Quazar Technologies Pvt. Ltd.</span></div>
@@ -112,16 +112,16 @@ $(document).ready(function(){initNavTree('u0xx_2core__impl_8c_source.html',''); 
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment">*/</span></div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &quot;core_impl.h&quot;</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="u0xx_2core__impl_8h.html">core_impl.h</a>&quot;</span></div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#if uC_CORE_ENABLED</span></div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keyword">static</span> <span class="keywordtype">void</span> cpu_init(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="h7rsxx_2core__impl_8h.html#a560ad8614ae03841a10b489f4370bc51">cpu_init</a>(<span class="keywordtype">void</span>);</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="keyword">static</span> <span class="keywordtype">void</span> enable_core_clocks(<span class="keywordtype">void</span>);</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="keyword">static</span> <span class="keywordtype">void</span> cpu_init(<span class="keywordtype">void</span>){</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="h7rsxx_2core__impl_8h.html#a560ad8614ae03841a10b489f4370bc51">cpu_init</a>(<span class="keywordtype">void</span>){</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="preprocessor">    #if (INSTRUCTION_CACHE_ENABLE != 0U)</span></div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        __HAL_FLASH_INSTRUCTION_CACHE_ENABLE();</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="preprocessor">    #endif </span><span class="comment">/* INSTRUCTION_CACHE_ENABLE */</span><span class="preprocessor"></span></div>
@@ -138,13 +138,13 @@ $(document).ready(function(){initNavTree('u0xx_2core__impl_8c_source.html',''); 
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="keywordtype">void</span> core_init(<span class="keywordtype">void</span>) {</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    cpu_init();</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <a class="code" href="h7rsxx_2core__impl_8h.html#a560ad8614ae03841a10b489f4370bc51">cpu_init</a>();</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    enable_core_clocks();</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;}</div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="preprocessor">#define CLOCKSWITCH_TIMEOUT_VALUE  ((uint32_t)5000U) </span><span class="comment">/* 5 s    */</span><span class="preprocessor"></span></div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160; </div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;HAL_StatusTypeDef hal_rcc_clockconfig(<span class="keyword">const</span> RCC_ClkInitTypeDef  *<span class="keyword">const</span> RCC_ClkInitStruct, uint32_t FLatency)</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;HAL_StatusTypeDef <a class="code" href="u0xx_2core__impl_8h.html#a5dd8cff270437d2fd9c2867125e45ad7">hal_rcc_clockconfig</a>(<span class="keyword">const</span> RCC_ClkInitTypeDef  *<span class="keyword">const</span> RCC_ClkInitStruct, uint32_t FLatency)</div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;{</div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;  HAL_StatusTypeDef halstatus;</div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;  uint32_t tickstart;</div>
@@ -333,13 +333,16 @@ $(document).ready(function(){initNavTree('u0xx_2core__impl_8c_source.html',''); 
 <div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;}</div>
 <div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160; </div>
 <div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="ah7rsxx_2core__impl_8h_html_a560ad8614ae03841a10b489f4370bc51"><div class="ttname"><a href="h7rsxx_2core__impl_8h.html#a560ad8614ae03841a10b489f4370bc51">cpu_init</a></div><div class="ttdeci">void cpu_init(void)</div><div class="ttdoc">Initialize CPU features to sane defaults.</div></div>
+<div class="ttc" id="au0xx_2core__impl_8h_html"><div class="ttname"><a href="u0xx_2core__impl_8h.html">core_impl.h</a></div></div>
+<div class="ttc" id="au0xx_2core__impl_8h_html_a5dd8cff270437d2fd9c2867125e45ad7"><div class="ttname"><a href="u0xx_2core__impl_8h.html#a5dd8cff270437d2fd9c2867125e45ad7">hal_rcc_clockconfig</a></div><div class="ttdeci">HAL_StatusTypeDef hal_rcc_clockconfig(const RCC_ClkInitTypeDef *const RCC_ClkInitStruct, uint32_t FLatency)</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_7da9fa3e46f3496e22e0d53e72e5a458.html">hal_platform</a></li><li class="navelem"><a class="el" href="dir_e6e81f65b81118890ab216e7e6c72be2.html">u0xx</a></li><li class="navelem"><b>core_impl.c</b></li>
-    <li class="footer">Generated on Sun Dec 1 2024 08:09:42 for ebs-hal-uc-stm32 by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="navelem"><a class="el" href="dir_7da9fa3e46f3496e22e0d53e72e5a458.html">hal_platform</a></li><li class="navelem"><a class="el" href="dir_e6e81f65b81118890ab216e7e6c72be2.html">u0xx</a></li><li class="navelem"><a class="el" href="u0xx_2core__impl_8c.html">core_impl.c</a></li>
+    <li class="footer">Generated on Wed Dec 11 2024 03:04:59 for ebs-hal-uc-stm32 by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

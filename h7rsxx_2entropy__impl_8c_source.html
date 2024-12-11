@@ -89,7 +89,7 @@ $(document).ready(function(){initNavTree('h7rsxx_2entropy__impl_8c_source.html',
 <div class="title">entropy_impl.c</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/* </span></div>
+<a href="h7rsxx_2entropy__impl_8c.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/* </span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">   Copyright (c)</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">   (c) 2024 Chintalagiri Shashank</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">      </span></div>
@@ -116,13 +116,13 @@ $(document).ready(function(){initNavTree('h7rsxx_2entropy__impl_8c_source.html',
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#if uC_ENTROPY_ENABLED</span></div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;uint8_t entropy_buffer[uC_ENTROPY_POOL_SIZE];</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;uint8_t entropy_buffer[<a class="code" href="f4xx_2entropy__impl_8h.html#accbce658229b17dbbe8d8dc66257a495">uC_ENTROPY_POOL_SIZE</a>];</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;bytebuf entropy_pool;</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;entropy_state_t entropy_state;</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> _entropy_state_init(<span class="keywordtype">void</span>){</div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keywordflow">if</span> (!entropy_pool._size) {</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        bytebuf_vInit(entropy_buffer, uC_ENTROPY_POOL_SIZE, &amp;entropy_pool);</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        bytebuf_vInit(entropy_buffer, <a class="code" href="f4xx_2entropy__impl_8h.html#accbce658229b17dbbe8d8dc66257a495">uC_ENTROPY_POOL_SIZE</a>, &amp;entropy_pool);</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    }</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    entropy_state.entropy = &amp;entropy_pool;</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;}</div>
@@ -146,14 +146,15 @@ $(document).ready(function(){initNavTree('h7rsxx_2entropy__impl_8c_source.html',
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;}</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="af4xx_2entropy__impl_8h_html_accbce658229b17dbbe8d8dc66257a495"><div class="ttname"><a href="f4xx_2entropy__impl_8h.html#accbce658229b17dbbe8d8dc66257a495">uC_ENTROPY_POOL_SIZE</a></div><div class="ttdeci">#define uC_ENTROPY_POOL_SIZE</div><div class="ttdef"><b>Definition:</b> <a href="f4xx_2entropy__impl_8h_source.html#l00040">entropy_impl.h:40</a></div></div>
 <div class="ttc" id="au0xx_2entropy__impl_8h_html"><div class="ttname"><a href="u0xx_2entropy__impl_8h.html">entropy_impl.h</a></div><div class="ttdoc">STM32F4xx Entropy Implementation Notes.</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_7da9fa3e46f3496e22e0d53e72e5a458.html">hal_platform</a></li><li class="navelem"><a class="el" href="dir_ecba37078b2646ad8615f0f92eab48bb.html">h7rsxx</a></li><li class="navelem"><b>entropy_impl.c</b></li>
-    <li class="footer">Generated on Sun Dec 1 2024 08:09:42 for ebs-hal-uc-stm32 by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="navelem"><a class="el" href="dir_7da9fa3e46f3496e22e0d53e72e5a458.html">hal_platform</a></li><li class="navelem"><a class="el" href="dir_ecba37078b2646ad8615f0f92eab48bb.html">h7rsxx</a></li><li class="navelem"><a class="el" href="h7rsxx_2entropy__impl_8c.html">entropy_impl.c</a></li>
+    <li class="footer">Generated on Wed Dec 11 2024 03:04:59 for ebs-hal-uc-stm32 by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

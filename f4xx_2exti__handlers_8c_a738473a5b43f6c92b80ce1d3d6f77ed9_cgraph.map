@@ -1,0 +1,4 @@
+<map id="EXTI15_10_IRQHandler" name="EXTI15_10_IRQHandler">
+<area shape="rect" id="node1" title="This function handles EXTI line 10&#45;15 interrupts." alt="" coords="5,5,176,32"/>
+<area shape="rect" id="node2" href="$f4xx_2exti__handlers_8c.html#ace4802f0dcdcb019f1528b7e018fb5dd" title=" " alt="" coords="224,5,327,32"/>
+</map>

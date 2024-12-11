@@ -89,91 +89,103 @@ $(document).ready(function(){initNavTree('f4xx_2exti__handlers_8c_source.html','
 <div class="title">exti_handlers.c</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<a href="f4xx_2exti__handlers_8c.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &quot;stm32f4xx_hal.h&quot;</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;application.h&gt;</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;irq_handlers.h&gt;</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;platform/debug.h&gt;</span></div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;hal/uc/gpio.h&gt;</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;exti_handlers.h&quot;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="u0xx_2exti__handlers_8h.html">exti_handlers.h</a>&quot;</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keyword">volatile</span> uint8_t __exti_handler_inclusion;</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;void (* exti_gpio_handlers[MAX_EXTI_GPIO_LINES])(uint8_t) = {0};</div>
+<div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="f4xx_2exti__handlers_8c.html#ad4810d061ad433e66fc65bdceb5649b8">   10</a></span>&#160;<span class="keyword">volatile</span> uint8_t <a class="code" href="f4xx_2exti__handlers_8c.html#ad4810d061ad433e66fc65bdceb5649b8">__exti_handler_inclusion</a>;</div>
+<div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="f4xx_2exti__handlers_8c.html#ae6db87b5af5ed14fef2aa9b9ed6efa1d">   11</a></span>&#160;void (* <a class="code" href="f4xx_2exti__handlers_8c.html#ae6db87b5af5ed14fef2aa9b9ed6efa1d">exti_gpio_handlers</a>[<a class="code" href="f4xx_2exti__handlers_8h.html#a416ad9e68a19a041adbfa2847bc027b3">MAX_EXTI_GPIO_LINES</a>])(uint8_t) = {0};</div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> exti_handler(uint8_t exti_line) { </div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <span class="keywordflow">if</span> (exti_gpio_handlers[exti_line]) { </div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        exti_gpio_handlers[exti_line](exti_line);</div>
+<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="f4xx_2exti__handlers_8c.html#ace4802f0dcdcb019f1528b7e018fb5dd">   13</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="f4xx_2exti__handlers_8c.html#ace4802f0dcdcb019f1528b7e018fb5dd">exti_handler</a>(uint8_t exti_line) { </div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="f4xx_2exti__handlers_8c.html#ae6db87b5af5ed14fef2aa9b9ed6efa1d">exti_gpio_handlers</a>[exti_line]) { </div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        <a class="code" href="f4xx_2exti__handlers_8c.html#ae6db87b5af5ed14fef2aa9b9ed6efa1d">exti_gpio_handlers</a>[exti_line](exti_line);</div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    }</div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;}</div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keywordtype">void</span> EXTI0_IRQHandler(<span class="keywordtype">void</span>)</div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="f4xx_2exti__handlers_8c.html#a17e9789a29a87d2df54f12b94dd1a0b6">   22</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="f4xx_2exti__handlers_8c.html#a17e9789a29a87d2df54f12b94dd1a0b6">EXTI0_IRQHandler</a>(<span class="keywordtype">void</span>)</div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;{</div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keywordflow">if</span> (EXTI-&gt;PR &amp; EXTI_PR_PR0) { </div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        EXTI-&gt;PR |= EXTI_PR_PR0;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        exti_handler(0);</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        <a class="code" href="f4xx_2exti__handlers_8c.html#ace4802f0dcdcb019f1528b7e018fb5dd">exti_handler</a>(0);</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    }</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;}</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="keywordtype">void</span> EXTI1_IRQHandler(<span class="keywordtype">void</span>)</div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="f4xx_2exti__handlers_8c.html#a49cfdd46eb8d0ef3e1987514aa9343dc">   33</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="f4xx_2exti__handlers_8c.html#a49cfdd46eb8d0ef3e1987514aa9343dc">EXTI1_IRQHandler</a>(<span class="keywordtype">void</span>)</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;{</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keywordflow">if</span> (EXTI-&gt;PR &amp; EXTI_PR_PR1) { </div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        EXTI-&gt;PR |= EXTI_PR_PR1;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        exti_handler(1);</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        <a class="code" href="f4xx_2exti__handlers_8c.html#ace4802f0dcdcb019f1528b7e018fb5dd">exti_handler</a>(1);</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    }</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;}</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="keywordtype">void</span> EXTI2_IRQHandler(<span class="keywordtype">void</span>)</div>
+<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="f4xx_2exti__handlers_8c.html#ab5a1d9e9c8ef50e0cb9ddb5745a20a14">   44</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="f4xx_2exti__handlers_8c.html#ab5a1d9e9c8ef50e0cb9ddb5745a20a14">EXTI2_IRQHandler</a>(<span class="keywordtype">void</span>)</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;{</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keywordflow">if</span> (EXTI-&gt;PR &amp; EXTI_PR_PR2) { </div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        EXTI-&gt;PR |= EXTI_PR_PR2;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        exti_handler(2);</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        <a class="code" href="f4xx_2exti__handlers_8c.html#ace4802f0dcdcb019f1528b7e018fb5dd">exti_handler</a>(2);</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    }</div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;}</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="keywordtype">void</span> EXTI3_IRQHandler(<span class="keywordtype">void</span>)</div>
+<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="f4xx_2exti__handlers_8c.html#a30c045de96d18ec9c67a7b9e4350920f">   55</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="f4xx_2exti__handlers_8c.html#a30c045de96d18ec9c67a7b9e4350920f">EXTI3_IRQHandler</a>(<span class="keywordtype">void</span>)</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;{</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keywordflow">if</span> (EXTI-&gt;PR &amp; EXTI_PR_PR3) { </div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        EXTI-&gt;PR |= EXTI_PR_PR3;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        exti_handler(3);</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        <a class="code" href="f4xx_2exti__handlers_8c.html#ace4802f0dcdcb019f1528b7e018fb5dd">exti_handler</a>(3);</div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    }</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;}</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="keywordtype">void</span> EXTI4_IRQHandler(<span class="keywordtype">void</span>)</div>
+<div class="line"><a name="l00066"></a><span class="lineno"><a class="line" href="f4xx_2exti__handlers_8c.html#a290cb997018c8d85d4b965b4a242842f">   66</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="f4xx_2exti__handlers_8c.html#a290cb997018c8d85d4b965b4a242842f">EXTI4_IRQHandler</a>(<span class="keywordtype">void</span>)</div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;{</div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="keywordflow">if</span> (EXTI-&gt;PR &amp; EXTI_PR_PR4) { </div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        EXTI-&gt;PR |= EXTI_PR_PR4;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        exti_handler(4);</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        <a class="code" href="f4xx_2exti__handlers_8c.html#ace4802f0dcdcb019f1528b7e018fb5dd">exti_handler</a>(4);</div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    }</div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;}</div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="keywordtype">void</span> EXTI9_5_IRQHandler(<span class="keywordtype">void</span>)</div>
+<div class="line"><a name="l00077"></a><span class="lineno"><a class="line" href="f4xx_2exti__handlers_8c.html#a7b2096b8b2643286dc3a7e5110e5ae85">   77</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="f4xx_2exti__handlers_8c.html#a7b2096b8b2643286dc3a7e5110e5ae85">EXTI9_5_IRQHandler</a>(<span class="keywordtype">void</span>)</div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;{</div>
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keywordflow">for</span> (uint32_t line = 5; line &lt;= 9; ++line) {</div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        <span class="keywordflow">if</span> (EXTI-&gt;PR &amp; (1 &lt;&lt; line)) { </div>
 <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;            EXTI-&gt;PR |= (1 &lt;&lt; line); </div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;            exti_handler(line);</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;            <a class="code" href="f4xx_2exti__handlers_8c.html#ace4802f0dcdcb019f1528b7e018fb5dd">exti_handler</a>(line);</div>
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        }</div>
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    }</div>
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;}</div>
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
 <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="keywordtype">void</span> EXTI15_10_IRQHandler(<span class="keywordtype">void</span>)</div>
+<div class="line"><a name="l00091"></a><span class="lineno"><a class="line" href="f4xx_2exti__handlers_8c.html#a738473a5b43f6c92b80ce1d3d6f77ed9">   91</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="f4xx_2exti__handlers_8c.html#a738473a5b43f6c92b80ce1d3d6f77ed9">EXTI15_10_IRQHandler</a>(<span class="keywordtype">void</span>)</div>
 <div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;{</div>
 <div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <span class="keywordflow">for</span> (uint32_t line = 10; line &lt;= 15; ++line) {</div>
 <div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        <span class="keywordflow">if</span> (EXTI-&gt;PR &amp; (1 &lt;&lt; line)) { </div>
 <div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;            EXTI-&gt;PR |= (1 &lt;&lt; line); </div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;            exti_handler(line);</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;            <a class="code" href="f4xx_2exti__handlers_8c.html#ace4802f0dcdcb019f1528b7e018fb5dd">exti_handler</a>(line);</div>
 <div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        }</div>
 <div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    }</div>
 <div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;}</div>
+<div class="ttc" id="af4xx_2exti__handlers_8c_html_a17e9789a29a87d2df54f12b94dd1a0b6"><div class="ttname"><a href="f4xx_2exti__handlers_8c.html#a17e9789a29a87d2df54f12b94dd1a0b6">EXTI0_IRQHandler</a></div><div class="ttdeci">void EXTI0_IRQHandler(void)</div><div class="ttdoc">This function handles EXTI line0 interrupt.</div><div class="ttdef"><b>Definition:</b> <a href="f4xx_2exti__handlers_8c_source.html#l00022">exti_handlers.c:22</a></div></div>
+<div class="ttc" id="af4xx_2exti__handlers_8c_html_a290cb997018c8d85d4b965b4a242842f"><div class="ttname"><a href="f4xx_2exti__handlers_8c.html#a290cb997018c8d85d4b965b4a242842f">EXTI4_IRQHandler</a></div><div class="ttdeci">void EXTI4_IRQHandler(void)</div><div class="ttdoc">This function handles EXTI line4 interrupts.</div><div class="ttdef"><b>Definition:</b> <a href="f4xx_2exti__handlers_8c_source.html#l00066">exti_handlers.c:66</a></div></div>
+<div class="ttc" id="af4xx_2exti__handlers_8c_html_a30c045de96d18ec9c67a7b9e4350920f"><div class="ttname"><a href="f4xx_2exti__handlers_8c.html#a30c045de96d18ec9c67a7b9e4350920f">EXTI3_IRQHandler</a></div><div class="ttdeci">void EXTI3_IRQHandler(void)</div><div class="ttdoc">This function handles EXTI line3 interrupt.</div><div class="ttdef"><b>Definition:</b> <a href="f4xx_2exti__handlers_8c_source.html#l00055">exti_handlers.c:55</a></div></div>
+<div class="ttc" id="af4xx_2exti__handlers_8c_html_a49cfdd46eb8d0ef3e1987514aa9343dc"><div class="ttname"><a href="f4xx_2exti__handlers_8c.html#a49cfdd46eb8d0ef3e1987514aa9343dc">EXTI1_IRQHandler</a></div><div class="ttdeci">void EXTI1_IRQHandler(void)</div><div class="ttdoc">This function handles EXTI line1 interrupt.</div><div class="ttdef"><b>Definition:</b> <a href="f4xx_2exti__handlers_8c_source.html#l00033">exti_handlers.c:33</a></div></div>
+<div class="ttc" id="af4xx_2exti__handlers_8c_html_a738473a5b43f6c92b80ce1d3d6f77ed9"><div class="ttname"><a href="f4xx_2exti__handlers_8c.html#a738473a5b43f6c92b80ce1d3d6f77ed9">EXTI15_10_IRQHandler</a></div><div class="ttdeci">void EXTI15_10_IRQHandler(void)</div><div class="ttdoc">This function handles EXTI line 10-15 interrupts.</div><div class="ttdef"><b>Definition:</b> <a href="f4xx_2exti__handlers_8c_source.html#l00091">exti_handlers.c:91</a></div></div>
+<div class="ttc" id="af4xx_2exti__handlers_8c_html_a7b2096b8b2643286dc3a7e5110e5ae85"><div class="ttname"><a href="f4xx_2exti__handlers_8c.html#a7b2096b8b2643286dc3a7e5110e5ae85">EXTI9_5_IRQHandler</a></div><div class="ttdeci">void EXTI9_5_IRQHandler(void)</div><div class="ttdoc">This function handles EXTI line 5-9 interrupts.</div><div class="ttdef"><b>Definition:</b> <a href="f4xx_2exti__handlers_8c_source.html#l00077">exti_handlers.c:77</a></div></div>
+<div class="ttc" id="af4xx_2exti__handlers_8c_html_ab5a1d9e9c8ef50e0cb9ddb5745a20a14"><div class="ttname"><a href="f4xx_2exti__handlers_8c.html#ab5a1d9e9c8ef50e0cb9ddb5745a20a14">EXTI2_IRQHandler</a></div><div class="ttdeci">void EXTI2_IRQHandler(void)</div><div class="ttdoc">This function handles EXTI line2 interrupt.</div><div class="ttdef"><b>Definition:</b> <a href="f4xx_2exti__handlers_8c_source.html#l00044">exti_handlers.c:44</a></div></div>
+<div class="ttc" id="af4xx_2exti__handlers_8c_html_ace4802f0dcdcb019f1528b7e018fb5dd"><div class="ttname"><a href="f4xx_2exti__handlers_8c.html#ace4802f0dcdcb019f1528b7e018fb5dd">exti_handler</a></div><div class="ttdeci">static void exti_handler(uint8_t exti_line)</div><div class="ttdef"><b>Definition:</b> <a href="f4xx_2exti__handlers_8c_source.html#l00013">exti_handlers.c:13</a></div></div>
+<div class="ttc" id="af4xx_2exti__handlers_8c_html_ad4810d061ad433e66fc65bdceb5649b8"><div class="ttname"><a href="f4xx_2exti__handlers_8c.html#ad4810d061ad433e66fc65bdceb5649b8">__exti_handler_inclusion</a></div><div class="ttdeci">volatile uint8_t __exti_handler_inclusion</div><div class="ttdef"><b>Definition:</b> <a href="f4xx_2exti__handlers_8c_source.html#l00010">exti_handlers.c:10</a></div></div>
+<div class="ttc" id="af4xx_2exti__handlers_8c_html_ae6db87b5af5ed14fef2aa9b9ed6efa1d"><div class="ttname"><a href="f4xx_2exti__handlers_8c.html#ae6db87b5af5ed14fef2aa9b9ed6efa1d">exti_gpio_handlers</a></div><div class="ttdeci">void(* exti_gpio_handlers[MAX_EXTI_GPIO_LINES])(uint8_t)</div><div class="ttdef"><b>Definition:</b> <a href="f4xx_2exti__handlers_8c_source.html#l00011">exti_handlers.c:11</a></div></div>
+<div class="ttc" id="af4xx_2exti__handlers_8h_html_a416ad9e68a19a041adbfa2847bc027b3"><div class="ttname"><a href="f4xx_2exti__handlers_8h.html#a416ad9e68a19a041adbfa2847bc027b3">MAX_EXTI_GPIO_LINES</a></div><div class="ttdeci">#define MAX_EXTI_GPIO_LINES</div><div class="ttdef"><b>Definition:</b> <a href="f4xx_2exti__handlers_8h_source.html#l00007">exti_handlers.h:7</a></div></div>
+<div class="ttc" id="au0xx_2exti__handlers_8h_html"><div class="ttname"><a href="u0xx_2exti__handlers_8h.html">exti_handlers.h</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_7da9fa3e46f3496e22e0d53e72e5a458.html">hal_platform</a></li><li class="navelem"><a class="el" href="dir_69912b4012e9148154fd04a54a84b30d.html">f4xx</a></li><li class="navelem"><b>exti_handlers.c</b></li>
-    <li class="footer">Generated on Sun Dec 1 2024 08:09:42 for ebs-hal-uc-stm32 by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="navelem"><a class="el" href="dir_7da9fa3e46f3496e22e0d53e72e5a458.html">hal_platform</a></li><li class="navelem"><a class="el" href="dir_69912b4012e9148154fd04a54a84b30d.html">f4xx</a></li><li class="navelem"><a class="el" href="f4xx_2exti__handlers_8c.html">exti_handlers.c</a></li>
+    <li class="footer">Generated on Wed Dec 11 2024 03:04:59 for ebs-hal-uc-stm32 by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

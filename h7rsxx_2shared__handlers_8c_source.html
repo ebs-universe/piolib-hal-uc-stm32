@@ -89,7 +89,7 @@ $(document).ready(function(){initNavTree('h7rsxx_2shared__handlers_8c_source.htm
 <div class="title">shared_handlers.c</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<a href="h7rsxx_2shared__handlers_8c.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160; </div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;application.h&gt;</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;irq_handlers.h&gt;</span></div>
@@ -97,13 +97,13 @@ $(document).ready(function(){initNavTree('h7rsxx_2shared__handlers_8c_source.htm
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;platform/types.h&gt;</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">volatile</span> uint8_t __shared_handler_inclusion;</div>
+<div class="line"><a name="l00009"></a><span class="lineno"><a class="line" href="h7rsxx_2shared__handlers_8c.html#a13cbe077bac633576e1fa9f3169d37e4">    9</a></span>&#160;<span class="keyword">volatile</span> uint8_t <a class="code" href="f4xx_2shared__handlers_8c.html#a13cbe077bac633576e1fa9f3169d37e4">__shared_handler_inclusion</a>;</div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keywordtype">void</span> Error_Handler(<span class="keywordtype">void</span>) {</div>
+<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="h7rsxx_2shared__handlers_8c.html#a1730ffe1e560465665eb47d9264826f9">   15</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="f4xx_2shared__handlers_8c.html#a1730ffe1e560465665eb47d9264826f9">Error_Handler</a>(<span class="keywordtype">void</span>) {</div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    die();</div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;}</div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keywordtype">void</span> MissingISR_Handler(<span class="keywordtype">void</span>) {</div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="h7rsxx_2shared__handlers_8c.html#aa175a78ea0fbeab574a916e0d278dce4">   19</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="h7rsxx_2shared__handlers_8c.html#aa175a78ea0fbeab574a916e0d278dce4">MissingISR_Handler</a>(<span class="keywordtype">void</span>) {</div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    uint32_t active_vector = (SCB-&gt;ICSR &amp; SCB_ICSR_VECTACTIVE_Msk);</div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keywordflow">if</span> (active_vector &gt; 15){</div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;      active_vector = active_vector - 16;</div>
@@ -113,13 +113,16 @@ $(document).ready(function(){initNavTree('h7rsxx_2shared__handlers_8c_source.htm
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="comment">// For example, you could log it, or use it in debugging</span></div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    die();</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;}</div>
+<div class="ttc" id="af4xx_2shared__handlers_8c_html_a13cbe077bac633576e1fa9f3169d37e4"><div class="ttname"><a href="f4xx_2shared__handlers_8c.html#a13cbe077bac633576e1fa9f3169d37e4">__shared_handler_inclusion</a></div><div class="ttdeci">volatile uint8_t __shared_handler_inclusion</div><div class="ttdef"><b>Definition:</b> <a href="f4xx_2shared__handlers_8c_source.html#l00007">shared_handlers.c:7</a></div></div>
+<div class="ttc" id="af4xx_2shared__handlers_8c_html_a1730ffe1e560465665eb47d9264826f9"><div class="ttname"><a href="f4xx_2shared__handlers_8c.html#a1730ffe1e560465665eb47d9264826f9">Error_Handler</a></div><div class="ttdeci">void Error_Handler(void)</div><div class="ttdoc">This function is not an IRQ handler, but used by the STM32 Cube HAL to report errors.</div><div class="ttdef"><b>Definition:</b> <a href="f4xx_2shared__handlers_8c_source.html#l00026">shared_handlers.c:26</a></div></div>
+<div class="ttc" id="ah7rsxx_2shared__handlers_8c_html_aa175a78ea0fbeab574a916e0d278dce4"><div class="ttname"><a href="h7rsxx_2shared__handlers_8c.html#aa175a78ea0fbeab574a916e0d278dce4">MissingISR_Handler</a></div><div class="ttdeci">void MissingISR_Handler(void)</div><div class="ttdef"><b>Definition:</b> <a href="h7rsxx_2shared__handlers_8c_source.html#l00019">shared_handlers.c:19</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_7da9fa3e46f3496e22e0d53e72e5a458.html">hal_platform</a></li><li class="navelem"><a class="el" href="dir_ecba37078b2646ad8615f0f92eab48bb.html">h7rsxx</a></li><li class="navelem"><b>shared_handlers.c</b></li>
-    <li class="footer">Generated on Sun Dec 1 2024 08:09:42 for ebs-hal-uc-stm32 by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="navelem"><a class="el" href="dir_7da9fa3e46f3496e22e0d53e72e5a458.html">hal_platform</a></li><li class="navelem"><a class="el" href="dir_ecba37078b2646ad8615f0f92eab48bb.html">h7rsxx</a></li><li class="navelem"><a class="el" href="h7rsxx_2shared__handlers_8c.html">shared_handlers.c</a></li>
+    <li class="footer">Generated on Wed Dec 11 2024 03:04:59 for ebs-hal-uc-stm32 by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

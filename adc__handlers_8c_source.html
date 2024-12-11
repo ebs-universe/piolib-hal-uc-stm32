@@ -89,13 +89,13 @@ $(document).ready(function(){initNavTree('adc__handlers_8c_source.html',''); ini
 <div class="title">adc_handlers.c</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &quot;adc_handlers.h&quot;</span></div>
+<a href="adc__handlers_8c.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="h7rsxx_2adc__handlers_8h.html">adc_handlers.h</a>&quot;</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;irq_handlers.h&gt;</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;hal/uc/gpio.h&gt;</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;platform/sections.h&gt;</span></div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keyword">volatile</span> uint8_t __adc_handler_inclusion;</div>
+<div class="line"><a name="l00007"></a><span class="lineno"><a class="line" href="adc__handlers_8c.html#a0e0b2a14fdeb292a5efa55e1a53341dd">    7</a></span>&#160;<span class="keyword">volatile</span> uint8_t <a class="code" href="adc__handlers_8c.html#a0e0b2a14fdeb292a5efa55e1a53341dd">__adc_handler_inclusion</a>;</div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#if uC_ADC_ENABLED</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
@@ -111,72 +111,72 @@ $(document).ready(function(){initNavTree('adc__handlers_8c_source.html',''); ini
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    gpio_set_output_high(GPIO_DBG_SCOPE1);</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    uint32_t flags = *(HAL_SFR_t *)(ADC1_BASE + OFS_ADCn_ISR);</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    uint16_t data;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keywordflow">if</span> (flags &amp; ADC_FLAG_OVR){</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        *(HAL_SFR_t *)(ADC1_BASE + OFS_ADCn_ISR) |= ADC_ISR_OVR;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        adc1_state.overrun ++;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    }</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keywordflow">if</span> (flags &amp; ADC_FLAG_EOC){</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        data = *(HAL_SFR_t *)(ADC1_BASE + OFS_ADCn_DR);</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        adc1_state.lastresult = data;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        </div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <span class="comment">// Dispatch result if handler is set</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <span class="keywordflow">if</span> (adc1_state.handler_eoc){</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;            adc1_state.handler_eoc(adc1_state.nextchn, &amp;adc1_state.lastresult);</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        }</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <span class="comment">// Prepare for next</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        uint32_t seqstate = adc1_state.seqstate;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        seqstate &gt;&gt;= 1;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        <span class="keywordflow">if</span> (seqstate){</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;            uint8_t offset = __builtin_ctz(seqstate); </div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;            seqstate &gt;&gt;= offset;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;            adc1_state.nextchn += (1 + offset);</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;            adc1_state.seqstate = seqstate;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        }</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    }</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keywordflow">if</span> (flags &amp; ADC_FLAG_EOS){</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        <span class="comment">// Clear EOS flag</span></div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        *(HAL_SFR_t *)(ADC1_BASE + OFS_ADCn_ISR) |= ADC_ISR_EOS;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <span class="keywordflow">if</span> (adc1_state.mode != ADC_MODE_CONTINUOUS) {</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;            adc1_state.mode = ADC_MODE_IDLE;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        }</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    </div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        <span class="keywordflow">if</span> (adc1_state.handler_eos){</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;            adc1_state.handler_eos();</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        }</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    </div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        <span class="comment">// Reset sequence state</span></div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        adc1_state.nextchn = adc1_state.chnmask;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        adc1_state.seqstate = adc1_state.firstchn;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    }</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    gpio_set_output_low(GPIO_DBG_SCOPE1);</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;}</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="preprocessor">#pragma GCC pop_options</span></div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160; </div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;FASTEXEC</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="keywordtype">void</span> ADC1_2_IRQHandler(<span class="keywordtype">void</span>)</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;{  </div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="preprocessor">    #if uC_ADC1_ENABLED</span></div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        _adc1_handler();</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="preprocessor">    #endif</span></div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="preprocessor">    #if uC_ADC2_ENABLED</span></div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        _adc2_handler();</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="preprocessor">    #endif</span></div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;}</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keywordflow">if</span> (flags &amp; ADC_FLAG_EOC){</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        adc1_state.lastresult = *(HAL_SFR_t *)(ADC1_BASE + OFS_ADCn_DR);</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        </div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        <span class="comment">// Dispatch result if handler is set</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        <span class="keywordflow">if</span> (adc1_state.handler_eoc){</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;            adc1_state.handler_eoc(adc1_state.nextchn, &amp;adc1_state.lastresult);</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        }</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        <span class="comment">// Prepare for next</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        uint32_t seqstate = adc1_state.seqstate;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        seqstate &gt;&gt;= 1;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <span class="keywordflow">if</span> (seqstate){</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;            uint8_t offset = __builtin_ctz(seqstate); </div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;            seqstate &gt;&gt;= offset;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;            adc1_state.nextchn += (1 + offset);</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;            adc1_state.seqstate = seqstate;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        }</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    }</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keywordflow">if</span> (flags &amp; ADC_FLAG_EOS){</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <span class="comment">// Clear EOS flag</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        *(HAL_SFR_t *)(ADC1_BASE + OFS_ADCn_ISR) |= ADC_ISR_EOS;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <span class="keywordflow">if</span> (adc1_state.mode != ADC_MODE_CONTINUOUS) {</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;            adc1_state.mode = ADC_MODE_IDLE;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        }</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    </div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        <span class="keywordflow">if</span> (adc1_state.handler_eos){</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;            adc1_state.handler_eos();</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        }</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    </div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        <span class="comment">// Reset sequence state</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        adc1_state.nextchn = adc1_state.chnmask;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        adc1_state.seqstate = adc1_state.firstchn;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    }</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160; </div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keywordflow">if</span> (flags &amp; ADC_FLAG_OVR){</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        *(HAL_SFR_t *)(ADC1_BASE + OFS_ADCn_ISR) |= ADC_ISR_OVR;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        adc1_state.overrun ++;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    }</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    gpio_set_output_low(GPIO_DBG_SCOPE1);</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;}</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="preprocessor">#pragma GCC pop_options</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;FASTEXEC</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="keywordtype">void</span> ADC1_2_IRQHandler(<span class="keywordtype">void</span>)</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;{  </div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="preprocessor">    #if uC_ADC1_ENABLED</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        _adc1_handler();</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="preprocessor">    #endif</span></div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="preprocessor">    #if uC_ADC2_ENABLED</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        _adc2_handler();</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="preprocessor">    #endif</span></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;}</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160; </div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aadc__handlers_8c_html_a0e0b2a14fdeb292a5efa55e1a53341dd"><div class="ttname"><a href="adc__handlers_8c.html#a0e0b2a14fdeb292a5efa55e1a53341dd">__adc_handler_inclusion</a></div><div class="ttdeci">volatile uint8_t __adc_handler_inclusion</div><div class="ttdef"><b>Definition:</b> <a href="adc__handlers_8c_source.html#l00007">adc_handlers.c:7</a></div></div>
+<div class="ttc" id="ah7rsxx_2adc__handlers_8h_html"><div class="ttname"><a href="h7rsxx_2adc__handlers_8h.html">adc_handlers.h</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_7da9fa3e46f3496e22e0d53e72e5a458.html">hal_platform</a></li><li class="navelem"><a class="el" href="dir_ecba37078b2646ad8615f0f92eab48bb.html">h7rsxx</a></li><li class="navelem"><b>adc_handlers.c</b></li>
-    <li class="footer">Generated on Sun Dec 1 2024 08:09:42 for ebs-hal-uc-stm32 by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="navelem"><a class="el" href="dir_7da9fa3e46f3496e22e0d53e72e5a458.html">hal_platform</a></li><li class="navelem"><a class="el" href="dir_ecba37078b2646ad8615f0f92eab48bb.html">h7rsxx</a></li><li class="navelem"><a class="el" href="adc__handlers_8c.html">adc_handlers.c</a></li>
+    <li class="footer">Generated on Wed Dec 11 2024 03:04:59 for ebs-hal-uc-stm32 by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

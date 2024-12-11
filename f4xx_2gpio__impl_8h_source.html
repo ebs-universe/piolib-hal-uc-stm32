@@ -89,7 +89,7 @@ $(document).ready(function(){initNavTree('f4xx_2gpio__impl_8h_source.html',''); 
 <div class="title">gpio_impl.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/* </span></div>
+<a href="f4xx_2gpio__impl_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/* </span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">   Copyright 2024 Chintalagiri Shashank</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">   Copyright 2015 Chintalagiri Shashank, Quazar Technologies Pvt. Ltd.</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">   </span></div>
@@ -114,8 +114,8 @@ $(document).ready(function(){initNavTree('f4xx_2gpio__impl_8h_source.html',''); 
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#define GPIO_IMPL_H</span></div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#include &lt;hal/uc/gpio.h&gt;</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#include &quot;exti.h&quot;</span></div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#include &quot;exti_handlers.h&quot;</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="u0xx_2exti_8h.html">exti.h</a>&quot;</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="u0xx_2exti__handlers_8h.html">exti_handlers.h</a>&quot;</span></div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#if uC_GPIO_ENABLED</span></div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
@@ -242,47 +242,54 @@ $(document).ready(function(){initNavTree('f4xx_2gpio__impl_8h_source.html',''); 
 <div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160; </div>
 <div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;   <span class="comment">// Configure Trigger Edge Selection</span></div>
 <div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;   <span class="keywordflow">if</span> (edge &amp; GPIO_INT_EDGE_RISING) { </div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;        *(HAL_SFR_t *)(EXTI_BASE + EXTI_OFS_RTSR) |= (1 &lt;&lt; pin);                            </div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;        *(HAL_SFR_t *)(EXTI_BASE + <a class="code" href="f4xx_2exti_8h.html#a80217bac5f9796b05df40618e5726f56">EXTI_OFS_RTSR</a>) |= (1 &lt;&lt; pin);                            </div>
 <div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;   } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;        *(HAL_SFR_t *)(EXTI_BASE + EXTI_OFS_RTSR) &amp;= ~(1 &lt;&lt; pin);                            </div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;        *(HAL_SFR_t *)(EXTI_BASE + <a class="code" href="f4xx_2exti_8h.html#a80217bac5f9796b05df40618e5726f56">EXTI_OFS_RTSR</a>) &amp;= ~(1 &lt;&lt; pin);                            </div>
 <div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;   }</div>
 <div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160; </div>
 <div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;   <span class="keywordflow">if</span> (edge &amp; GPIO_INT_EDGE_FALLING) {</div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;        *(HAL_SFR_t *)(EXTI_BASE + EXTI_OFS_FTSR) |= (1 &lt;&lt; pin);                            </div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;        *(HAL_SFR_t *)(EXTI_BASE + <a class="code" href="f4xx_2exti_8h.html#a98172b74f36cb7069e3fb378f5376dad">EXTI_OFS_FTSR</a>) |= (1 &lt;&lt; pin);                            </div>
 <div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;   } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;        *(HAL_SFR_t *)(EXTI_BASE + EXTI_OFS_FTSR) &amp;= ~(1 &lt;&lt; pin);                            </div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;        *(HAL_SFR_t *)(EXTI_BASE + <a class="code" href="f4xx_2exti_8h.html#a98172b74f36cb7069e3fb378f5376dad">EXTI_OFS_FTSR</a>) &amp;= ~(1 &lt;&lt; pin);                            </div>
 <div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;   }</div>
 <div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;}</div>
 <div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160; </div>
 <div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> gpio_conf_interrupt_handler(</div>
 <div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;    PORTSELECTOR_t port, PINSELECTOR_t pin, <span class="keywordtype">void</span> (*handler)(uint8_t))</div>
 <div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;{</div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;   exti_gpio_handlers[pin] = handler;</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;   <a class="code" href="f4xx_2exti__handlers_8c.html#ae6db87b5af5ed14fef2aa9b9ed6efa1d">exti_gpio_handlers</a>[pin] = handler;</div>
 <div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;}</div>
 <div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160; </div>
 <div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160; </div>
 <div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> gpio_interrupt_arm(</div>
 <div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;    PORTSELECTOR_t port, PINSELECTOR_t pin)</div>
 <div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;{</div>
-<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;    *(HAL_SFR_t *)(EXTI_BASE + EXTI_OFS_PR) = (1 &lt;&lt; pin);</div>
-<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;    *(HAL_SFR_t *)(EXTI_BASE + EXTI_OFS_IMR) |= (1 &lt;&lt; pin);</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;    *(HAL_SFR_t *)(EXTI_BASE + <a class="code" href="f4xx_2exti_8h.html#a93e72295740cc7d5987fc6f1d0490e43">EXTI_OFS_PR</a>) = (1 &lt;&lt; pin);</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;    *(HAL_SFR_t *)(EXTI_BASE + <a class="code" href="f4xx_2exti_8h.html#a8e9a3b2a5d515fbf03c56976bff950a2">EXTI_OFS_IMR</a>) |= (1 &lt;&lt; pin);</div>
 <div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;}</div>
 <div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160; </div>
 <div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> gpio_interrupt_disarm(</div>
 <div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;    PORTSELECTOR_t port, PINSELECTOR_t pin)</div>
 <div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;{</div>
-<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;    *(HAL_SFR_t *)(EXTI_BASE + EXTI_OFS_IMR) &amp;= ~(1 &lt;&lt; pin);</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;    *(HAL_SFR_t *)(EXTI_BASE + <a class="code" href="f4xx_2exti_8h.html#a8e9a3b2a5d515fbf03c56976bff950a2">EXTI_OFS_IMR</a>) &amp;= ~(1 &lt;&lt; pin);</div>
 <div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;}</div>
 <div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160; </div>
 <div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="af4xx_2exti_8h_html_a80217bac5f9796b05df40618e5726f56"><div class="ttname"><a href="f4xx_2exti_8h.html#a80217bac5f9796b05df40618e5726f56">EXTI_OFS_RTSR</a></div><div class="ttdeci">#define EXTI_OFS_RTSR</div><div class="ttdef"><b>Definition:</b> <a href="f4xx_2exti_8h_source.html#l00006">exti.h:6</a></div></div>
+<div class="ttc" id="af4xx_2exti_8h_html_a8e9a3b2a5d515fbf03c56976bff950a2"><div class="ttname"><a href="f4xx_2exti_8h.html#a8e9a3b2a5d515fbf03c56976bff950a2">EXTI_OFS_IMR</a></div><div class="ttdeci">#define EXTI_OFS_IMR</div><div class="ttdef"><b>Definition:</b> <a href="f4xx_2exti_8h_source.html#l00004">exti.h:4</a></div></div>
+<div class="ttc" id="af4xx_2exti_8h_html_a93e72295740cc7d5987fc6f1d0490e43"><div class="ttname"><a href="f4xx_2exti_8h.html#a93e72295740cc7d5987fc6f1d0490e43">EXTI_OFS_PR</a></div><div class="ttdeci">#define EXTI_OFS_PR</div><div class="ttdef"><b>Definition:</b> <a href="f4xx_2exti_8h_source.html#l00009">exti.h:9</a></div></div>
+<div class="ttc" id="af4xx_2exti_8h_html_a98172b74f36cb7069e3fb378f5376dad"><div class="ttname"><a href="f4xx_2exti_8h.html#a98172b74f36cb7069e3fb378f5376dad">EXTI_OFS_FTSR</a></div><div class="ttdeci">#define EXTI_OFS_FTSR</div><div class="ttdef"><b>Definition:</b> <a href="f4xx_2exti_8h_source.html#l00007">exti.h:7</a></div></div>
+<div class="ttc" id="af4xx_2exti__handlers_8c_html_ae6db87b5af5ed14fef2aa9b9ed6efa1d"><div class="ttname"><a href="f4xx_2exti__handlers_8c.html#ae6db87b5af5ed14fef2aa9b9ed6efa1d">exti_gpio_handlers</a></div><div class="ttdeci">void(* exti_gpio_handlers[MAX_EXTI_GPIO_LINES])(uint8_t)</div><div class="ttdef"><b>Definition:</b> <a href="f4xx_2exti__handlers_8c_source.html#l00011">exti_handlers.c:11</a></div></div>
+<div class="ttc" id="au0xx_2exti_8h_html"><div class="ttname"><a href="u0xx_2exti_8h.html">exti.h</a></div></div>
+<div class="ttc" id="au0xx_2exti__handlers_8h_html"><div class="ttname"><a href="u0xx_2exti__handlers_8h.html">exti_handlers.h</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_7da9fa3e46f3496e22e0d53e72e5a458.html">hal_platform</a></li><li class="navelem"><a class="el" href="dir_69912b4012e9148154fd04a54a84b30d.html">f4xx</a></li><li class="navelem"><b>gpio_impl.h</b></li>
-    <li class="footer">Generated on Sun Dec 1 2024 08:09:42 for ebs-hal-uc-stm32 by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="navelem"><a class="el" href="dir_7da9fa3e46f3496e22e0d53e72e5a458.html">hal_platform</a></li><li class="navelem"><a class="el" href="dir_69912b4012e9148154fd04a54a84b30d.html">f4xx</a></li><li class="navelem"><a class="el" href="f4xx_2gpio__impl_8h.html">gpio_impl.h</a></li>
+    <li class="footer">Generated on Wed Dec 11 2024 03:04:59 for ebs-hal-uc-stm32 by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>
