@@ -27,16 +27,9 @@ static void _adc1_handler(void){
     gpio_set_output_high(GPIO_DBG_SCOPE1);
 
     uint32_t flags = *(HAL_SFR_t *)(ADC1_BASE + OFS_ADCn_ISR);
-    uint16_t data;
-
-    if (flags & ADC_FLAG_OVR){
-        *(HAL_SFR_t *)(ADC1_BASE + OFS_ADCn_ISR) |= ADC_ISR_OVR;
-        adc1_state.overrun ++;
-    }
 
     if (flags & ADC_FLAG_EOC){
-        data = *(HAL_SFR_t *)(ADC1_BASE + OFS_ADCn_DR);
-        adc1_state.lastresult = data;
+        adc1_state.lastresult = *(HAL_SFR_t *)(ADC1_BASE + OFS_ADCn_DR);
         
         // Dispatch result if handler is set
         if (adc1_state.handler_eoc){
@@ -68,6 +61,11 @@ static void _adc1_handler(void){
         // Reset sequence state
         adc1_state.nextchn = adc1_state.chnmask;
         adc1_state.seqstate = adc1_state.firstchn;
+    }
+
+    if (flags & ADC_FLAG_OVR){
+        *(HAL_SFR_t *)(ADC1_BASE + OFS_ADCn_ISR) |= ADC_ISR_OVR;
+        adc1_state.overrun ++;
     }
 
     gpio_set_output_low(GPIO_DBG_SCOPE1);
