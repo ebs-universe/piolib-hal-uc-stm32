@@ -103,6 +103,58 @@
  * deferring it for the moment.
  */
 
+#define uC_ADC1_INTFNUM             0
+#define uC_ADC2_INTFNUM             1
+
+#if uC_ADC1_DM_MODE == ADC_DM_POLLING
+    #ifndef uC_ADC_SUPPORT_DIRECT
+        #define uC_ADC_SUPPORT_DIRECT       1
+    #endif
+#endif
+
+#if uC_ADC1_DM_MODE == ADC_DM_INTERRUPT
+    #ifndef uC_ADC_SUPPORT_DIRECT
+        #define uC_ADC_SUPPORT_DIRECT       1
+    #endif
+    #ifndef uC_ADC_ENABLE_INTERRUPT
+        #define uC_ADC_ENABLE_INTERRUPT     1
+    #endif
+#endif
+
+#if uC_ADC1_DM_MODE == ADC_DM_DMA
+    #ifndef uC_ADC_SUPPORT_DMA
+        #define uC_ADC_SUPPORT_DMA          1
+    #endif
+
+    #define uC_ADC_DMA_INTERLACED   EBS_FALSE        // Not Implemented
+    #define uC_ADC1_DMA_CHANNEL     APP_ADC_DMA_CHANNEL
+    #define uC_ADC1_DMA_BUFLEN      APP_ADC_DMA_BUFFER_LENGTH   
+    #define uC_ADC1_DMA_BUFSIZE     (uC_ADC1_DMA_BUFLEN * uC_ADC1_CHANNEL_COUNT)
+    
+    // Only implementing double buffered for now
+    // #ifdef APP_ADC_DMA_NUM_BUFFER
+    //     #define uC_ADC1_DMA_NUMBUF      APP_ADC_DMA_BUFFER_NUM  
+    // #else 
+    //     #define uC_ADC1_DMA_NUMBUF      2
+    // #endif
+#endif
+
+#ifdef uC_ADC_TIMING_MONITOR_GPIO
+    #ifndef uC_ADC_ENABLE_INTERRUPT
+        #define uC_ADC_ENABLE_INTERRUPT     1
+    #endif
+#endif
+
+#ifndef uC_ADC_SUPPORT_DMA
+    #define uC_ADC_SUPPORT_DMA          0
+#endif      
+#ifndef uC_ADC_SUPPORT_DIRECT
+    #define uC_ADC_SUPPORT_DIRECT       0
+#endif      
+#ifndef uC_ADC_ENABLE_INTERRUPT
+    #define uC_ADC_ENABLE_INTERRUPT     0
+#endif
+
 typedef enum {
     ADC12_HWIF,
 } ADC_HWIF_TYPE;
@@ -112,22 +164,32 @@ typedef struct _ADC_HWIF_t{
     const HAL_ADDRESS_t base;
     const HAL_ADDRESS_t common;
     const uint32_t chnmask;
+    const ADC_DATA_MAMANGEMENT_MODE_t dmmode;
 } _adc_hwif_t;
 
 typedef struct _ADC_STATE_t{
-    ADC_MODE_t mode;
-    uint8_t overrun;
-    uint8_t nextchn;
-    uint8_t firstchn;
-    uint16_t lastresult;
-    uint32_t seqstate;
     uint32_t chnmask;
+    ADC_MODE_t mode;    
+    uint8_t overrun;    
+    #if uC_ADC_SUPPORT_DIRECT
+        uint8_t nextchn;
+        uint8_t firstchn;
+        uint16_t lastresult;
+        uint32_t seqstate;
+        void (*handler_eos)(void);
+    #endif
+    #if uC_ADC_SUPPORT_DMA
+        volatile uint16_t *inbuf;
+        volatile uint16_t *outbuf;
+        volatile uint8_t inbuf_drdy;
+        volatile uint8_t outbuf_drdy;
+        void (*handler_eob)(void *);
+    #endif
     void (*handler_eoc)(HAL_BASE_t, void *);
-    void (*handler_eos)(void);
 } adc_state_t;
 
 typedef struct ADC_IF_t {
-    const _adc_hwif_t * const hwif;
+    const _adc_hwif_t * const hwif; 
     adc_state_t * const state;
     void (*const init)(void);
 } adc_if_t;
@@ -139,124 +201,9 @@ extern adc_state_t adc2_state;
 
 extern const adc_if_t *const adc_if[uC_ADCS_ENABLED + 1];
 
-#define uC_ADC_DEFAULT_CLOCK_PRESCALER      ADC_CCR_PRESC_3
-#define uC_ADC_DEFAULT_CLOCK_PRESCALER_VAL  8
-#define uC_ADC_DEFAULT_DATAALIGNLEFT        EBS_FALSE
-#define uC_ADC_DEFAULT_EN_CALIB             EBS_TRUE
-#define uC_ADC_DEFAULT_EN_INJECTQ           EBS_FALSE
-#define uC_ADC_DEFAULT_EN_INJECTQ_AUTO      EBS_FALSE
-#define uC_ADC_DEFAULT_OVERRUN_LATEST       EBS_TRUE
-#define uC_ADC_DEFAULT_EN_OS_REG            EBS_FALSE
-#define uC_ADC_DEFAULT_EN_OS_INJ            EBS_FALSE
-#define uC_ADC_DEFAULT_OS_TRIG_EACH         EBS_FALSE   // Not sure what exactly this is
-#define uC_ADC_DEFAULT_OS_RATIO             ADC_OVERSAMPLING_RATIO_4     
-#define uC_ADC_DEFAULT_OS_SHIFT             1
-/** 
- * Minimum sample time chosen for: 
- *   - 100ohm RAIN 
- *   - 12bit Resolution
- *   - Slow Channels
- * 
- * per Reference Manual, the minimum sample time is about 65ns, 
- * so SMP = 000 (2.5CLK) should be fine for a 25MHz ADC clock. 
- * Since we're not presently in tight timings, we make it SMP = 001, 
- * corresponding to a sampling time of 6.5CLK or 260ns @ 25MHz.
- * 
- * This implementation assumes the sample time is is identical 
- * for both ADCs. 
- * 
- */
-#ifndef uC_ADC_SAMPLETIME
-#define uC_ADC_SAMPLETIME       0b001
-#endif
-
-// per ADC registers
-#define OFS_ADCn_ISR        0x00
-#define OFS_ADCn_IER        0x04
-#define OFS_ADCn_CR         0x08
-#define OFS_ADCn_CFGR       0x0C
-#define OFS_ADCn_CFGR2      0x10
-#define OFS_ADCn_SMPR1      0x14
-#define OFS_ADCn_SMPR2      0x18
-#define OFS_ADCn_TR1        0x20
-#define OFS_ADCn_TR2        0x24
-#define OFS_ADCn_TR3        0x28
-#define OFS_ADCn_SQR1       0x30
-#define OFS_ADCn_SQR2       0x34
-#define OFS_ADCn_SQR3       0x38
-#define OFS_ADCn_SQR4       0x3C
-#define OFS_ADCn_DR         0x40
-#define OFS_ADCn_JSQR       0x4C
-#define OFS_ADCn_OFR1       0x60
-#define OFS_ADCn_OFR2       0x64
-#define OFS_ADCn_OFR3       0x68
-#define OFS_ADCn_OFR4       0x6C
-#define OFS_ADCn_JDR1       0x80
-#define OFS_ADCn_JDR2       0x84
-#define OFS_ADCn_JDR3       0x88
-#define OFS_ADCn_JDR4       0x8C
-#define OFS_ADCn_AWD2CR     0xA0
-#define OFS_ADCn_AWD3CR     0xA4
-#define OFS_ADCn_DIFSEL     0xB0
-#define OFS_ADCn_CALFACT    0xB4
-#define OFS_ADCn_OR         0xC8
-
-// common ADC registers
-#define OFS_ADC_CSR         0x00
-#define OFS_ADC_CCR         0x08
-#define OFS_ADC_CDR         0x0C
-#define OFS_ADC_HWCFGR0     0xF0
-#define OFS_ADC_VERR        0xF4
-#define OFS_ADC_IPDR        0xF8
-#define OFS_ADC_SIDR        0xFC
-
-#ifndef uC_ADC_CLOCK_PRESCALER
-    #define uC_ADC_CLOCK_PRESCALER      uC_ADC_DEFAULT_CLOCK_PRESCALER
-    #define uC_ADC_CLOCK_PRESCALER_VAL  uC_ADC_DEFAULT_CLOCK_PRESCALER_VAL
-#endif
-
-#define uC_ADC_CLOCK_FREQUENCY          (CLOCKTREE_ADC_FREQ / uC_ADC_CLOCK_PRESCALER_VAL)
-
-#if uC_ADC1_ENABLED
-    #ifndef uC_ADC1_DATAALIGNLEFT
-        #define uC_ADC1_DATAALIGNLEFT   uC_ADC_DEFAULT_DATAALIGNLEFT
-    #endif
-    #ifndef uC_ADC1_EN_CALIB
-        #define uC_ADC1_EN_CALIB        uC_ADC_DEFAULT_EN_CALIB
-    #endif
-    #ifndef uC_ADC1_EN_INJECTQ
-        #define uC_ADC1_EN_INJECTQ      uC_ADC_DEFAULT_EN_INJECTQ
-    #endif
-    #ifndef uC_ADC1_EN_INJECTQ_AUTO
-        #define uC_ADC1_EN_INJECTQ_AUTO uC_ADC_DEFAULT_EN_INJECTQ_AUTO
-    #endif
-    #ifndef uC_ADC1_OVERRUN_LATEST
-        #define uC_ADC1_OVERRUN_LATEST  uC_ADC_DEFAULT_OVERRUN_LATEST
-    #endif
-    #ifndef uC_ADC1_EN_OS_REG
-        #define uC_ADC1_EN_OS_REG       uC_ADC_DEFAULT_EN_OS_REG
-    #endif
-    #ifndef uC_ADC1_EN_OS_INJ
-        #define uC_ADC1_EN_OS_INJ       uC_ADC_DEFAULT_EN_OS_INJ
-    #endif
-    #ifndef uC_ADC1_OS_TRIG_EACH
-        #define uC_ADC1_OS_TRIG_EACH    uC_ADC_DEFAULT_OS_TRIG_EACH
-    #endif
-    #ifndef uC_ADC1_OS_RATIO
-        #define uC_ADC1_OS_RATIO        uC_ADC_DEFAULT_OS_RATIO
-    #endif
-    #ifndef uC_ADC1_OS_SHIFT
-        #define uC_ADC1_OS_SHIFT        uC_ADC_DEFAULT_OS_SHIFT
-    #endif
-    #ifndef uC_ADC1_MARK_POLL_OVERRUN
-        #define uC_ADC1_MARK_POLL_OVERRUN   uC_ADC_DEFAULT_MARK_POLL_OVERRUN
-    #endif
-#endif
-
-#if uC_ADC2_ENABLED
-
-#endif
-
+#include "_adc/defaults.h"      
+#include "_adc/registers.h"
+                
 /**
  * @name Specialized Initialization and Control Functions
  * 

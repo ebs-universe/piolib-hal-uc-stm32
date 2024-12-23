@@ -21,10 +21,14 @@ volatile uint8_t __adc_handler_inclusion;
  * It is unclear if everything is actually working as intended.
  */ 
 
+#if uC_ADC_SUPPORT_DIRECT
+
 FASTEXEC
 __attribute__((target("thumb")))
-static void _adc1_handler(void){
-    gpio_set_output_high(GPIO_DBG_SCOPE1);
+static inline void _adc1_handler(void){
+    #ifdef uC_ADC_TIMING_MONITOR_GPIO
+    gpio_set_output_high(uC_ADC_TIMING_MONITOR_GPIO);
+    #endif
 
     uint32_t flags = *(HAL_SFR_t *)(ADC1_BASE + OFS_ADCn_ISR);
 
@@ -68,19 +72,45 @@ static void _adc1_handler(void){
         adc1_state.overrun ++;
     }
 
-    gpio_set_output_low(GPIO_DBG_SCOPE1);
+    #ifdef uC_ADC_TIMING_MONITOR_GPIO
+    gpio_set_output_low(uC_ADC_TIMING_MONITOR_GPIO);
+    #endif
 }
-#pragma GCC pop_options
+
+#endif
 
 FASTEXEC
-void ADC1_2_IRQHandler(void)
-{  
-    #if uC_ADC1_ENABLED
-        _adc1_handler();
-    #endif
-    #if uC_ADC2_ENABLED
-        _adc2_handler();
-    #endif
+__attribute__((target("thumb")))
+static inline void _adc1_timing_monitor(void){
+    uint32_t flags = *(HAL_SFR_t *)(ADC1_BASE + OFS_ADCn_ISR);
+    if (flags & ADC_FLAG_EOC){
+        *(HAL_SFR_t *)(ADC1_BASE + OFS_ADCn_ISR) |= ADC_ISR_EOC;
+        #ifdef uC_ADC_TIMING_MONITOR_GPIO
+        gpio_set_output_toggle(uC_ADC_TIMING_MONITOR_GPIO);
+        #endif
+    }
 }
 
+#pragma GCC pop_options
+
+
+FASTEXEC    
+void ADC1_2_IRQHandler(void)
+{   
+    #if uC_ADC1_ENABLED
+    #if uC_ADC1_DM_MODE == ADC_DM_INTERRUPT
+        _adc1_handler();
+    #else
+        #ifdef uC_ADC_TIMING_MONITOR_GPIO
+            _adc1_timing_monitor();
+        #endif
+    #endif
+    #endif
+    #if uC_ADC2_ENABLED
+    #if uC_ADC2_DM_MODE == ADC_DM_INTERRUPT             
+        _adc2_handler();
+    #endif
+    #endif
+}   
+    
 #endif

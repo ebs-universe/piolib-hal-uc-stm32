@@ -26,10 +26,12 @@ static void _adc_init(
         EBS_BOOL_t en_os_reg,
         EBS_BOOL_t en_os_inj,
         EBS_BOOL_t os_trig_each,
-        uint32_t os_ratio,
+        uint32_t os_ratio,      
         uint8_t os_shift,
         uint8_t trigger_src
 );
+static void _adc_init_interrupt(const _adc_hwif_t *const hwif);
+static void _adc_init_dma(const _adc_hwif_t *const hwif);
 /**@}*/
 
 __weak void adc_clock_init(void){
@@ -78,7 +80,9 @@ static void _adc_dual_config(void){
 
 void adc_common_init(void){
     adc_clock_init();
-    adc_interrupt_enable();
+    #if uC_ADC_ENABLE_INTERRUPT
+        adc_interrupt_enable();
+    #endif
     _adc_builtin_channels_enable();
     _adc_dual_config();
 }
@@ -88,7 +92,8 @@ static const _adc_hwif_t _adc1_hwif = {
        .type = ADC12_HWIF, 
        .base = ADC1_BASE,
        .common = ADC12_COMMON_BASE,
-       .chnmask = uC_ADC1_CHNMASK
+       .chnmask = uC_ADC1_CHNMASK,
+       .dmmode = uC_ADC1_DM_MODE
 };
 
 adc_state_t adc1_state FASTDATA;
@@ -106,8 +111,9 @@ void _adc1_init(void){
     // we don't do it here because it must only be 
     // called once for all ADCs
     _adc_power_up(&_adc1_hwif);
+    
     #if uC_ADC1_EN_CALIB
-    _adc_calibrate_internal(&_adc1_hwif);
+        _adc_calibrate_internal(&_adc1_hwif);
     #endif
     
     _adc_init(
@@ -125,11 +131,19 @@ void _adc1_init(void){
     );
     
     #if uC_ADC_CONFIGURE_CHANNELS
-    _adc_configure_channels(uC_ADC1_INTFNUM);
+        _adc_configure_channels(uC_ADC1_INTFNUM);
     #endif
     
     _adc_configure_sampling_time(&_adc1_hwif);
     adc1_state.mode = ADC_MODE_IDLE;
+
+    #if uC_ADC_ENABLE_INTERRUPT
+        _adc_init_interrupt(&_adc1_hwif);
+    #endif 
+
+    #if uC_ADC1_DM_MODE == ADC_DM_DMA
+        _adc_init_dma(&_adc1_hwif);
+    #endif
 
     return;
 }
@@ -208,7 +222,6 @@ static void _adc_init(
     HAL_SFR_t * cfgr = (HAL_SFR_t *)(hwif->base + OFS_ADCn_CFGR);
     HAL_SFR_t * cfgr2 = (HAL_SFR_t *)(hwif->base + OFS_ADCn_CFGR2);
     HAL_SFR_t * cr = (HAL_SFR_t *)(hwif->base + OFS_ADCn_CR);
-    HAL_SFR_t * ier = (HAL_SFR_t *)(hwif->base + OFS_ADCn_IER);
     HAL_SFR_t * isr = (HAL_SFR_t *)(hwif->base + OFS_ADCn_ISR);
 
     uint32_t cfgrval=0, cfgr2val=0;
@@ -234,6 +247,9 @@ static void _adc_init(
         }
         cfgrval |= ((trigger_src & 0x1F) << ADC_CFGR_EXTSEL_Pos);
     }
+    
+    // Try to avoid overruns.
+    cfgrval |= ADC_CFGR_AUTDLY;
 
     // This bit is set as configured to work with the trigger, but is 
     // overidden by individual software ADC start functions if they are used. 
@@ -254,9 +270,16 @@ static void _adc_init(
     while (!(*isr & ADC_ISR_ADRDY)){
         *cr |= ADC_CR_ADEN;
     }
-
-    *ier |= (ADC_IER_EOCIE);
 };
+
+static void _adc_init_interrupt(const _adc_hwif_t *const hwif){
+    HAL_SFR_t * ier = (HAL_SFR_t *)(hwif->base + OFS_ADCn_IER);
+    *ier |= (ADC_IER_EOCIE);
+}
+
+static void _adc_init_dma(const _adc_hwif_t *const hwif){
+
+}
 
 void adc_init(){
     #if uC_ADC_ENABLED
@@ -371,9 +394,17 @@ void adc_install_eoc_handler(HAL_BASE_t intfnum, void (*handler)(HAL_BASE_t, voi
     adc_if[uC_ADC1_INTFNUM]->state->handler_eoc = handler;
 };
 
+#if uC_ADC_SUPPORT_DIRECT
 void adc_install_eos_handler(HAL_BASE_t intfnum, void (*handler)(void)){
     adc_if[uC_ADC1_INTFNUM]->state->handler_eos = handler;
 };
+#endif
+
+#if uC_ADC_SUPPORT_DMA
+void adc_install_eob_handler(HAL_BASE_t intfnum, void (*handler)(void *)){
+    adc_if[uC_ADC1_INTFNUM]->state->handler_eob = handler;
+};
+#endif
 
 void adc_poll(void){
     #if uC_ADC1_ENABLED
@@ -395,7 +426,7 @@ void adc_trigger_single(HAL_BASE_t intfnum, HAL_BASE_t chnum){
     if (!(adc_if[intfnum]->hwif->chnmask & (1 << chnum))){
         return;
     }
-    // Not implemented
+    // Not implemented          
     die();
 }
 
@@ -406,10 +437,21 @@ static inline void _adc_prep_conv(HAL_BASE_t intfnum){
         seqstate >>= nextchn;
     }
     adc_if[intfnum]->state->overrun = 0;
-    adc_if[intfnum]->state->lastresult = 0;
-    adc_if[intfnum]->state->firstchn = nextchn;
-    adc_if[intfnum]->state->nextchn = nextchn;
-    adc_if[intfnum]->state->seqstate = seqstate;
+    
+    #if uC_ADC_SUPPORT_DIRECT
+    if (adc_if[intfnum]->hwif->dmmode == ADC_DM_INTERRUPT || adc_if[intfnum]->hwif->dmmode == ADC_DM_POLLING){
+        adc_if[intfnum]->state->lastresult = 0;
+        adc_if[intfnum]->state->firstchn = nextchn;
+        adc_if[intfnum]->state->nextchn = nextchn;
+        adc_if[intfnum]->state->seqstate = seqstate;
+    } 
+    #endif
+
+    #if uC_ADC_SUPPORT_DMA
+    if (adc_if[intfnum]->hwif->dmmode == ADC_DM_DMA){
+        ;
+    }
+    #endif
 }
 
 void adc_arm_trigger(HAL_BASE_t intfnum){
