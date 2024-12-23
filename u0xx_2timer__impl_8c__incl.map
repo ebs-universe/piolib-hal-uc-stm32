@@ -1,5 +1,7 @@
 <map id="hal_platform/u0xx/timer_impl.c" name="hal_platform/u0xx/timer_impl.c">
-<area shape="rect" id="node1" title=" " alt="" coords="5,5,185,47"/>
-<area shape="rect" id="node2" href="$u0xx_2timer__impl_8h.html" title=" " alt="" coords="43,95,148,121"/>
-<area shape="rect" id="node3" title=" " alt="" coords="40,169,151,196"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,185,45"/>
+<area shape="rect" id="Node000002" href="$u0xx_2timer__impl_8h.html" title=" " alt="" coords="43,93,148,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="98,46,98,79,93,79,93,46"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="40,167,151,192"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="98,119,98,153,93,153,93,119"/>
 </map>

@@ -1,0 +1,18 @@
+digraph "hal_platform/h7rsxx"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  compound=true
+  subgraph clusterdir_7da9fa3e46f3496e22e0d53e72e5a458 {
+    graph [ bgcolor="#eaf2e7", pencolor="grey25", label="hal_platform", fontname=Helvetica,fontsize=10 style="filled,dashed", URL="dir_7da9fa3e46f3496e22e0d53e72e5a458.html",tooltip=""]
+  subgraph clusterdir_ecba37078b2646ad8615f0f92eab48bb {
+    graph [ bgcolor="#eaf2e7", pencolor="grey25", label="", fontname=Helvetica,fontsize=10 style="filled,bold", URL="dir_ecba37078b2646ad8615f0f92eab48bb.html",tooltip=""]
+    dir_ecba37078b2646ad8615f0f92eab48bb [shape=plaintext, label="h7rsxx"];
+  dir_c86749a12d0b5f37729118ac0376c51e [label="_adc", fillcolor="#9ac18c", color="grey25", style="filled", URL="dir_c86749a12d0b5f37729118ac0376c51e.html",tooltip=""];
+  dir_d15f750d2e50aa73cfdc2e6249ca3932 [label="_dma", fillcolor="#9ac18c", color="grey25", style="filled", URL="dir_d15f750d2e50aa73cfdc2e6249ca3932.html",tooltip=""];
+  }
+  }
+}

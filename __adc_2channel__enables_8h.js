@@ -1,0 +1,28 @@
+var __adc_2channel__enables_8h =
+[
+    [ "uC_ADC1_CHANNEL_COUNT", "__adc_2channel__enables_8h.html#a76146b3a1ce5e4ae483ed1082313c5ae", null ],
+    [ "uC_ADC1_CHNMASK", "__adc_2channel__enables_8h.html#a4d1c6abe7b288f219d0811884feb3fd8", null ],
+    [ "uC_ADC2_CHANNEL_COUNT", "__adc_2channel__enables_8h.html#af8120cc91eb76d82920386ffa1ee76cb", null ],
+    [ "uC_ADC2_CHNMASK", "__adc_2channel__enables_8h.html#a7f8a690c0234d58b44d754ccca84e459", null ],
+    [ "uC_ENABLE_AIN0", "__adc_2channel__enables_8h.html#aab7c1fd5a9a8739328e0782ca3467d46", null ],
+    [ "uC_ENABLE_AIN1", "__adc_2channel__enables_8h.html#acf7aa5895b127db6db651d867bc3ea72", null ],
+    [ "uC_ENABLE_AIN10", "__adc_2channel__enables_8h.html#a22ffeedddaa26a0673b2cd48bebf2baa", null ],
+    [ "uC_ENABLE_AIN11", "__adc_2channel__enables_8h.html#a21f4821f5557e4ad49dfef9c1ad532b4", null ],
+    [ "uC_ENABLE_AIN12", "__adc_2channel__enables_8h.html#ad7c12d970a653b62c12099bb90cff7b9", null ],
+    [ "uC_ENABLE_AIN13", "__adc_2channel__enables_8h.html#a505d42697c7a97bacd3dc03c92e3acb1", null ],
+    [ "uC_ENABLE_AIN14", "__adc_2channel__enables_8h.html#a26729e155fbba0946e10c1321eeb8d2d", null ],
+    [ "uC_ENABLE_AIN15", "__adc_2channel__enables_8h.html#a51bf618ecb05c1075667049d54746d8b", null ],
+    [ "uC_ENABLE_AIN18", "__adc_2channel__enables_8h.html#aa5b57b14cabae666eb4667803be0a8aa", null ],
+    [ "uC_ENABLE_AIN2", "__adc_2channel__enables_8h.html#a2c049d6cf1c66979980d90e6654d64cb", null ],
+    [ "uC_ENABLE_AIN3", "__adc_2channel__enables_8h.html#a064e930f8c6a49d70ccfc42f7bc21d23", null ],
+    [ "uC_ENABLE_AIN4", "__adc_2channel__enables_8h.html#ab2f6eb6704897b72fe319587b8f63b43", null ],
+    [ "uC_ENABLE_AIN5", "__adc_2channel__enables_8h.html#a3eff89d0f64ab6c789824e04c6b614cf", null ],
+    [ "uC_ENABLE_AIN6", "__adc_2channel__enables_8h.html#afcb2340bfe3f682a167d3415f1a472da", null ],
+    [ "uC_ENABLE_AIN7", "__adc_2channel__enables_8h.html#ab11524a0c821a3cee4ebd8e300e5dbdb", null ],
+    [ "uC_ENABLE_AIN8", "__adc_2channel__enables_8h.html#a3280d5aaac66a672b8429c1ec8800186", null ],
+    [ "uC_ENABLE_AIN9", "__adc_2channel__enables_8h.html#ae3afb15047d264b74d5173668941c59e", null ],
+    [ "uC_ENABLE_AIN_IREF", "__adc_2channel__enables_8h.html#a8a6382ab98a563ab987e07ec0b783fa4", null ],
+    [ "uC_ENABLE_AIN_IREF", "__adc_2channel__enables_8h.html#a8a6382ab98a563ab987e07ec0b783fa4", null ],
+    [ "uC_ENABLE_AIN_TEMP", "__adc_2channel__enables_8h.html#add1174d656d4e21bdeb3997995e020f5", null ],
+    [ "uC_ENABLE_AIN_VDDC", "__adc_2channel__enables_8h.html#aaed919d5b16de9b8266877684dacef90", null ]
+];

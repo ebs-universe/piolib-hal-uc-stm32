@@ -1,4 +1,5 @@
 <map id="EXTI0_1_IRQHandler" name="EXTI0_1_IRQHandler">
-<area shape="rect" id="node1" title="This function handles EXTI lines 0&#45;1 interrupts." alt="" coords="5,5,160,32"/>
-<area shape="rect" id="node2" href="$u0xx_2exti__handlers_8c.html#ace4802f0dcdcb019f1528b7e018fb5dd" title=" " alt="" coords="208,5,311,32"/>
+<area shape="rect" id="Node000001" title="This function handles EXTI lines 0&#45;1 interrupts." alt="" coords="5,5,160,31"/>
+<area shape="rect" id="Node000002" href="$f4xx_2exti__handlers_8c.html#ace4802f0dcdcb019f1528b7e018fb5dd" title=" " alt="" coords="208,5,311,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="160,15,194,15,194,21,160,21"/>
 </map>

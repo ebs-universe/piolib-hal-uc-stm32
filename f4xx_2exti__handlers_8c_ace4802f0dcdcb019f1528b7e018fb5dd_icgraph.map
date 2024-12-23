@@ -1,21 +1,45 @@
 <map id="exti_handler" name="exti_handler">
-<area shape="rect" id="node1" title=" " alt="" coords="224,436,327,463"/>
-<area shape="rect" id="node2" href="$f4xx_2exti__handlers_8c.html#a17e9789a29a87d2df54f12b94dd1a0b6" title="This function handles EXTI line0 interrupt." alt="" coords="21,5,161,32"/>
-<area shape="rect" id="node3" href="$h7rsxx_2exti__handlers_8c.html#a3908d636f462dd2161f827b2492d1529" title=" " alt="" coords="17,56,165,83"/>
-<area shape="rect" id="node4" href="$h7rsxx_2exti__handlers_8c.html#a501e628a1389a069b4623e84054e6855" title=" " alt="" coords="17,107,165,133"/>
-<area shape="rect" id="node5" href="$h7rsxx_2exti__handlers_8c.html#ae790c1a3e247c378b85979c09bf00864" title=" " alt="" coords="17,157,165,184"/>
-<area shape="rect" id="node6" href="$h7rsxx_2exti__handlers_8c.html#a72722eb2754d8a9b2766b3f6c18c138d" title=" " alt="" coords="17,208,165,235"/>
-<area shape="rect" id="node7" href="$h7rsxx_2exti__handlers_8c.html#a3dc9fc7b634cba61248c09cfaa3884b4" title=" " alt="" coords="17,259,165,285"/>
-<area shape="rect" id="node8" href="$f4xx_2exti__handlers_8c.html#a738473a5b43f6c92b80ce1d3d6f77ed9" title="This function handles EXTI line 10&#45;15 interrupts." alt="" coords="5,309,176,336"/>
-<area shape="rect" id="node9" href="$h7rsxx_2exti__handlers_8c.html#a51e974a4f4d3974c7f57c55dc8eabe8c" title=" " alt="" coords="17,360,165,387"/>
-<area shape="rect" id="node10" href="$f4xx_2exti__handlers_8c.html#a49cfdd46eb8d0ef3e1987514aa9343dc" title="This function handles EXTI line1 interrupt." alt="" coords="21,411,161,437"/>
-<area shape="rect" id="node11" href="$f4xx_2exti__handlers_8c.html#ab5a1d9e9c8ef50e0cb9ddb5745a20a14" title="This function handles EXTI line2 interrupt." alt="" coords="21,461,161,488"/>
-<area shape="rect" id="node12" href="$f4xx_2exti__handlers_8c.html#a30c045de96d18ec9c67a7b9e4350920f" title="This function handles EXTI line3 interrupt." alt="" coords="21,512,161,539"/>
-<area shape="rect" id="node13" href="$f4xx_2exti__handlers_8c.html#a290cb997018c8d85d4b965b4a242842f" title="This function handles EXTI line4 interrupts." alt="" coords="21,563,161,589"/>
-<area shape="rect" id="node14" href="$h7rsxx_2exti__handlers_8c.html#ad6633b99684a2bbb518aae77c97c09c1" title=" " alt="" coords="21,613,161,640"/>
-<area shape="rect" id="node15" href="$h7rsxx_2exti__handlers_8c.html#abde3981aa9e60780c3955c7b6f055e03" title=" " alt="" coords="21,664,161,691"/>
-<area shape="rect" id="node16" href="$h7rsxx_2exti__handlers_8c.html#a344f002e20ead7d83a064a552744f6f2" title=" " alt="" coords="21,715,161,741"/>
-<area shape="rect" id="node17" href="$h7rsxx_2exti__handlers_8c.html#ac3afb2a7be61f0fb40b615b440fd1ba1" title=" " alt="" coords="21,765,161,792"/>
-<area shape="rect" id="node18" href="$f4xx_2exti__handlers_8c.html#a7b2096b8b2643286dc3a7e5110e5ae85" title="This function handles EXTI line 5&#45;9 interrupts." alt="" coords="13,816,168,843"/>
-<area shape="rect" id="node19" href="$h7rsxx_2exti__handlers_8c.html#a60a312fc3bed216a7a53d9a737df23b6" title=" " alt="" coords="21,867,161,893"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="224,499,327,524"/>
+<area shape="rect" id="Node000002" href="$u0xx_2exti__handlers_8c.html#af5dd30f24d12ce01d03c375f0802671f" title="This function handles EXTI lines 0&#45;1 interrupts." alt="" coords="13,5,168,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="269,486,260,388,242,256,229,188,213,127,195,77,174,44,160,33,163,29,178,40,200,75,218,126,234,187,247,255,265,388,275,485"/>
+<area shape="rect" id="Node000003" href="$f4xx_2exti__handlers_8c.html#a17e9789a29a87d2df54f12b94dd1a0b6" title="This function handles EXTI line0 interrupt." alt="" coords="21,55,161,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="269,485,258,397,238,279,210,166,193,123,174,93,159,82,162,78,178,90,198,120,215,165,244,278,263,396,274,485"/>
+<area shape="rect" id="Node000004" href="$h7rsxx_2exti__handlers_8c.html#a3908d636f462dd2161f827b2492d1529" title=" " alt="" coords="17,104,165,129"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="268,485,255,407,235,304,207,206,191,168,174,143,159,132,162,127,178,139,196,165,212,204,240,302,261,406,273,485"/>
+<area shape="rect" id="Node000005" href="$h7rsxx_2exti__handlers_8c.html#a501e628a1389a069b4623e84054e6855" title=" " alt="" coords="17,153,165,179"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="271,485,267,425,253,346,241,304,224,263,202,225,174,192,158,181,162,177,178,188,206,222,229,261,246,302,258,345,272,424,277,484"/>
+<area shape="rect" id="Node000006" href="$h7rsxx_2exti__handlers_8c.html#ae790c1a3e247c378b85979c09bf00864" title=" " alt="" coords="17,203,165,228"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="270,485,263,434,247,368,218,300,198,269,174,241,158,230,161,226,178,237,203,265,223,297,252,366,268,433,275,485"/>
+<area shape="rect" id="Node000007" href="$h7rsxx_2exti__handlers_8c.html#a72722eb2754d8a9b2766b3f6c18c138d" title=" " alt="" coords="17,252,165,277"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="267,486,258,443,240,390,213,337,195,312,174,291,157,280,160,275,178,287,199,309,217,334,245,388,263,442,273,485"/>
+<area shape="rect" id="Node000008" href="$h7rsxx_2exti__handlers_8c.html#a3dc9fc7b634cba61248c09cfaa3884b4" title=" " alt="" coords="17,301,165,327"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="264,487,252,453,233,414,207,374,174,340,155,329,158,324,178,336,211,371,237,411,257,451,269,485"/>
+<area shape="rect" id="Node000009" href="$f4xx_2exti__handlers_8c.html#a738473a5b43f6c92b80ce1d3d6f77ed9" title="This function handles EXTI line 10&#45;15 interrupts." alt="" coords="5,351,176,376"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="259,488,225,438,201,412,175,390,152,378,155,374,177,385,205,408,229,434,263,485"/>
+<area shape="rect" id="Node000010" href="$h7rsxx_2exti__handlers_8c.html#a51e974a4f4d3974c7f57c55dc8eabe8c" title=" " alt="" coords="17,400,165,425"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="249,491,215,464,175,439,147,428,149,423,177,434,218,460,252,487"/>
+<area shape="rect" id="Node000011" href="$f4xx_2exti__handlers_8c.html#a49cfdd46eb8d0ef3e1987514aa9343dc" title="This function handles EXTI line1 interrupt." alt="" coords="21,449,161,475"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="213,498,139,477,140,472,215,493"/>
+<area shape="rect" id="Node000012" href="$u0xx_2exti__handlers_8c.html#ae00a10bd0f2f4c129c84120e78ad4382" title="This function handles EXTI lines 2&#45;3 interrupts." alt="" coords="13,499,168,524"/>
+<area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="210,514,168,514,168,509,210,509"/>
+<area shape="rect" id="Node000013" href="$f4xx_2exti__handlers_8c.html#ab5a1d9e9c8ef50e0cb9ddb5745a20a14" title="This function handles EXTI line2 interrupt." alt="" coords="21,548,161,573"/>
+<area shape="poly" id="edge12_Node000001_Node000013" title=" " alt="" coords="215,530,140,550,139,545,213,525"/>
+<area shape="rect" id="Node000014" href="$f4xx_2exti__handlers_8c.html#a30c045de96d18ec9c67a7b9e4350920f" title="This function handles EXTI line3 interrupt." alt="" coords="21,597,161,623"/>
+<area shape="poly" id="edge13_Node000001_Node000014" title=" " alt="" coords="251,535,218,562,177,587,146,600,144,595,175,582,214,558,248,531"/>
+<area shape="rect" id="Node000015" href="$u0xx_2exti__handlers_8c.html#a3595b205bdfadf55a525f2d4f438d122" title="This function handles EXTI line 4&#45;15 interrupts." alt="" coords="9,647,172,672"/>
+<area shape="poly" id="edge14_Node000001_Node000015" title=" " alt="" coords="263,538,228,587,205,614,177,636,152,649,150,644,175,632,201,610,224,584,258,535"/>
+<area shape="rect" id="Node000016" href="$f4xx_2exti__handlers_8c.html#a290cb997018c8d85d4b965b4a242842f" title="This function handles EXTI line4 interrupts." alt="" coords="21,696,161,721"/>
+<area shape="poly" id="edge15_Node000001_Node000016" title=" " alt="" coords="269,538,256,571,237,611,211,651,178,685,155,698,153,694,174,681,207,648,232,608,251,569,264,536"/>
+<area shape="rect" id="Node000017" href="$h7rsxx_2exti__handlers_8c.html#ad6633b99684a2bbb518aae77c97c09c1" title=" " alt="" coords="21,745,161,771"/>
+<area shape="poly" id="edge16_Node000001_Node000017" title=" " alt="" coords="272,538,262,581,244,634,217,688,199,713,178,735,158,747,155,743,174,731,195,709,212,685,239,632,257,579,267,537"/>
+<area shape="rect" id="Node000018" href="$h7rsxx_2exti__handlers_8c.html#abde3981aa9e60780c3955c7b6f055e03" title=" " alt="" coords="21,795,161,820"/>
+<area shape="poly" id="edge17_Node000001_Node000018" title=" " alt="" coords="275,538,267,590,251,656,223,724,202,756,178,784,159,797,156,792,174,780,198,753,218,722,246,654,262,589,269,537"/>
+<area shape="rect" id="Node000019" href="$h7rsxx_2exti__handlers_8c.html#a344f002e20ead7d83a064a552744f6f2" title=" " alt="" coords="21,844,161,869"/>
+<area shape="poly" id="edge18_Node000001_Node000019" title=" " alt="" coords="276,538,272,598,258,677,245,719,228,760,206,799,178,833,160,846,156,842,174,829,202,796,224,758,240,717,253,676,267,597,271,538"/>
+<area shape="rect" id="Node000020" href="$h7rsxx_2exti__handlers_8c.html#ac3afb2a7be61f0fb40b615b440fd1ba1" title=" " alt="" coords="21,893,161,919"/>
+<area shape="poly" id="edge19_Node000001_Node000020" title=" " alt="" coords="278,538,276,606,264,698,252,748,234,796,210,842,178,883,160,895,157,891,174,879,205,839,229,794,247,746,259,697,271,606,272,538"/>
+<area shape="rect" id="Node000021" href="$f4xx_2exti__handlers_8c.html#a7b2096b8b2643286dc3a7e5110e5ae85" title="This function handles EXTI line 5&#45;9 interrupts." alt="" coords="13,943,168,968"/>
+<area shape="poly" id="edge20_Node000001_Node000021" title=" " alt="" coords="274,538,263,626,243,744,215,857,198,901,178,932,161,945,158,940,174,928,193,899,210,855,238,742,258,625,269,537"/>
+<area shape="rect" id="Node000022" href="$h7rsxx_2exti__handlers_8c.html#a60a312fc3bed216a7a53d9a737df23b6" title=" " alt="" coords="21,992,161,1017"/>
+<area shape="poly" id="edge21_Node000001_Node000022" title=" " alt="" coords="275,538,265,635,247,768,234,835,218,896,200,946,178,981,161,994,158,990,174,978,195,944,213,894,228,834,241,767,260,635,269,538"/>
 </map>

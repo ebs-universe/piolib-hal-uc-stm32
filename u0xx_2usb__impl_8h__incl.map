@@ -1,6 +1,9 @@
 <map id="hal_platform/u0xx/usb_impl.h" name="hal_platform/u0xx/usb_impl.h">
-<area shape="rect" id="node1" title=" " alt="" coords="90,5,258,47"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,95,105,121"/>
-<area shape="rect" id="node3" title=" " alt="" coords="129,95,219,121"/>
-<area shape="rect" id="node4" title=" " alt="" coords="243,95,318,121"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="90,5,258,45"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,93,105,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="147,48,86,88,83,84,144,43"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="129,93,219,119"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="177,46,177,79,171,79,171,46"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="243,93,318,119"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="201,43,255,83,252,87,198,48"/>
 </map>

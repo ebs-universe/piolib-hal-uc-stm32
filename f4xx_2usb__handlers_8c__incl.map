@@ -1,10 +1,17 @@
 <map id="hal_platform/f4xx/usb_handlers.c" name="hal_platform/f4xx/usb_handlers.c">
-<area shape="rect" id="node1" title=" " alt="" coords="198,5,363,47"/>
-<area shape="rect" id="node2" href="$f4xx_2usb__handlers_8h.html" title=" " alt="" coords="150,95,270,121"/>
-<area shape="rect" id="node8" title=" " alt="" coords="294,95,409,121"/>
-<area shape="rect" id="node3" href="$f4xx_2usb__impl_8h.html" title=" " alt="" coords="163,169,257,196"/>
-<area shape="rect" id="node4" title=" " alt="" coords="5,244,105,271"/>
-<area shape="rect" id="node5" title=" " alt="" coords="129,244,192,271"/>
-<area shape="rect" id="node6" title=" " alt="" coords="216,244,305,271"/>
-<area shape="rect" id="node7" title=" " alt="" coords="330,244,405,271"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="198,5,363,45"/>
+<area shape="rect" id="Node000002" href="$f4xx_2usb__handlers_8h.html" title=" " alt="" coords="150,93,270,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="266,47,232,85,228,81,262,44"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="294,93,409,119"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="300,44,334,81,330,85,296,47"/>
+<area shape="rect" id="Node000003" href="$f4xx_2usb__impl_8h.html" title=" " alt="" coords="163,167,257,192"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="213,119,213,153,207,153,207,119"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="5,240,105,265"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="186,194,94,237,92,232,184,190"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="129,240,192,265"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="204,194,179,230,174,227,200,191"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="216,240,305,265"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="221,191,247,227,242,230,216,194"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="330,240,405,265"/>
+<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="236,190,330,232,328,237,234,194"/>
 </map>

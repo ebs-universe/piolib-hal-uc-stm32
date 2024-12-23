@@ -1,9 +1,15 @@
 <map id="hal_platform/u0xx/usb_handlers.c" name="hal_platform/u0xx/usb_handlers.c">
-<area shape="rect" id="node1" title=" " alt="" coords="161,5,329,47"/>
-<area shape="rect" id="node2" href="$u0xx_2usb__handlers_8h.html" title=" " alt="" coords="114,95,234,121"/>
-<area shape="rect" id="node7" title=" " alt="" coords="258,95,373,121"/>
-<area shape="rect" id="node3" href="$u0xx_2usb__impl_8h.html" title=" " alt="" coords="127,169,221,196"/>
-<area shape="rect" id="node4" title=" " alt="" coords="5,244,105,271"/>
-<area shape="rect" id="node5" title=" " alt="" coords="129,244,219,271"/>
-<area shape="rect" id="node6" title=" " alt="" coords="243,244,318,271"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="161,5,329,45"/>
+<area shape="rect" id="Node000002" href="$u0xx_2usb__handlers_8h.html" title=" " alt="" coords="114,93,234,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="230,47,196,85,192,81,226,44"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="258,93,373,119"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="264,44,298,81,294,85,260,47"/>
+<area shape="rect" id="Node000003" href="$u0xx_2usb__impl_8h.html" title=" " alt="" coords="127,167,221,192"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="177,119,177,153,171,153,171,119"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="5,240,105,265"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="156,194,88,235,85,230,154,190"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="129,240,219,265"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="177,192,177,226,171,226,171,192"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="243,240,318,265"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="193,190,253,230,250,235,190,194"/>
 </map>

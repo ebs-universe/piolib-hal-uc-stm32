@@ -1,9 +1,16 @@
 <map id="hal_platform/f4xx/usb_impl.c" name="hal_platform/f4xx/usb_impl.c">
-<area shape="rect" id="node1" title=" " alt="" coords="59,5,225,47"/>
-<area shape="rect" id="node2" href="$f4xx_2usb__impl_8h.html" title=" " alt="" coords="95,95,189,121"/>
-<area shape="rect" id="node4" title=" " alt="" coords="5,169,68,196"/>
-<area shape="rect" id="node7" title=" " alt="" coords="213,95,319,121"/>
-<area shape="rect" id="node3" title=" " alt="" coords="92,169,192,196"/>
-<area shape="rect" id="node5" title=" " alt="" coords="216,169,305,196"/>
-<area shape="rect" id="node6" title=" " alt="" coords="330,169,405,196"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="59,5,225,45"/>
+<area shape="rect" id="Node000002" href="$f4xx_2usb__impl_8h.html" title=" " alt="" coords="95,93,189,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="145,46,145,79,139,79,139,46"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="5,167,68,192"/>
+<area shape="poly" id="edge7_Node000001_Node000004" title=" " alt="" coords="125,47,86,95,50,156,46,153,81,92,121,44"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="213,93,319,119"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="173,43,237,84,235,88,171,48"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="92,167,192,192"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="145,119,145,153,139,153,139,119"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="127,121,66,161,64,157,124,116"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="216,167,305,192"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="162,116,231,157,228,162,160,121"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="330,167,405,192"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="179,116,319,160,317,165,177,121"/>
 </map>

@@ -1,8 +1,13 @@
 <map id="hal_platform/h7rsxx/adc_handlers.c" name="hal_platform/h7rsxx/adc_handlers.c">
-<area shape="rect" id="node1" title=" " alt="" coords="197,5,350,47"/>
-<area shape="rect" id="node2" href="$h7rsxx_2adc__handlers_8h.html" title=" " alt="" coords="5,95,125,121"/>
-<area shape="rect" id="node4" title=" " alt="" coords="149,95,264,121"/>
-<area shape="rect" id="node5" title=" " alt="" coords="289,95,394,121"/>
-<area shape="rect" id="node6" title=" " alt="" coords="418,95,566,121"/>
-<area shape="rect" id="node3" title=" " alt="" coords="15,169,115,196"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="197,5,350,45"/>
+<area shape="rect" id="Node000002" href="$h7rsxx_2adc__handlers_8h.html" title=" " alt="" coords="5,93,125,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="224,48,110,91,108,86,223,43"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="149,93,264,119"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="259,47,227,84,223,81,255,44"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="289,93,394,119"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="292,44,324,81,320,84,288,47"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="418,93,566,119"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="327,43,448,86,446,91,325,48"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="15,167,115,192"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="68,119,68,153,63,153,63,119"/>
 </map>

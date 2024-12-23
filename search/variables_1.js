@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['exti_5fgpio_5fhandlers_246',['exti_gpio_handlers',['../f4xx_2exti__handlers_8c.html#ae6db87b5af5ed14fef2aa9b9ed6efa1d',1,'exti_gpio_handlers():&#160;exti_handlers.c'],['../f4xx_2exti__handlers_8h.html#ae6db87b5af5ed14fef2aa9b9ed6efa1d',1,'exti_gpio_handlers():&#160;exti_handlers.c'],['../h7rsxx_2exti__handlers_8c.html#ae6db87b5af5ed14fef2aa9b9ed6efa1d',1,'exti_gpio_handlers():&#160;exti_handlers.c'],['../h7rsxx_2exti__handlers_8h.html#ae6db87b5af5ed14fef2aa9b9ed6efa1d',1,'exti_gpio_handlers():&#160;exti_handlers.c'],['../u0xx_2exti__handlers_8c.html#ae6db87b5af5ed14fef2aa9b9ed6efa1d',1,'exti_gpio_handlers():&#160;exti_handlers.c'],['../u0xx_2exti__handlers_8h.html#ae6db87b5af5ed14fef2aa9b9ed6efa1d',1,'exti_gpio_handlers():&#160;exti_handlers.c']]]
+  ['dma_5fchn_5fif_0',['dma_chn_if',['../channel__if_8h.html#ac051c35563d2733b2a5976c6ab53c3dc',1,'channel_if.h']]]
 ];

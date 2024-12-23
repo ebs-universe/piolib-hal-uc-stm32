@@ -1,6 +1,9 @@
 <map id="hal_platform/u0xx/gpio_impl.h" name="hal_platform/u0xx/gpio_impl.h">
-<area shape="rect" id="node1" title=" " alt="" coords="77,5,250,47"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,95,111,121"/>
-<area shape="rect" id="node3" href="$u0xx_2exti_8h.html" title=" " alt="" coords="134,95,193,121"/>
-<area shape="rect" id="node4" href="$u0xx_2exti__handlers_8h.html" title=" " alt="" coords="217,95,339,121"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="77,5,250,45"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,93,111,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="139,48,86,87,83,83,136,43"/>
+<area shape="rect" id="Node000003" href="$u0xx_2exti_8h.html" title=" " alt="" coords="134,93,193,119"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="166,46,166,79,161,79,161,46"/>
+<area shape="rect" id="Node000004" href="$u0xx_2exti__handlers_8h.html" title=" " alt="" coords="217,93,339,119"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="193,43,251,83,248,88,190,48"/>
 </map>

@@ -1,6 +1,10 @@
 <map id="hal_platform/h7rsxx/entropy_impl.c" name="hal_platform/h7rsxx/entropy_impl.c">
-<area shape="rect" id="node1" title=" " alt="" coords="81,5,234,47"/>
-<area shape="rect" id="node2" href="$h7rsxx_2entropy__impl_8h.html" title="STM32F4xx Entropy Implementation Notes." alt="" coords="49,95,169,121"/>
-<area shape="rect" id="node4" title=" " alt="" coords="155,169,258,196"/>
-<area shape="rect" id="node3" title=" " alt="" coords="5,169,131,196"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="81,5,234,45"/>
+<area shape="rect" id="Node000002" href="$h7rsxx_2entropy__impl_8h.html" title="STM32F4xx Entropy Implementation Notes." alt="" coords="49,93,169,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="148,47,126,83,121,80,143,44"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="155,167,258,192"/>
+<area shape="poly" id="edge4_Node000001_Node000004" title=" " alt="" coords="167,45,184,92,202,153,197,154,179,94,162,47"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,167,131,192"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="105,120,84,156,79,153,100,118"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="127,117,181,156,178,160,123,121"/>
 </map>

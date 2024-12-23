@@ -1,6 +1,9 @@
 <map id="hal_platform/h7rsxx/core_impl.c" name="hal_platform/h7rsxx/core_impl.c">
-<area shape="rect" id="node1" title=" " alt="" coords="19,5,172,47"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,95,76,121"/>
-<area shape="rect" id="node3" href="$h7rsxx_2core__impl_8h.html" title=" " alt="" coords="101,95,199,121"/>
-<area shape="rect" id="node4" title=" " alt="" coords="97,169,203,196"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="19,5,172,45"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,93,76,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="84,47,59,84,54,80,80,44"/>
+<area shape="rect" id="Node000003" href="$h7rsxx_2core__impl_8h.html" title=" " alt="" coords="101,93,199,119"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="111,44,136,80,132,84,106,47"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="97,167,203,192"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="153,119,153,153,147,153,147,119"/>
 </map>

@@ -1,4 +1,7 @@
 <map id="hal_platform/h7rsxx/dma_impl.h" name="hal_platform/h7rsxx/dma_impl.h">
-<area shape="rect" id="node1" title=" " alt="" coords="5,5,159,47"/>
-<area shape="rect" id="node2" title=" " alt="" coords="29,95,135,121"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="58,5,211,45"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,93,112,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="118,47,82,85,78,81,114,44"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="137,93,285,119"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="155,44,192,81,188,85,151,47"/>
 </map>

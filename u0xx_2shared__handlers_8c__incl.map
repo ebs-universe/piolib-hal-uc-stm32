@@ -1,6 +1,9 @@
 <map id="hal_platform/u0xx/shared_handlers.c" name="hal_platform/u0xx/shared_handlers.c">
-<area shape="rect" id="node1" title=" " alt="" coords="99,5,288,47"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,95,112,121"/>
-<area shape="rect" id="node3" title=" " alt="" coords="136,95,251,121"/>
-<area shape="rect" id="node4" title=" " alt="" coords="275,95,410,121"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="99,5,288,45"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,93,112,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="162,48,92,89,89,84,160,43"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="136,93,251,119"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="196,46,196,79,191,79,191,46"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="275,93,410,119"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="230,43,310,84,307,89,228,48"/>
 </map>

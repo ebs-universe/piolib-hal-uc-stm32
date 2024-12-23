@@ -1,5 +1,7 @@
 <map id="hal_platform/u0xx/exti.h" name="hal_platform/u0xx/exti.h">
-<area shape="rect" id="node1" title=" " alt="" coords="5,5,188,32"/>
-<area shape="rect" id="node2" href="$u0xx_2gpio__impl_8h.html" title=" " alt="" coords="10,80,183,121"/>
-<area shape="rect" id="node3" href="$u0xx_2gpio__impl_8c.html" title=" " alt="" coords="10,169,183,211"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,188,31"/>
+<area shape="rect" id="Node000002" href="$u0xx_2gpio__impl_8h.html" title=" " alt="" coords="10,79,183,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="99,44,99,79,94,79,94,44"/>
+<area shape="rect" id="Node000003" href="$u0xx_2gpio__impl_8c.html" title=" " alt="" coords="10,167,183,207"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="99,133,99,166,94,166,94,133"/>
 </map>

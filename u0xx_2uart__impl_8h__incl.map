@@ -1,6 +1,9 @@
 <map id="hal_platform/u0xx/uart_impl.h" name="hal_platform/u0xx/uart_impl.h">
-<area shape="rect" id="node1" title=" " alt="" coords="109,5,279,47"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,95,108,121"/>
-<area shape="rect" id="node3" title=" " alt="" coords="132,95,256,121"/>
-<area shape="rect" id="node4" title=" " alt="" coords="280,95,383,121"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="109,5,279,45"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,93,108,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="162,48,90,89,88,84,160,43"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="132,93,256,119"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="197,46,197,79,191,79,191,46"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="280,93,383,119"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="228,43,300,84,298,89,226,48"/>
 </map>

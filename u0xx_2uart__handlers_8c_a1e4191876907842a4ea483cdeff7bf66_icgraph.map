@@ -1,8 +1,13 @@
 <map id="_uart_handler_rx_fifo" name="_uart_handler_rx_fifo">
-<area shape="rect" id="node1" title=" " alt="" coords="460,81,619,108"/>
-<area shape="rect" id="node2" href="$u0xx_2uart__handlers_8c.html#a4f38e659deb4a98bdcffdace3cc1e67a" title=" " alt="" coords="273,81,412,108"/>
-<area shape="rect" id="node3" href="$u0xx_2uart__handlers_8c.html#a7139cd4baabbbcbab0c1fe6d7d4ae1cc" title=" " alt="" coords="38,5,193,32"/>
-<area shape="rect" id="node4" href="$u0xx_2uart__handlers_8c.html#ad81f8f5f4eeb37afbe93e95d0727bb73" title=" " alt="" coords="5,56,225,83"/>
-<area shape="rect" id="node5" href="$u0xx_2uart__handlers_8c.html#a492d1f59d4204ccb4244427b72c6a540" title=" " alt="" coords="5,107,225,133"/>
-<area shape="rect" id="node6" href="$u0xx_2uart__handlers_8c.html#a3ceed8d959febe9f78eef3c20b3285b8" title=" " alt="" coords="5,157,225,184"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="460,80,619,105"/>
+<area shape="rect" id="Node000002" href="$u0xx_2uart__handlers_8c.html#a4f38e659deb4a98bdcffdace3cc1e67a" title=" " alt="" coords="273,80,412,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="446,95,412,95,412,90,446,90"/>
+<area shape="rect" id="Node000003" href="$u0xx_2uart__handlers_8c.html#a7139cd4baabbbcbab0c1fe6d7d4ae1cc" title=" " alt="" coords="38,5,193,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="303,77,224,45,183,33,185,28,226,39,305,72"/>
+<area shape="rect" id="Node000004" href="$u0xx_2uart__handlers_8c.html#ad81f8f5f4eeb37afbe93e95d0727bb73" title=" " alt="" coords="5,55,225,80"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="260,86,225,82,226,77,260,81"/>
+<area shape="rect" id="Node000005" href="$u0xx_2uart__handlers_8c.html#a492d1f59d4204ccb4244427b72c6a540" title=" " alt="" coords="5,104,225,129"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="260,104,226,108,225,102,260,99"/>
+<area shape="rect" id="Node000006" href="$u0xx_2uart__handlers_8c.html#a3ceed8d959febe9f78eef3c20b3285b8" title=" " alt="" coords="5,153,225,179"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="303,113,226,143,180,156,179,151,224,138,301,108"/>
 </map>
