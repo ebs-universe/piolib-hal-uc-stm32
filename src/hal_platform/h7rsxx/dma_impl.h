@@ -27,7 +27,7 @@
  *  - Circular channels are continuous and perpetual. Callback is 
  *    called after completion of each LLI.
  *  - Linear channels operate in short LL sequences, callbacks called 
- *    after the LL is fully executed. 
+ *    after the LL is fully executed.       
  *  - Interrupt support is not implemented yet
  *  - Linked list is always used
  */
@@ -104,6 +104,11 @@ typedef struct DMA_XFER_t {
 #define DMA_OPT_WIDTH_MSK       0xC0    // Width        
 #define DMA_OPT_WIDTH_POS       6U
 
+#define DMA_OPT_WIDTH_1B        (0b00 << DMA_OPT_WIDTH_POS)
+#define DMA_OPT_WIDTH_2B        (0b01 << DMA_OPT_WIDTH_POS)
+#define DMA_OPT_WIDTH_4B        (0b10 << DMA_OPT_WIDTH_POS)
+#define DMA_OPT_WIDTH_8B        (0b11 << DMA_OPT_WIDTH_POS)
+
 #define DMA_SRC_OPTS_MSK        0x1F
 #define DMA_SRC_OPTS_POS        0U
 #define DMA_DST_OPTS_MSK        0x1F
@@ -125,17 +130,19 @@ typedef struct DMA_FLOW_CONTROL_t {
 #define DMA_FC_TRIG_POL_POS     2U
 #define DMA_FC_TRIG_MODE_MSK    0x03
 #define DMA_FC_TRIG_MODE_POS    0U
-#define DMA_FC_EVENT_MODE_MSK   0x30
+#define DMA_FC_EVENT_MODE_MSK   0x30        
 #define DMA_FC_EVENT_MODE_POS   4U
 #define DMA_FC_REQ_TYPE_MSK     0x40
 #define DMA_FC_REQ_TYPE_POS     6U
 // #define DMA_FC_REQ_DIR_MSK      0x80
 // #define DMA_FC_REQ_DIR_POS      7
 
-#define DMA_OPT_TRIG_RISING     0x04
-#define DMA_OPT_TRIG_FALLING    0x08    
-#define DMA_OPT_REQ_BLOCK       0x40
-#define DMA_OPT_REQ_BURST       0x00
+#define DMA_FC_OPT_EVTMODE_ITEM    (0b10 << DMA_FC_EVENT_MODE_POS)
+#define DMA_FC_OPT_EVTMODE_LIST    (0b11 << DMA_FC_EVENT_MODE_POS)
+#define DMA_FC_OPT_TRIG_RISING     0x04
+#define DMA_FC_OPT_TRIG_FALLING    0x08     
+#define DMA_FC_OPT_REQ_BLOCK       0x40
+#define DMA_FC_OPT_REQ_BURST       0x00
 // #define DMA_OPT_REQ_DST         0x80 
 // #define DMA_OPT_REQ_SRC         0x00
 
@@ -186,6 +193,8 @@ static inline EBS_BOOL_t dma_check_ready(HAL_BASE_t intfnum);
  */
 /**@{*/ 
 
+EBS_BOOL_t _memmap_check_tcm(HAL_ADDRESS_t ptr);
+    
 void dma_memcpy(HAL_BASE_t intfnum, void * to, void * from, HAL_BASE_t size, void (*cb)(uint8_t), uint8_t token);
 
 /**@}*/ 

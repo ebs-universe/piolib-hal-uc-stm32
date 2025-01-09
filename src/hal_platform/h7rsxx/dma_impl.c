@@ -179,6 +179,8 @@ static inline void _dma_chn_init(
         dma_chn_if->state->use_int = EBS_TRUE;
         HAL_NVIC_SetPriority(dma_chn_if->hwif.irqn, int_priority, 0);
         HAL_NVIC_EnableIRQ(dma_chn_if->hwif.irqn);
+    } else {
+        dma_chn_if->state->use_int = EBS_FALSE;
     }
 
     /**
@@ -300,15 +302,14 @@ dma_lli_t* dma_setup_xfer(HAL_BASE_t intfnum, dma_xfer_t * xfer, dma_flow_contro
      */
     switch(xfer->type){
         case DMA_XFER_MEMORY_MEMORY:
-            lli->tr1 |= DMA_CTR1_SINC;
-            lli->tr1 |= DMA_CTR1_DINC;
+            lli->tr1 |= (DMA_CTR1_SINC | DMA_CTR1_DINC);
             break;
         case DMA_XFER_MEMORY_PERIPH:
             lli->tr1 |= DMA_CTR1_SINC;
             break;
         case DMA_XFER_PERIPH_MEMORY:
             lli->tr1 |= DMA_CTR1_DINC;
-            break;
+            break;  
         case DMA_XFER_PERIPH_PERIPH:
             break;
         default:
@@ -354,13 +355,13 @@ dma_lli_t* dma_setup_xfer(HAL_BASE_t intfnum, dma_xfer_t * xfer, dma_flow_contro
     }
     
     uint8_t opts = fc->opts;
-    
+                        
     uint8_t event_mode_requested = (opts & DMA_FC_EVENT_MODE_MSK) >> DMA_FC_EVENT_MODE_POS;
     if (event_mode_requested && event_mode_requested != event_mode) {
         die();
     }
 
-    if (opts & DMA_OPT_REQ_BLOCK) {
+    if (opts & DMA_FC_OPT_REQ_BLOCK) {
         lli->tr2 |= DMA_CTR2_BREQ;
     }
     lli->tr2 |= (uint32_t)(fc->req_sel);
@@ -420,14 +421,25 @@ void dma_activate(HAL_BASE_t intfnum){
          */ 
         return;
     }
-    if (dma_chn_if[intfnum].state->ll_pending) {
-        critical_enter();
-        dma_chn_if[intfnum].state->ll_active = dma_chn_if[intfnum].state->ll_pending;
-        dma_chn_if[intfnum].state->ll_pending = NULL;
-        _dma_exec(intfnum, dma_chn_if[intfnum].state->ll_active);
-        *cr |= DMA_CCR_EN;
-        critical_exit();
-    }       
+    if (!dma_chn_if[intfnum].state->ll_pending) {
+        // No pending transaction. Nothing to do here. 
+        return;
+    }
+    // if (dma_chn_if[intfnum].hwif.type == DMA_CHN_TYPE_CIRCULAR){
+        // Close out the circular LLI loop. 
+        // set the last lli's llr to the first lli ?
+        // This will need to check for existing circular loops, which can 
+        // be complex if the loops are not a full circle. So we let the
+        // close out the loop instead. 
+    // } 
+    
+    critical_enter();
+    dma_chn_if[intfnum].state->ll_active = dma_chn_if[intfnum].state->ll_pending;
+    dma_chn_if[intfnum].state->ll_pending = NULL;
+    _dma_exec(intfnum, dma_chn_if[intfnum].state->ll_active);
+    *cr |= DMA_CCR_EN;
+    critical_exit();
+    
 }               
 
 static inline void _dma_process_tc_single(dma_lli_t * lli){
@@ -473,14 +485,14 @@ static inline void dma_process_tc_circular(HAL_BASE_t intfnum){
     }
     if (lli->cb_tc){
         lli->cb_tc(lli->token);
-    }
+    }       
 
     uint32_t lbar = *(HAL_SFR_t *)(dma_chn_if[intfnum].hwif.base + OFS_DMA_Cx_LBAR);
 
     if (lli->llr){
         // Rotate active forward
         dma_chn_if[intfnum].state->ll_active = (dma_lli_t *)(lbar | (lli->llr & 0x0000FFFC));
-    } else {
+    } else {            
         // We don't expect to reach the end of this list
         die();
     }
@@ -491,7 +503,7 @@ void dma_process_events(HAL_BASE_t intfnum){
     HAL_SFR_t * fcr = (HAL_SFR_t *)(dma_chn_if[intfnum].hwif.base + OFS_DMA_Cx_FCR);
 
     if (!sr){
-        return;
+        return;     
     }
     if ((sr & DMA_CSR_TCF) && !(dma_chn_if[intfnum].state->use_int)){
         // Clear the flag.  
@@ -507,7 +519,7 @@ void dma_process_events(HAL_BASE_t intfnum){
             default:
                 die();
         }
-    }
+    }       
         
     // Half transfer with linked list isnt going to work. We 
     // dont actually know which lli is at its halfway point by 
@@ -547,7 +559,7 @@ void dma_poll(void){
     }
 }
 
-static EBS_BOOL_t _memmap_check_tcm(HAL_ADDRESS_t ptr){
+EBS_BOOL_t _memmap_check_tcm(HAL_ADDRESS_t ptr){
     #if MEMMAP_ENABLE_FASTDATA
         if (ptr >= MEMMAP_FASTDATA_START && ptr <= MEMMAP_FASTDATA_END){
             return EBS_TRUE;
@@ -590,7 +602,7 @@ void dma_memcpy(HAL_BASE_t intfnum, void * to, void * from, HAL_BASE_t size, voi
     DMA_HWIF_TYPE dmatype = dma_chn_if[intfnum].hwif.core->type;
     
     dma_flow_control_t fc = {
-        .opts = DMA_OPT_REQ_BLOCK | (0b11 << DMA_FC_EVENT_MODE_POS),
+        .opts = DMA_FC_OPT_REQ_BURST | DMA_FC_OPT_EVTMODE_LIST,
         .req_type = DMA_REQ_SOFTWARE,
         .req_sel = 0,
         .trig_sel = 0,

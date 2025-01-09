@@ -23,6 +23,7 @@
 #define ADC_IMPL_H
 
 #include <hal/uc/adc.h>
+#include <hal/uc/dma.h>
 
 #if uC_ADC_ENABLED
 
@@ -119,6 +120,8 @@
     #ifndef uC_ADC_ENABLE_INTERRUPT
         #define uC_ADC_ENABLE_INTERRUPT     1
     #endif
+    #define uC_ADC_INTERRUPT_EOC            1
+    #define uC_ADC_INTERRUPT_EOS            0
 #endif
 
 #if uC_ADC1_DM_MODE == ADC_DM_DMA
@@ -128,6 +131,7 @@
 
     #define uC_ADC_DMA_INTERLACED   EBS_FALSE        // Not Implemented
     #define uC_ADC1_DMA_CHANNEL     APP_ADC_DMA_CHANNEL
+    #define uC_ADC1_DMA_REQSRC      8
     #define uC_ADC1_DMA_BUFLEN      APP_ADC_DMA_BUFFER_LENGTH   
     #define uC_ADC1_DMA_BUFSIZE     (uC_ADC1_DMA_BUFLEN * uC_ADC1_CHANNEL_COUNT)
     
@@ -137,6 +141,9 @@
     // #else 
     //     #define uC_ADC1_DMA_NUMBUF      2
     // #endif
+
+    #define uC_ADC_INTERRUPT_EOC            0
+    #define uC_ADC_INTERRUPT_EOS            1
 #endif
 
 #ifdef uC_ADC_TIMING_MONITOR_GPIO
@@ -164,6 +171,7 @@ typedef struct _ADC_HWIF_t{
     const HAL_ADDRESS_t base;
     const HAL_ADDRESS_t common;
     const uint32_t chnmask;
+    const uint8_t dmareq_sel;
     const ADC_DATA_MAMANGEMENT_MODE_t dmmode;
 } _adc_hwif_t;
 
@@ -179,11 +187,9 @@ typedef struct _ADC_STATE_t{
         void (*handler_eos)(void);
     #endif
     #if uC_ADC_SUPPORT_DMA
-        volatile uint16_t *inbuf;
-        volatile uint16_t *outbuf;
-        volatile uint8_t inbuf_drdy;
-        volatile uint8_t outbuf_drdy;
-        void (*handler_eob)(void *);
+        volatile uint16_t *buf1;
+        volatile uint16_t *buf2;
+        void (*handler_eob)(uint8_t);
     #endif
     void (*handler_eoc)(HAL_BASE_t, void *);
 } adc_state_t;
@@ -222,7 +228,7 @@ extern const adc_if_t *const adc_if[uC_ADCS_ENABLED + 1];
  * Specifically, see Datasheet pp.245. Target configuration is 12bit reslution, 
  * fADC = 75MHz, Single or Discontinous mode. Datasheet and reference manual 
  * are incredibly vague on what is allowed. 
- * 
+ *  
  * Since high speed sampling is a preliminary test requirement, and since we 
  * also don't want to delve deeply into the Fast and Slow channels on the STM32 
  * ADC right now, we use the async clock mode which has more prescaler options 

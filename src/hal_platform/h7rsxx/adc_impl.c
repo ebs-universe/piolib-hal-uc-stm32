@@ -30,8 +30,15 @@ static void _adc_init(
         uint8_t os_shift,
         uint8_t trigger_src
 );
+
+#if uC_ADC_ENABLE_INTERRUPT
 static void _adc_init_interrupt(const _adc_hwif_t *const hwif);
-static void _adc_init_dma(const _adc_hwif_t *const hwif);
+#endif
+
+#if uC_ADC_SUPPORT_DMA
+static void _adc_init_dma(const adc_if_t *const adc_if);
+#endif
+
 /**@}*/
 
 __weak void adc_clock_init(void){
@@ -56,6 +63,7 @@ void adc_interrupt_disable(void){
 
 static void _adc_builtin_channels_enable(void){
     HAL_SFR_t *ccr = (HAL_SFR_t *)(ADC12_COMMON_BASE + OFS_ADC_CCR);
+    (void) ccr;
 
     #if uC_ENABLE_AIN_TEMP
         *ccr |= ADC_CCR_TSEN;
@@ -87,17 +95,29 @@ void adc_common_init(void){
     _adc_dual_config();
 }
 
-#if uC_ADC1_ENABLED
+#if uC_ADC1_ENABLED                                 
 static const _adc_hwif_t _adc1_hwif = {
        .type = ADC12_HWIF, 
        .base = ADC1_BASE,
        .common = ADC12_COMMON_BASE,
        .chnmask = uC_ADC1_CHNMASK,
+       .dmareq_sel = uC_ADC1_DMA_REQSRC,
        .dmmode = uC_ADC1_DM_MODE
 };
 
+#if uC_ADC1_DM_MODE == ADC_DM_DMA
+
+MM_ADC_DMA_BUFFER 
+uint16_t adc1_dmabuf1[uC_ADC1_DMA_BUFSIZE + 1];
+
+MM_ADC_DMA_BUFFER 
+uint16_t adc1_dmabuf2[uC_ADC1_DMA_BUFSIZE + 1];
+
+#endif
+
 adc_state_t adc1_state FASTDATA;
-    
+
+
 void _adc1_init(void);
 
 const adc_if_t adc1_if = {
@@ -142,7 +162,7 @@ void _adc1_init(void){
     #endif 
 
     #if uC_ADC1_DM_MODE == ADC_DM_DMA
-        _adc_init_dma(&_adc1_hwif);
+        _adc_init_dma(&adc1_if);
     #endif
 
     return;
@@ -272,14 +292,44 @@ static void _adc_init(
     }
 };
 
+#if uC_ADC_ENABLE_INTERRUPT
+
 static void _adc_init_interrupt(const _adc_hwif_t *const hwif){
     HAL_SFR_t * ier = (HAL_SFR_t *)(hwif->base + OFS_ADCn_IER);
+    
+    #if uC_ADC_INTERRUPT_EOC
     *ier |= (ADC_IER_EOCIE);
+    #endif
+    #if uC_ADC_INTERRUPT_EOS
+    *ier |= (ADC_IER_EOSIE);
+    #endif
 }
 
-static void _adc_init_dma(const _adc_hwif_t *const hwif){
+#endif
 
+#if uC_ADC_SUPPORT_DMA
+
+static void _adc_init_dma(const adc_if_t *const adc_if){
+    #if uC_ADCS_ENABLED == 1
+
+    HAL_SFR_t * cfgr = (HAL_SFR_t *)(adc_if->hwif->base + OFS_ADCn_CFGR);
+    *cfgr |= (ADC_CFGR_DMAEN | ADC_CFGR_DMACFG);
+
+    adc_if->state->buf1 = &adc1_dmabuf1[0];        
+    adc_if->state->buf2 = &adc1_dmabuf2[0];
+
+    #else 
+
+    // Dual ADC mode needs to be set in common register. Dual ADC 
+    // modes have not been reviewed. Changes appropriate for these 
+    // modes need to be implemented before both ADCs can be used.
+    die();
+
+    #endif    
+    return;        
 }
+
+#endif
 
 void adc_init(){
     #if uC_ADC_ENABLED
@@ -401,12 +451,13 @@ void adc_install_eos_handler(HAL_BASE_t intfnum, void (*handler)(void)){
 #endif
 
 #if uC_ADC_SUPPORT_DMA
-void adc_install_eob_handler(HAL_BASE_t intfnum, void (*handler)(void *)){
-    adc_if[uC_ADC1_INTFNUM]->state->handler_eob = handler;
+void adc_install_eob_handler(HAL_BASE_t intfnum, void (*handler)(uint8_t)){
+    // TODO this needs to be set on the DMA channel itself, not here    
+    adc_if[intfnum]->state->handler_eob = handler;
 };
 #endif
 
-void adc_poll(void){
+void adc_poll(void){            
     #if uC_ADC1_ENABLED
     if (adc1_state.overrun) {
         die();
@@ -415,7 +466,7 @@ void adc_poll(void){
     #if uC_ADC2_ENABLED
     if (adc2_state.overrun) {
         die();
-    }
+    }           
     #endif
 }
 
@@ -428,28 +479,76 @@ void adc_trigger_single(HAL_BASE_t intfnum, HAL_BASE_t chnum){
     }
     // Not implemented          
     die();
-}
+}   
 
-static inline void _adc_prep_conv(HAL_BASE_t intfnum){
-    uint32_t seqstate = adc_if[intfnum]->state->chnmask;
-    uint8_t nextchn = __builtin_ctz(seqstate);
-    if (nextchn) {
-        seqstate >>= nextchn;
-    }
+static inline void _adc_prep_conv(HAL_BASE_t intfnum){      
     adc_if[intfnum]->state->overrun = 0;
     
     #if uC_ADC_SUPPORT_DIRECT
     if (adc_if[intfnum]->hwif->dmmode == ADC_DM_INTERRUPT || adc_if[intfnum]->hwif->dmmode == ADC_DM_POLLING){
+        uint32_t seqstate = adc_if[intfnum]->state->chnmask;
+        uint8_t nextchn = __builtin_ctz(seqstate);
+        if (nextchn) {
+            seqstate >>= nextchn;
+        }
         adc_if[intfnum]->state->lastresult = 0;
         adc_if[intfnum]->state->firstchn = nextchn;
         adc_if[intfnum]->state->nextchn = nextchn;
         adc_if[intfnum]->state->seqstate = seqstate;
     } 
-    #endif
+    #endif  
 
-    #if uC_ADC_SUPPORT_DMA
+    #if uC_ADC_SUPPORT_DMA          
     if (adc_if[intfnum]->hwif->dmmode == ADC_DM_DMA){
-        ;
+        // Prepare buffers and data structures
+        // Reset DMA channel and any existing transfers
+        // Create appropriate DMA transfers             
+
+        dma_flow_control_t fc = {
+            .opts = DMA_FC_OPT_REQ_BURST | DMA_FC_OPT_EVTMODE_ITEM | (0b11 << DMA_FC_TRIG_MODE_POS),
+            .req_type = DMA_REQ_SRC,
+            .req_sel = adc_if[intfnum]->hwif->dmareq_sel,
+            .trig_sel = 0,
+            .cb_hc = NULL,
+            .cb_tc = adc_if[intfnum]->state->handler_eob
+        };          
+
+        dma_xfer_t xfer = { 
+            .src = (HAL_ADDRESS_t)(adc_if[intfnum]->hwif->base + OFS_ADCn_DR), 
+            .dst = (HAL_ADDRESS_t)(adc_if[intfnum]->state->buf1),
+            .size = 2 * uC_ADC1_DMA_BUFSIZE,
+            .type = DMA_XFER_PERIPH_MEMORY,
+            .src_opts = DMA_OPT_WIDTH_2B | DMA_OPT_AP,
+            .dst_opts = DMA_OPT_WIDTH_2B,
+            .src_burst_len = 0,
+            .dst_burst_len = 0,
+            .repeats = 0        
+        };    
+
+        DMA_HWIF_TYPE dmatype = dma_chn_if[APP_ADC_DMA_CHANNEL].hwif.core->type;
+
+        switch (dmatype) {
+            case DMA_HWIF_GPDMA:
+                if (_memmap_check_tcm(xfer.dst)){
+                    die();
+                }
+                break;
+            case DMA_HWIF_HPDMA:
+                if (_memmap_check_tcm(xfer.dst)){
+                    xfer.dst_opts |= DMA_OPT_AP;
+                }  
+                break;
+            default:
+                die();
+        }
+
+        dma_lli_t * lli1 = dma_setup_xfer(APP_ADC_DMA_CHANNEL, &xfer, &fc, 0x00);
+
+        xfer.dst = (HAL_ADDRESS_t)(adc_if[intfnum]->state->buf2);
+
+        dma_setup_xfer(APP_ADC_DMA_CHANNEL, &xfer, &fc, 0x01);
+
+        dma_enqueue(APP_ADC_DMA_CHANNEL, lli1);
     }
     #endif
 }
@@ -459,9 +558,9 @@ void adc_arm_trigger(HAL_BASE_t intfnum){
         return;
     }
     if (adc_if[intfnum]->state->chnmask == 0) {
-        return;
+        return; 
     }
-    
+
     _adc_prep_conv(intfnum);
     adc_if[intfnum]->state->mode = ADC_MODE_CONTINUOUS;
     
@@ -470,6 +569,10 @@ void adc_arm_trigger(HAL_BASE_t intfnum){
 
     HAL_SFR_t * cr = (HAL_SFR_t *)(adc_if[intfnum]->hwif->base + OFS_ADCn_CR);
     *cr |= ADC_CR_ADSTART;
+
+    if (adc_if[intfnum]->hwif->dmmode == ADC_DM_DMA){
+        dma_activate(APP_ADC_DMA_CHANNEL);
+    }
 }   
 
 void adc_trigger_scan(HAL_BASE_t intfnum){
@@ -478,7 +581,7 @@ void adc_trigger_scan(HAL_BASE_t intfnum){
     }
     if (adc_if[intfnum]->state->chnmask == 0) {
         return;
-    }
+    }       
     
     _adc_prep_conv(intfnum);
     adc_if[intfnum]->state->mode = ADC_MODE_SCAN;

@@ -164,6 +164,3 @@
                 (uC_ENABLE_AIN_VBAT == 2 ? (1U << 16) : 0) | \
                 (uC_ENABLE_AIN_VDDC == 2 ? (1U << 17) : 0) | \
                 (uC_ENABLE_AIN18 == 2 ? (1U << 18) : 0))
-
-#define uC_ADC1_CHANNEL_COUNT        10
-#define uC_ADC2_CHANNEL_COUNT        0

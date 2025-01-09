@@ -83,12 +83,21 @@ FASTEXEC
 __attribute__((target("thumb")))
 static inline void _adc1_timing_monitor(void){
     uint32_t flags = *(HAL_SFR_t *)(ADC1_BASE + OFS_ADCn_ISR);
+    #if uC_ADC1_DM_MODE == ADC_DM_DMA
+    if (flags & ADC_FLAG_EOS){
+        *(HAL_SFR_t *)(ADC1_BASE + OFS_ADCn_ISR) |= ADC_ISR_EOS;
+        #ifdef uC_ADC_TIMING_MONITOR_GPIO
+        gpio_set_output_toggle(uC_ADC_TIMING_MONITOR_GPIO);
+        #endif
+    }
+    #else
     if (flags & ADC_FLAG_EOC){
         *(HAL_SFR_t *)(ADC1_BASE + OFS_ADCn_ISR) |= ADC_ISR_EOC;
         #ifdef uC_ADC_TIMING_MONITOR_GPIO
         gpio_set_output_toggle(uC_ADC_TIMING_MONITOR_GPIO);
         #endif
     }
+    #endif
 }
 
 #pragma GCC pop_options
@@ -111,6 +120,6 @@ void ADC1_2_IRQHandler(void)
         _adc2_handler();
     #endif
     #endif
-}   
+    }   
     
 #endif
