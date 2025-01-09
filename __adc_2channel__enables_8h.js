@@ -1,8 +1,6 @@
 var __adc_2channel__enables_8h =
 [
-    [ "uC_ADC1_CHANNEL_COUNT", "__adc_2channel__enables_8h.html#a76146b3a1ce5e4ae483ed1082313c5ae", null ],
     [ "uC_ADC1_CHNMASK", "__adc_2channel__enables_8h.html#a4d1c6abe7b288f219d0811884feb3fd8", null ],
-    [ "uC_ADC2_CHANNEL_COUNT", "__adc_2channel__enables_8h.html#af8120cc91eb76d82920386ffa1ee76cb", null ],
     [ "uC_ADC2_CHNMASK", "__adc_2channel__enables_8h.html#a7f8a690c0234d58b44d754ccca84e459", null ],
     [ "uC_ENABLE_AIN0", "__adc_2channel__enables_8h.html#aab7c1fd5a9a8739328e0782ca3467d46", null ],
     [ "uC_ENABLE_AIN1", "__adc_2channel__enables_8h.html#acf7aa5895b127db6db651d867bc3ea72", null ],
