@@ -2,6 +2,7 @@ var dir_ecba37078b2646ad8615f0f92eab48bb =
 [
     [ "_adc", "dir_c86749a12d0b5f37729118ac0376c51e.html", "dir_c86749a12d0b5f37729118ac0376c51e" ],
     [ "_dma", "dir_d15f750d2e50aa73cfdc2e6249ca3932.html", "dir_d15f750d2e50aa73cfdc2e6249ca3932" ],
+    [ "_uart", "dir_b778205a90b9dd96ba067acdbbc1e43b.html", "dir_b778205a90b9dd96ba067acdbbc1e43b" ],
     [ "adc_handlers.c", "adc__handlers_8c.html", "adc__handlers_8c" ],
     [ "adc_handlers.h", "h7rsxx_2adc__handlers_8h.html", "h7rsxx_2adc__handlers_8h" ],
     [ "adc_impl.c", "adc__impl_8c.html", null ],

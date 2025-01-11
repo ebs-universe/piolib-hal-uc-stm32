@@ -41,9 +41,9 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "__adc_2channel__enables_8h.html",
-"channel__defaults_8h.html#af6b0e748e0dadec24ea5c06ec92175e8",
-"h7rsxx_2exti__handlers_8c.html#a203749f90ad4fec28e972e06e1e750ae",
-"usb__impl_8h_source.html"
+"__uart_2defaults_8h.html#ac9378cafe6e61f516298af2ece0da583",
+"f4xx_2core__handlers_8c_source.html",
+"h7rsxx_2uc__map__impl_8h.html#a4367050e965db04a89f3d56b4f88e317"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

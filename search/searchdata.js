@@ -3,7 +3,7 @@ var indexSectionsWithContent =
   0: "_acdefghimnorstu",
   1: "acdefgirstu",
   2: "_cehmnoru",
-  3: "_de",
+  3: "_deu",
   4: "u",
   5: "emosu"
 };

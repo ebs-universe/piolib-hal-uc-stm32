@@ -52,7 +52,8 @@ var menudata={children:[
 {text:"Variables",url:"globals_vars.html",children:[
 {text:"_",url:"globals_vars.html#index__5F"},
 {text:"d",url:"globals_vars.html#index_d"},
-{text:"e",url:"globals_vars.html#index_e"}]},
+{text:"e",url:"globals_vars.html#index_e"},
+{text:"u",url:"globals_vars.html#index_u"}]},
 {text:"Enumerations",url:"globals_enum.html"},
 {text:"Macros",url:"globals_defs.html",children:[
 {text:"e",url:"globals_defs.html#index_e"},

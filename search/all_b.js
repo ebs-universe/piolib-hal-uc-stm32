@@ -52,5 +52,17 @@ var searchData=
   ['ofs_5fdma_5fprivcfgr_49',['OFS_DMA_PRIVCFGR',['../__dma_2registers_8h.html#a19a2b4fde2b7a144ca86229b868bee46',1,'registers.h']]],
   ['ofs_5fdma_5frcfglockr_50',['OFS_DMA_RCFGLOCKR',['../__dma_2registers_8h.html#a082821c2326a761a4a988d94b534017b',1,'registers.h']]],
   ['ofs_5fdma_5fsmisr_51',['OFS_DMA_SMISR',['../__dma_2registers_8h.html#a282ba5fbe83487872f1c7b564f42be6c',1,'registers.h']]],
-  ['otg_5ffs_5firqhandler_52',['otg_fs_irqhandler',['../f4xx_2usb__handlers_8c.html#a75135d7a041e2932e9903e8a345b3fc4',1,'OTG_FS_IRQHandler(void):&#160;usb_handlers.c'],['../u0xx_2usb__handlers_8c.html#a75135d7a041e2932e9903e8a345b3fc4',1,'OTG_FS_IRQHandler(void):&#160;usb_handlers.c']]]
+  ['ofs_5fuart_5fbrr_52',['OFS_UART_BRR',['../__uart_2registers_8h.html#ac8f3e115d83935718034e3c189fed6a0',1,'registers.h']]],
+  ['ofs_5fuart_5fcr1_53',['OFS_UART_CR1',['../__uart_2registers_8h.html#a3af8fd35f86c615c01fefd5db7616667',1,'registers.h']]],
+  ['ofs_5fuart_5fcr2_54',['OFS_UART_CR2',['../__uart_2registers_8h.html#ae2d62cf0834c82f9ee65106563915a4d',1,'registers.h']]],
+  ['ofs_5fuart_5fcr3_55',['OFS_UART_CR3',['../__uart_2registers_8h.html#a31a6d6b1733d1dcfb4ca8c14906123fe',1,'registers.h']]],
+  ['ofs_5fuart_5fgtpr_56',['OFS_UART_GTPR',['../__uart_2registers_8h.html#aaba022693fc26468cbf7046fe45be33b',1,'registers.h']]],
+  ['ofs_5fuart_5ficr_57',['OFS_UART_ICR',['../__uart_2registers_8h.html#a9f201757d9fbdd3033a8998cd8375830',1,'registers.h']]],
+  ['ofs_5fuart_5fisr_58',['OFS_UART_ISR',['../__uart_2registers_8h.html#ad66655c1fe3431854cc76d88b05b4253',1,'registers.h']]],
+  ['ofs_5fuart_5fpresc_59',['OFS_UART_PRESC',['../__uart_2registers_8h.html#aecfe13c915ba77526ae2c7db3014093b',1,'registers.h']]],
+  ['ofs_5fuart_5frdr_60',['OFS_UART_RDR',['../__uart_2registers_8h.html#ac2662387f041d7926d51e53f8d4c2421',1,'registers.h']]],
+  ['ofs_5fuart_5frqr_61',['OFS_UART_RQR',['../__uart_2registers_8h.html#a1bc6af2347f65c50b93875aa722666ed',1,'registers.h']]],
+  ['ofs_5fuart_5frtor_62',['OFS_UART_RTOR',['../__uart_2registers_8h.html#a85f54bd4914689c26c461b0875692e9e',1,'registers.h']]],
+  ['ofs_5fuart_5ftdr_63',['OFS_UART_TDR',['../__uart_2registers_8h.html#a7e0d0be1c980a5a299e48345d68adbe2',1,'registers.h']]],
+  ['otg_5ffs_5firqhandler_64',['otg_fs_irqhandler',['../f4xx_2usb__handlers_8c.html#a75135d7a041e2932e9903e8a345b3fc4',1,'OTG_FS_IRQHandler(void):&#160;usb_handlers.c'],['../u0xx_2usb__handlers_8c.html#a75135d7a041e2932e9903e8a345b3fc4',1,'OTG_FS_IRQHandler(void):&#160;usb_handlers.c']]]
 ];

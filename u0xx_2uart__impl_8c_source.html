@@ -27,7 +27,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.png"/></td>
   <td id="projectalign">
-   <div id="projectname">ebs-hal-uc-stm32<span id="projectnumber">&#160;0.2.2</span>
+   <div id="projectname">ebs-hal-uc-stm32<span id="projectnumber">&#160;0.2.3</span>
    </div>
    <div id="projectbrief">EBS uC HAL implementation for ST STM32 uCs</div>
   </td>
@@ -140,10 +140,10 @@ $(document).ready(function(){initNavTree('u0xx_2uart__impl_8c_source.html',''); 
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        uint32_t oversampling) </div>
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>{</div>
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="comment">// PRESC : not used</span></div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    HAL_SFR_t * presc = (HAL_SFR_t *)(hwif-&gt;base + OFS_UART_PRESC);</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    HAL_SFR_t * presc = (HAL_SFR_t *)(hwif-&gt;base + <a class="code hl_define" href="__uart_2registers_8h.html#aecfe13c915ba77526ae2c7db3014093b">OFS_UART_PRESC</a>);</div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    *presc = 0x0000;</div>
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <span class="comment">// BRR write the actual register</span></div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    HAL_SFR_t * brr = (HAL_SFR_t *)(hwif-&gt;base + OFS_UART_BRR);</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    HAL_SFR_t * brr = (HAL_SFR_t *)(hwif-&gt;base + <a class="code hl_define" href="__uart_2registers_8h.html#ac8f3e115d83935718034e3c189fed6a0">OFS_UART_BRR</a>);</div>
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    uint16_t usartdiv = CLOCKTREE_UART2_FREQ / baudrate;</div>
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <span class="keywordflow">if</span> (oversampling == UART_OVERSAMPLING_16){</div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        *brr = usartdiv;</div>
@@ -183,12 +183,12 @@ $(document).ready(function(){initNavTree('u0xx_2uart__impl_8c_source.html',''); 
 <div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>{</div>
 <div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    _uart_conf_baud(hwif, baudrate, oversampling);</div>
 <div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    HAL_SFR_t * cr1 = (HAL_SFR_t *)(hwif-&gt;base + OFS_UART_CR1);</div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    HAL_SFR_t * cr2 = (HAL_SFR_t *)(hwif-&gt;base + OFS_UART_CR2);</div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    HAL_SFR_t * cr3 = (HAL_SFR_t *)(hwif-&gt;base + OFS_UART_CR2);</div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    HAL_SFR_t * gtpr = (HAL_SFR_t *)(hwif-&gt;base + OFS_UART_GTPR);</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    HAL_SFR_t * rtor = (HAL_SFR_t *)(hwif-&gt;base + OFS_UART_RTOR);</div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    HAL_SFR_t * rqr = (HAL_SFR_t *)(hwif-&gt;base + OFS_UART_RQR);</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    HAL_SFR_t * cr1 = (HAL_SFR_t *)(hwif-&gt;base + <a class="code hl_define" href="__uart_2registers_8h.html#a3af8fd35f86c615c01fefd5db7616667">OFS_UART_CR1</a>);</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    HAL_SFR_t * cr2 = (HAL_SFR_t *)(hwif-&gt;base + <a class="code hl_define" href="__uart_2registers_8h.html#ae2d62cf0834c82f9ee65106563915a4d">OFS_UART_CR2</a>);</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    HAL_SFR_t * cr3 = (HAL_SFR_t *)(hwif-&gt;base + <a class="code hl_define" href="__uart_2registers_8h.html#ae2d62cf0834c82f9ee65106563915a4d">OFS_UART_CR2</a>);</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    HAL_SFR_t * gtpr = (HAL_SFR_t *)(hwif-&gt;base + <a class="code hl_define" href="__uart_2registers_8h.html#aaba022693fc26468cbf7046fe45be33b">OFS_UART_GTPR</a>);</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    HAL_SFR_t * rtor = (HAL_SFR_t *)(hwif-&gt;base + <a class="code hl_define" href="__uart_2registers_8h.html#a85f54bd4914689c26c461b0875692e9e">OFS_UART_RTOR</a>);</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    HAL_SFR_t * rqr = (HAL_SFR_t *)(hwif-&gt;base + <a class="code hl_define" href="__uart_2registers_8h.html#a1bc6af2347f65c50b93875aa722666ed">OFS_UART_RQR</a>);</div>
 <div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
 <div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    </div>
 <div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    *cr1 = 0x00000000;</div>
@@ -333,13 +333,13 @@ $(document).ready(function(){initNavTree('u0xx_2uart__impl_8c_source.html',''); 
 <div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span><span class="preprocessor">#endif</span></div>
 <div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span> </div>
 <div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span><span class="preprocessor">#if uC_UART2_ENABLED</span></div>
-<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>    uint8_t uart2_txbuffer[uC_UART2_TXBUF_LEN + 1];</div>
-<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>    uint8_t uart2_rxbuffer[uC_UART2_RXBUF_LEN + 1];</div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>    uint8_t uart2_txbuffer[<a class="code hl_define" href="__uart_2defaults_8h.html#adfe426a8a9fc64a5a9a591dc52fd7801">uC_UART2_TXBUF_LEN</a> + 1];</div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>    uint8_t uart2_rxbuffer[<a class="code hl_define" href="__uart_2defaults_8h.html#a9cff2b01117548c445ce9e85309a10f8">uC_UART2_RXBUF_LEN</a> + 1];</div>
 <div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>    bytebuf uart2_txbuf;</div>
 <div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>    bytebuf uart2_rxbuf;</div>
 <div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>  </div>
 <div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>    <span class="keyword">static</span> <span class="keyword">const</span> _uart_hwif_t _uart2_hwif = {</div>
-<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>        UART_HWIF_FULL, uC_UART2_USE_HWFIFO, USART2_BASE </div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>        UART_HWIF_FULL, <a class="code hl_define" href="__uart_2defaults_8h.html#a8056f61f17fa46a3281aa03b204e0e49">uC_UART2_USE_HWFIFO</a>, USART2_BASE </div>
 <div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>    };</div>
 <div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>    </div>
 <div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>    uart_state_t uart2_state = {0};</div>
@@ -355,8 +355,8 @@ $(document).ready(function(){initNavTree('u0xx_2uart__impl_8c_source.html',''); 
 <div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>    };</div>
 <div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span> </div>
 <div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>    <span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> _uart2_buffer_init(<span class="keywordtype">void</span>){</div>
-<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>        bytebuf_vInit(uart2_txbuffer, uC_UART2_TXBUF_LEN, &amp;uart2_txbuf);</div>
-<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>        bytebuf_vInit(uart2_rxbuffer, uC_UART2_RXBUF_LEN, &amp;uart2_rxbuf);</div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>        bytebuf_vInit(uart2_txbuffer, <a class="code hl_define" href="__uart_2defaults_8h.html#adfe426a8a9fc64a5a9a591dc52fd7801">uC_UART2_TXBUF_LEN</a>, &amp;uart2_txbuf);</div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>        bytebuf_vInit(uart2_rxbuffer, <a class="code hl_define" href="__uart_2defaults_8h.html#a9cff2b01117548c445ce9e85309a10f8">uC_UART2_RXBUF_LEN</a>, &amp;uart2_rxbuf);</div>
 <div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>    }</div>
 <div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span> </div>
 <div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>    <span class="keywordtype">void</span> _uart2_init(<span class="keywordtype">void</span>){</div>
@@ -364,20 +364,20 @@ $(document).ready(function(){initNavTree('u0xx_2uart__impl_8c_source.html',''); 
 <div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>        __HAL_RCC_USART2_CLK_ENABLE();</div>
 <div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>        _uart_init(</div>
 <div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>            uart2_if.hwif, </div>
-<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>            uC_UART2_WORDLENGTH,</div>
-<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>            uC_UART2_USE_HWFIFO,</div>
-<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>            uC_UART2_TH_TX_HWFIFO,</div>
-<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>            uC_UART2_TH_RX_HWFIFO,</div>
-<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>            uC_UART2_STOPBITS,</div>
-<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>            uC_UART2_BAUD,</div>
-<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>            uC_UART2_OVERSAMPLING,</div>
-<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>            uC_UART2_ONEBIT,</div>
-<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>            uC_UART2_PARITY,</div>
-<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>            uC_UART2_ENDIANNESS,</div>
-<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>            uC_UART2_POLARITY_DATA,</div>
-<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>            uC_UART2_POLARITY_TX,</div>
-<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>            uC_UART2_POLARITY_RX,</div>
-<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>            uC_UART2_SWAP_TXRX</div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>            <a class="code hl_define" href="__uart_2defaults_8h.html#a970d28d45049a675edb86f83e1b777df">uC_UART2_WORDLENGTH</a>,</div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>            <a class="code hl_define" href="__uart_2defaults_8h.html#a8056f61f17fa46a3281aa03b204e0e49">uC_UART2_USE_HWFIFO</a>,</div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>            <a class="code hl_define" href="__uart_2defaults_8h.html#a980ffac67b6faa88409674bb5c7fbb44">uC_UART2_TH_TX_HWFIFO</a>,</div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>            <a class="code hl_define" href="__uart_2defaults_8h.html#afafd5c5edef4b5bbb4bf311706da5417">uC_UART2_TH_RX_HWFIFO</a>,</div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>            <a class="code hl_define" href="__uart_2defaults_8h.html#ac5281c4f9bce055540ae8e4e9222c89c">uC_UART2_STOPBITS</a>,</div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>            <a class="code hl_define" href="__uart_2defaults_8h.html#a23bf52062ccf734839c865093f5cbd35">uC_UART2_BAUD</a>,</div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>            <a class="code hl_define" href="__uart_2defaults_8h.html#a48755f1228d397fbdbc1dd8157cccf9a">uC_UART2_OVERSAMPLING</a>,</div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>            <a class="code hl_define" href="__uart_2defaults_8h.html#a49a744ebcc29b2d783df5f9c16f21e36">uC_UART2_ONEBIT</a>,</div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>            <a class="code hl_define" href="__uart_2defaults_8h.html#a6dbc53b771c90dad7f6304921a7fc65e">uC_UART2_PARITY</a>,</div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>            <a class="code hl_define" href="__uart_2defaults_8h.html#aedd955aa07bb739a01c06ae43a311bea">uC_UART2_ENDIANNESS</a>,</div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>            <a class="code hl_define" href="__uart_2defaults_8h.html#a6ade122f97f3ef2e7f56f0a4d25b6af0">uC_UART2_POLARITY_DATA</a>,</div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>            <a class="code hl_define" href="__uart_2defaults_8h.html#a8f2e085c55bd4b3c129c71a8774d229d">uC_UART2_POLARITY_TX</a>,</div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>            <a class="code hl_define" href="__uart_2defaults_8h.html#a1a4decfe1ebf3ed01c07e8784a879f7a">uC_UART2_POLARITY_RX</a>,</div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>            <a class="code hl_define" href="__uart_2defaults_8h.html#ac9ece1bb2daa55e411ed3a1799eea511">uC_UART2_SWAP_TXRX</a></div>
 <div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>        );</div>
 <div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>        HAL_NVIC_SetPriority(USART2_LPUART2_IRQn, 0, 0);</div>
 <div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>        HAL_NVIC_EnableIRQ(USART2_LPUART2_IRQn);</div>
@@ -405,7 +405,7 @@ $(document).ready(function(){initNavTree('u0xx_2uart__impl_8c_source.html',''); 
 <div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span> </div>
 <div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span><span class="preprocessor">#endif</span></div>
 <div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span> </div>
-<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span><span class="keyword">const</span> uart_if_t *<span class="keyword">const</span> uart_if[uC_UARTS_ENABLED + 1] = {</div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span><span class="keyword">const</span> uart_if_t *<span class="keyword">const</span> <a class="code hl_variable" href="if_8h.html#ae2c8854ca1d07fdd4f2d1a478282b0d2">uart_if</a>[<a class="code hl_define" href="enables_8h.html#a551344ebf91244f878d76d2ac7ccc6ed">uC_UARTS_ENABLED</a> + 1] = {</div>
 <div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span><span class="preprocessor">    #if uC_UART1_ENABLED</span></div>
 <div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span>        &amp;uart1_if,</div>
 <div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span><span class="preprocessor">    #endif</span></div>
@@ -431,10 +431,35 @@ $(document).ready(function(){initNavTree('u0xx_2uart__impl_8c_source.html',''); 
 <div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span>};</div>
 <div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span> </div>
 <div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span><span class="keywordtype">void</span> uart_init(HAL_BASE_t intfnum){</div>
-<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span>    uart_if[intfnum]-&gt;init();</div>
+<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span>    <a class="code hl_variable" href="if_8h.html#ae2c8854ca1d07fdd4f2d1a478282b0d2">uart_if</a>[intfnum]-&gt;init();</div>
 <div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span>}</div>
 <div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span> </div>
 <div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="a__uart_2defaults_8h_html_a1a4decfe1ebf3ed01c07e8784a879f7a"><div class="ttname"><a href="__uart_2defaults_8h.html#a1a4decfe1ebf3ed01c07e8784a879f7a">uC_UART2_POLARITY_RX</a></div><div class="ttdeci">#define uC_UART2_POLARITY_RX</div><div class="ttdef"><b>Definition</b> <a href="__uart_2defaults_8h_source.html#l00205">defaults.h:205</a></div></div>
+<div class="ttc" id="a__uart_2defaults_8h_html_a23bf52062ccf734839c865093f5cbd35"><div class="ttname"><a href="__uart_2defaults_8h.html#a23bf52062ccf734839c865093f5cbd35">uC_UART2_BAUD</a></div><div class="ttdeci">#define uC_UART2_BAUD</div><div class="ttdef"><b>Definition</b> <a href="__uart_2defaults_8h_source.html#l00030">defaults.h:30</a></div></div>
+<div class="ttc" id="a__uart_2defaults_8h_html_a48755f1228d397fbdbc1dd8157cccf9a"><div class="ttname"><a href="__uart_2defaults_8h.html#a48755f1228d397fbdbc1dd8157cccf9a">uC_UART2_OVERSAMPLING</a></div><div class="ttdeci">#define uC_UART2_OVERSAMPLING</div><div class="ttdef"><b>Definition</b> <a href="__uart_2defaults_8h_source.html#l00330">defaults.h:330</a></div></div>
+<div class="ttc" id="a__uart_2defaults_8h_html_a49a744ebcc29b2d783df5f9c16f21e36"><div class="ttname"><a href="__uart_2defaults_8h.html#a49a744ebcc29b2d783df5f9c16f21e36">uC_UART2_ONEBIT</a></div><div class="ttdeci">#define uC_UART2_ONEBIT</div><div class="ttdef"><b>Definition</b> <a href="__uart_2defaults_8h_source.html#l00355">defaults.h:355</a></div></div>
+<div class="ttc" id="a__uart_2defaults_8h_html_a6ade122f97f3ef2e7f56f0a4d25b6af0"><div class="ttname"><a href="__uart_2defaults_8h.html#a6ade122f97f3ef2e7f56f0a4d25b6af0">uC_UART2_POLARITY_DATA</a></div><div class="ttdeci">#define uC_UART2_POLARITY_DATA</div><div class="ttdef"><b>Definition</b> <a href="__uart_2defaults_8h_source.html#l00155">defaults.h:155</a></div></div>
+<div class="ttc" id="a__uart_2defaults_8h_html_a6dbc53b771c90dad7f6304921a7fc65e"><div class="ttname"><a href="__uart_2defaults_8h.html#a6dbc53b771c90dad7f6304921a7fc65e">uC_UART2_PARITY</a></div><div class="ttdeci">#define uC_UART2_PARITY</div><div class="ttdef"><b>Definition</b> <a href="__uart_2defaults_8h_source.html#l00055">defaults.h:55</a></div></div>
+<div class="ttc" id="a__uart_2defaults_8h_html_a8056f61f17fa46a3281aa03b204e0e49"><div class="ttname"><a href="__uart_2defaults_8h.html#a8056f61f17fa46a3281aa03b204e0e49">uC_UART2_USE_HWFIFO</a></div><div class="ttdeci">#define uC_UART2_USE_HWFIFO</div><div class="ttdef"><b>Definition</b> <a href="__uart_2defaults_8h_source.html#l00255">defaults.h:255</a></div></div>
+<div class="ttc" id="a__uart_2defaults_8h_html_a8f2e085c55bd4b3c129c71a8774d229d"><div class="ttname"><a href="__uart_2defaults_8h.html#a8f2e085c55bd4b3c129c71a8774d229d">uC_UART2_POLARITY_TX</a></div><div class="ttdeci">#define uC_UART2_POLARITY_TX</div><div class="ttdef"><b>Definition</b> <a href="__uart_2defaults_8h_source.html#l00180">defaults.h:180</a></div></div>
+<div class="ttc" id="a__uart_2defaults_8h_html_a970d28d45049a675edb86f83e1b777df"><div class="ttname"><a href="__uart_2defaults_8h.html#a970d28d45049a675edb86f83e1b777df">uC_UART2_WORDLENGTH</a></div><div class="ttdeci">#define uC_UART2_WORDLENGTH</div><div class="ttdef"><b>Definition</b> <a href="__uart_2defaults_8h_source.html#l00105">defaults.h:105</a></div></div>
+<div class="ttc" id="a__uart_2defaults_8h_html_a980ffac67b6faa88409674bb5c7fbb44"><div class="ttname"><a href="__uart_2defaults_8h.html#a980ffac67b6faa88409674bb5c7fbb44">uC_UART2_TH_TX_HWFIFO</a></div><div class="ttdeci">#define uC_UART2_TH_TX_HWFIFO</div><div class="ttdef"><b>Definition</b> <a href="__uart_2defaults_8h_source.html#l00280">defaults.h:280</a></div></div>
+<div class="ttc" id="a__uart_2defaults_8h_html_a9cff2b01117548c445ce9e85309a10f8"><div class="ttname"><a href="__uart_2defaults_8h.html#a9cff2b01117548c445ce9e85309a10f8">uC_UART2_RXBUF_LEN</a></div><div class="ttdeci">#define uC_UART2_RXBUF_LEN</div><div class="ttdef"><b>Definition</b> <a href="__uart_2defaults_8h_source.html#l00405">defaults.h:405</a></div></div>
+<div class="ttc" id="a__uart_2defaults_8h_html_ac5281c4f9bce055540ae8e4e9222c89c"><div class="ttname"><a href="__uart_2defaults_8h.html#ac5281c4f9bce055540ae8e4e9222c89c">uC_UART2_STOPBITS</a></div><div class="ttdeci">#define uC_UART2_STOPBITS</div><div class="ttdef"><b>Definition</b> <a href="__uart_2defaults_8h_source.html#l00080">defaults.h:80</a></div></div>
+<div class="ttc" id="a__uart_2defaults_8h_html_ac9ece1bb2daa55e411ed3a1799eea511"><div class="ttname"><a href="__uart_2defaults_8h.html#ac9ece1bb2daa55e411ed3a1799eea511">uC_UART2_SWAP_TXRX</a></div><div class="ttdeci">#define uC_UART2_SWAP_TXRX</div><div class="ttdef"><b>Definition</b> <a href="__uart_2defaults_8h_source.html#l00230">defaults.h:230</a></div></div>
+<div class="ttc" id="a__uart_2defaults_8h_html_adfe426a8a9fc64a5a9a591dc52fd7801"><div class="ttname"><a href="__uart_2defaults_8h.html#adfe426a8a9fc64a5a9a591dc52fd7801">uC_UART2_TXBUF_LEN</a></div><div class="ttdeci">#define uC_UART2_TXBUF_LEN</div><div class="ttdef"><b>Definition</b> <a href="__uart_2defaults_8h_source.html#l00380">defaults.h:380</a></div></div>
+<div class="ttc" id="a__uart_2defaults_8h_html_aedd955aa07bb739a01c06ae43a311bea"><div class="ttname"><a href="__uart_2defaults_8h.html#aedd955aa07bb739a01c06ae43a311bea">uC_UART2_ENDIANNESS</a></div><div class="ttdeci">#define uC_UART2_ENDIANNESS</div><div class="ttdef"><b>Definition</b> <a href="__uart_2defaults_8h_source.html#l00130">defaults.h:130</a></div></div>
+<div class="ttc" id="a__uart_2defaults_8h_html_afafd5c5edef4b5bbb4bf311706da5417"><div class="ttname"><a href="__uart_2defaults_8h.html#afafd5c5edef4b5bbb4bf311706da5417">uC_UART2_TH_RX_HWFIFO</a></div><div class="ttdeci">#define uC_UART2_TH_RX_HWFIFO</div><div class="ttdef"><b>Definition</b> <a href="__uart_2defaults_8h_source.html#l00305">defaults.h:305</a></div></div>
+<div class="ttc" id="a__uart_2registers_8h_html_a1bc6af2347f65c50b93875aa722666ed"><div class="ttname"><a href="__uart_2registers_8h.html#a1bc6af2347f65c50b93875aa722666ed">OFS_UART_RQR</a></div><div class="ttdeci">#define OFS_UART_RQR</div><div class="ttdef"><b>Definition</b> <a href="__uart_2registers_8h_source.html#l00009">registers.h:9</a></div></div>
+<div class="ttc" id="a__uart_2registers_8h_html_a3af8fd35f86c615c01fefd5db7616667"><div class="ttname"><a href="__uart_2registers_8h.html#a3af8fd35f86c615c01fefd5db7616667">OFS_UART_CR1</a></div><div class="ttdeci">#define OFS_UART_CR1</div><div class="ttdef"><b>Definition</b> <a href="__uart_2registers_8h_source.html#l00003">registers.h:3</a></div></div>
+<div class="ttc" id="a__uart_2registers_8h_html_a85f54bd4914689c26c461b0875692e9e"><div class="ttname"><a href="__uart_2registers_8h.html#a85f54bd4914689c26c461b0875692e9e">OFS_UART_RTOR</a></div><div class="ttdeci">#define OFS_UART_RTOR</div><div class="ttdef"><b>Definition</b> <a href="__uart_2registers_8h_source.html#l00008">registers.h:8</a></div></div>
+<div class="ttc" id="a__uart_2registers_8h_html_aaba022693fc26468cbf7046fe45be33b"><div class="ttname"><a href="__uart_2registers_8h.html#aaba022693fc26468cbf7046fe45be33b">OFS_UART_GTPR</a></div><div class="ttdeci">#define OFS_UART_GTPR</div><div class="ttdef"><b>Definition</b> <a href="__uart_2registers_8h_source.html#l00007">registers.h:7</a></div></div>
+<div class="ttc" id="a__uart_2registers_8h_html_ac8f3e115d83935718034e3c189fed6a0"><div class="ttname"><a href="__uart_2registers_8h.html#ac8f3e115d83935718034e3c189fed6a0">OFS_UART_BRR</a></div><div class="ttdeci">#define OFS_UART_BRR</div><div class="ttdef"><b>Definition</b> <a href="__uart_2registers_8h_source.html#l00006">registers.h:6</a></div></div>
+<div class="ttc" id="a__uart_2registers_8h_html_ae2d62cf0834c82f9ee65106563915a4d"><div class="ttname"><a href="__uart_2registers_8h.html#ae2d62cf0834c82f9ee65106563915a4d">OFS_UART_CR2</a></div><div class="ttdeci">#define OFS_UART_CR2</div><div class="ttdef"><b>Definition</b> <a href="__uart_2registers_8h_source.html#l00004">registers.h:4</a></div></div>
+<div class="ttc" id="a__uart_2registers_8h_html_aecfe13c915ba77526ae2c7db3014093b"><div class="ttname"><a href="__uart_2registers_8h.html#aecfe13c915ba77526ae2c7db3014093b">OFS_UART_PRESC</a></div><div class="ttdeci">#define OFS_UART_PRESC</div><div class="ttdef"><b>Definition</b> <a href="__uart_2registers_8h_source.html#l00014">registers.h:14</a></div></div>
+<div class="ttc" id="aenables_8h_html_a551344ebf91244f878d76d2ac7ccc6ed"><div class="ttname"><a href="enables_8h.html#a551344ebf91244f878d76d2ac7ccc6ed">uC_UARTS_ENABLED</a></div><div class="ttdeci">#define uC_UARTS_ENABLED</div><div class="ttdef"><b>Definition</b> <a href="enables_8h_source.html#l00099">enables.h:99</a></div></div>
+<div class="ttc" id="aif_8h_html_ae2c8854ca1d07fdd4f2d1a478282b0d2"><div class="ttname"><a href="if_8h.html#ae2c8854ca1d07fdd4f2d1a478282b0d2">uart_if</a></div><div class="ttdeci">const uart_if_t *const uart_if[uC_UARTS_ENABLED+1]</div><div class="ttdef"><b>Definition</b> <a href="if_8h_source.html#l00088">if.h:88</a></div></div>
 <div class="ttc" id="auart__impl_8h_html"><div class="ttname"><a href="uart__impl_8h.html">uart_impl.h</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
@@ -442,7 +467,7 @@ $(document).ready(function(){initNavTree('u0xx_2uart__impl_8c_source.html',''); 
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_7da9fa3e46f3496e22e0d53e72e5a458.html">hal_platform</a></li><li class="navelem"><a class="el" href="dir_e6e81f65b81118890ab216e7e6c72be2.html">u0xx</a></li><li class="navelem"><a class="el" href="u0xx_2uart__impl_8c.html">uart_impl.c</a></li>
-    <li class="footer">Generated on Thu Jan 9 2025 14:35:04 for ebs-hal-uc-stm32 by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Sat Jan 11 2025 13:26:13 for ebs-hal-uc-stm32 by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

@@ -27,7 +27,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.png"/></td>
   <td id="projectalign">
-   <div id="projectname">ebs-hal-uc-stm32<span id="projectnumber">&#160;0.2.2</span>
+   <div id="projectname">ebs-hal-uc-stm32<span id="projectnumber">&#160;0.2.3</span>
    </div>
    <div id="projectbrief">EBS uC HAL implementation for ST STM32 uCs</div>
   </td>
@@ -144,7 +144,7 @@ $(document).ready(function(){initNavTree('adc__impl_8c_source.html',''); initRes
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    __HAL_RCC_ADC12_CLK_ENABLE();</div>
 <div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    </div>
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    HAL_SFR_t *ccr = (HAL_SFR_t *)(ADC12_COMMON_BASE + <a class="code hl_define" href="__adc_2registers_8h.html#aae1273079629b760d892f28f102ccd2d">OFS_ADC_CCR</a>);</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    *ccr = (*ccr &amp; ~(ADC_CCR_PRESC | ADC_CCR_CKMODE)) | (<a class="code hl_define" href="defaults_8h.html#a57f6f714cb27da62045d20e8cb5fffa4">uC_ADC_CLOCK_PRESCALER</a>);</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    *ccr = (*ccr &amp; ~(ADC_CCR_PRESC | ADC_CCR_CKMODE)) | (<a class="code hl_define" href="__adc_2defaults_8h.html#a57f6f714cb27da62045d20e8cb5fffa4">uC_ADC_CLOCK_PRESCALER</a>);</div>
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>}</div>
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="keywordtype">void</span> adc_interrupt_enable(<span class="keywordtype">void</span>){</div>
@@ -439,16 +439,16 @@ $(document).ready(function(){initNavTree('adc__impl_8c_source.html',''); initRes
 <div class="line"><a id="l00344" name="l00344"></a><span class="lineno">  344</span>}</div>
 <div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span> </div>
 <div class="line"><a id="l00346" name="l00346"></a><span class="lineno">  346</span><span class="keyword">static</span> <span class="keywordtype">void</span> _adc_configure_sampling_time(<span class="keyword">const</span> _adc_hwif_t *<span class="keyword">const</span> hwif){</div>
-<div class="line"><a id="l00347" name="l00347"></a><span class="lineno">  347</span>    (void)<a class="code hl_define" href="defaults_8h.html#a2fa7dd11e84fa1aefe218d54045c7a88">uC_ADC_SAMPLETIME</a>;</div>
+<div class="line"><a id="l00347" name="l00347"></a><span class="lineno">  347</span>    (void)<a class="code hl_define" href="__adc_2defaults_8h.html#a2fa7dd11e84fa1aefe218d54045c7a88">uC_ADC_SAMPLETIME</a>;</div>
 <div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span>    HAL_SFR_t * smpr = (HAL_SFR_t *)(hwif-&gt;base + <a class="code hl_define" href="__adc_2registers_8h.html#a8f71987eddc4977b2d06a5dde73015e0">OFS_ADCn_SMPR1</a>);</div>
 <div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span>    *smpr = 0;</div>
 <div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span>    <span class="keywordflow">for</span> (HAL_BASE_t i = 0; i &lt; 10; i++){</div>
-<div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span>        *smpr |= (<a class="code hl_define" href="defaults_8h.html#a2fa7dd11e84fa1aefe218d54045c7a88">uC_ADC_SAMPLETIME</a> &lt;&lt; (i*3));</div>
+<div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span>        *smpr |= (<a class="code hl_define" href="__adc_2defaults_8h.html#a2fa7dd11e84fa1aefe218d54045c7a88">uC_ADC_SAMPLETIME</a> &lt;&lt; (i*3));</div>
 <div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span>    }</div>
 <div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span>    smpr = (HAL_SFR_t *)(hwif-&gt;base + <a class="code hl_define" href="__adc_2registers_8h.html#af0e92562a3d39115f00ddf24aa896207">OFS_ADCn_SMPR2</a>);</div>
 <div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span>    *smpr = 0;</div>
 <div class="line"><a id="l00355" name="l00355"></a><span class="lineno">  355</span>    <span class="keywordflow">for</span> (HAL_BASE_t i = 0; i &lt; 9; i++){</div>
-<div class="line"><a id="l00356" name="l00356"></a><span class="lineno">  356</span>        *smpr |= (<a class="code hl_define" href="defaults_8h.html#a2fa7dd11e84fa1aefe218d54045c7a88">uC_ADC_SAMPLETIME</a> &lt;&lt; (i*3));</div>
+<div class="line"><a id="l00356" name="l00356"></a><span class="lineno">  356</span>        *smpr |= (<a class="code hl_define" href="__adc_2defaults_8h.html#a2fa7dd11e84fa1aefe218d54045c7a88">uC_ADC_SAMPLETIME</a> &lt;&lt; (i*3));</div>
 <div class="line"><a id="l00357" name="l00357"></a><span class="lineno">  357</span>    }</div>
 <div class="line"><a id="l00358" name="l00358"></a><span class="lineno">  358</span>}</div>
 <div class="line"><a id="l00359" name="l00359"></a><span class="lineno">  359</span> </div>
@@ -708,6 +708,8 @@ $(document).ready(function(){initNavTree('adc__impl_8c_source.html',''); initRes
 <div class="line"><a id="l00613" name="l00613"></a><span class="lineno">  613</span> </div>
 <div class="line"><a id="l00614" name="l00614"></a><span class="lineno">  614</span><span class="preprocessor">#endif</span></div>
 <div class="ttc" id="a__adc_2channel__enables_8h_html_a4d1c6abe7b288f219d0811884feb3fd8"><div class="ttname"><a href="__adc_2channel__enables_8h.html#a4d1c6abe7b288f219d0811884feb3fd8">uC_ADC1_CHNMASK</a></div><div class="ttdeci">#define uC_ADC1_CHNMASK</div><div class="ttdef"><b>Definition</b> <a href="__adc_2channel__enables_8h_source.html#l00128">channel_enables.h:128</a></div></div>
+<div class="ttc" id="a__adc_2defaults_8h_html_a2fa7dd11e84fa1aefe218d54045c7a88"><div class="ttname"><a href="__adc_2defaults_8h.html#a2fa7dd11e84fa1aefe218d54045c7a88">uC_ADC_SAMPLETIME</a></div><div class="ttdeci">#define uC_ADC_SAMPLETIME</div><div class="ttdef"><b>Definition</b> <a href="__adc_2defaults_8h_source.html#l00032">defaults.h:32</a></div></div>
+<div class="ttc" id="a__adc_2defaults_8h_html_a57f6f714cb27da62045d20e8cb5fffa4"><div class="ttname"><a href="__adc_2defaults_8h.html#a57f6f714cb27da62045d20e8cb5fffa4">uC_ADC_CLOCK_PRESCALER</a></div><div class="ttdeci">#define uC_ADC_CLOCK_PRESCALER</div><div class="ttdef"><b>Definition</b> <a href="__adc_2defaults_8h_source.html#l00036">defaults.h:36</a></div></div>
 <div class="ttc" id="a__adc_2registers_8h_html_a1d2df7a07d3b92a0f781cd2932a8d285"><div class="ttname"><a href="__adc_2registers_8h.html#a1d2df7a07d3b92a0f781cd2932a8d285">OFS_ADCn_CFGR2</a></div><div class="ttdeci">#define OFS_ADCn_CFGR2</div><div class="ttdef"><b>Definition</b> <a href="__adc_2registers_8h_source.html#l00008">registers.h:8</a></div></div>
 <div class="ttc" id="a__adc_2registers_8h_html_a451d1c60c8f32eb06b5524089ed04814"><div class="ttname"><a href="__adc_2registers_8h.html#a451d1c60c8f32eb06b5524089ed04814">OFS_ADCn_SQR1</a></div><div class="ttdeci">#define OFS_ADCn_SQR1</div><div class="ttdef"><b>Definition</b> <a href="__adc_2registers_8h_source.html#l00014">registers.h:14</a></div></div>
 <div class="ttc" id="a__adc_2registers_8h_html_a55bf0d036bfbd46ca74d3a87fc44f754"><div class="ttname"><a href="__adc_2registers_8h.html#a55bf0d036bfbd46ca74d3a87fc44f754">OFS_ADCn_IER</a></div><div class="ttdeci">#define OFS_ADCn_IER</div><div class="ttdef"><b>Definition</b> <a href="__adc_2registers_8h_source.html#l00005">registers.h:5</a></div></div>
@@ -723,8 +725,6 @@ $(document).ready(function(){initNavTree('adc__impl_8c_source.html',''); initRes
 <div class="ttc" id="a__adc_2registers_8h_html_ae46d9ce2c4e15fc7880cc22ae711f36d"><div class="ttname"><a href="__adc_2registers_8h.html#ae46d9ce2c4e15fc7880cc22ae711f36d">OFS_ADCn_CFGR</a></div><div class="ttdeci">#define OFS_ADCn_CFGR</div><div class="ttdef"><b>Definition</b> <a href="__adc_2registers_8h_source.html#l00007">registers.h:7</a></div></div>
 <div class="ttc" id="a__adc_2registers_8h_html_af0e92562a3d39115f00ddf24aa896207"><div class="ttname"><a href="__adc_2registers_8h.html#af0e92562a3d39115f00ddf24aa896207">OFS_ADCn_SMPR2</a></div><div class="ttdeci">#define OFS_ADCn_SMPR2</div><div class="ttdef"><b>Definition</b> <a href="__adc_2registers_8h_source.html#l00010">registers.h:10</a></div></div>
 <div class="ttc" id="achannel__if_8h_html_ac051c35563d2733b2a5976c6ab53c3dc"><div class="ttname"><a href="channel__if_8h.html#ac051c35563d2733b2a5976c6ab53c3dc">dma_chn_if</a></div><div class="ttdeci">const dma_chn_if_t dma_chn_if[]</div><div class="ttdef"><b>Definition</b> <a href="channel__if_8h_source.html#l00515">channel_if.h:515</a></div></div>
-<div class="ttc" id="adefaults_8h_html_a2fa7dd11e84fa1aefe218d54045c7a88"><div class="ttname"><a href="defaults_8h.html#a2fa7dd11e84fa1aefe218d54045c7a88">uC_ADC_SAMPLETIME</a></div><div class="ttdeci">#define uC_ADC_SAMPLETIME</div><div class="ttdef"><b>Definition</b> <a href="defaults_8h_source.html#l00032">defaults.h:32</a></div></div>
-<div class="ttc" id="adefaults_8h_html_a57f6f714cb27da62045d20e8cb5fffa4"><div class="ttname"><a href="defaults_8h.html#a57f6f714cb27da62045d20e8cb5fffa4">uC_ADC_CLOCK_PRESCALER</a></div><div class="ttdeci">#define uC_ADC_CLOCK_PRESCALER</div><div class="ttdef"><b>Definition</b> <a href="defaults_8h_source.html#l00036">defaults.h:36</a></div></div>
 <div class="ttc" id="ah7rsxx_2adc__impl_8h_html"><div class="ttname"><a href="h7rsxx_2adc__impl_8h.html">adc_impl.h</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
@@ -732,7 +732,7 @@ $(document).ready(function(){initNavTree('adc__impl_8c_source.html',''); initRes
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_7da9fa3e46f3496e22e0d53e72e5a458.html">hal_platform</a></li><li class="navelem"><a class="el" href="dir_ecba37078b2646ad8615f0f92eab48bb.html">h7rsxx</a></li><li class="navelem"><a class="el" href="adc__impl_8c.html">adc_impl.c</a></li>
-    <li class="footer">Generated on Thu Jan 9 2025 14:35:04 for ebs-hal-uc-stm32 by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Sat Jan 11 2025 13:26:13 for ebs-hal-uc-stm32 by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

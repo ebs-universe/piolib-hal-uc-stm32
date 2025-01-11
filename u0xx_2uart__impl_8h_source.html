@@ -27,7 +27,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.png"/></td>
   <td id="projectalign">
-   <div id="projectname">ebs-hal-uc-stm32<span id="projectnumber">&#160;0.2.2</span>
+   <div id="projectname">ebs-hal-uc-stm32<span id="projectnumber">&#160;0.2.3</span>
    </div>
    <div id="projectbrief">EBS uC HAL implementation for ST STM32 uCs</div>
   </td>
@@ -254,7 +254,7 @@ $(document).ready(function(){initNavTree('u0xx_2uart__impl_8h_source.html',''); 
 <div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span><span class="preprocessor">#define OFS_UART_PRESC  0x2C</span></div>
 <div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span> </div>
 <div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span> </div>
-<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span><span class="keyword">extern</span> <span class="keyword">const</span> uart_if_t *<span class="keyword">const</span> uart_if[];</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span><span class="keyword">extern</span> <span class="keyword">const</span> uart_if_t *<span class="keyword">const</span> <a class="code hl_variable" href="if_8h.html#ae2c8854ca1d07fdd4f2d1a478282b0d2">uart_if</a>[];</div>
 <div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span> </div>
 <div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span><span class="preprocessor">#if uC_UART1_ENABLED</span></div>
 <div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>    <span class="keyword">extern</span> bytebuf uart1_txbuf;</div>
@@ -360,10 +360,10 @@ $(document).ready(function(){initNavTree('u0xx_2uart__impl_8h_source.html',''); 
 <div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span><span class="keyword">static</span> <span class="keyword">inline</span> HAL_BASE_t uart_putc(HAL_BASE_t intfnum, uint8_t <span class="keywordtype">byte</span>, uint8_t token, HAL_BASE_t handlelock){</div>
 <div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>    uint8_t stat=1;</div>
 <div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>    <span class="keywordflow">if</span> (handlelock){</div>
-<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>        stat = bytebuf_cPushReqLock(uart_if[intfnum]-&gt;txbuf, 1, token);</div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>        stat = bytebuf_cPushReqLock(<a class="code hl_variable" href="if_8h.html#ae2c8854ca1d07fdd4f2d1a478282b0d2">uart_if</a>[intfnum]-&gt;txbuf, 1, token);</div>
 <div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>    }</div>
 <div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>    <span class="keywordflow">if</span> (stat){</div>
-<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>        stat = bytebuf_cPushByte(uart_if[intfnum]-&gt;txbuf, <span class="keywordtype">byte</span>, token);</div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>        stat = bytebuf_cPushByte(<a class="code hl_variable" href="if_8h.html#ae2c8854ca1d07fdd4f2d1a478282b0d2">uart_if</a>[intfnum]-&gt;txbuf, <span class="keywordtype">byte</span>, token);</div>
 <div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>        uart_send_trigger(intfnum);</div>
 <div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>        <span class="keywordflow">return</span> stat;</div>
 <div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>    }</div>
@@ -372,35 +372,35 @@ $(document).ready(function(){initNavTree('u0xx_2uart__impl_8h_source.html',''); 
 <div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span> </div>
 <div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span><span class="keyword">static</span> <span class="keyword">inline</span> HAL_BASE_t uart_write(HAL_BASE_t intfnum, uint8_t * buffer, HAL_BASE_t len, uint8_t token){</div>
 <div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>    uint8_t rval;</div>
-<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>    rval = bytebuf_cPushLen(uart_if[intfnum]-&gt;txbuf, (<span class="keywordtype">void</span> *)buffer, len, token);</div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>    rval = bytebuf_cPushLen(<a class="code hl_variable" href="if_8h.html#ae2c8854ca1d07fdd4f2d1a478282b0d2">uart_if</a>[intfnum]-&gt;txbuf, (<span class="keywordtype">void</span> *)buffer, len, token);</div>
 <div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>    uart_send_trigger(intfnum);</div>
 <div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>    <span class="keywordflow">return</span> rval;</div>
 <div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>}</div>
 <div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span> </div>
 <div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span><span class="keyword">static</span> <span class="keyword">inline</span> uint8_t uart_getc(HAL_BASE_t intfnum){</div>
-<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>    <span class="keywordflow">return</span> bytebuf_cPopByte(uart_if[intfnum]-&gt;rxbuf);</div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>    <span class="keywordflow">return</span> bytebuf_cPopByte(<a class="code hl_variable" href="if_8h.html#ae2c8854ca1d07fdd4f2d1a478282b0d2">uart_if</a>[intfnum]-&gt;rxbuf);</div>
 <div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>}</div>
 <div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span> </div>
 <div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span><span class="keyword">static</span> <span class="keyword">inline</span> HAL_BASE_t uart_read(HAL_BASE_t intfnum, uint8_t * buffer, HAL_BASE_t len){</div>
-<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>    <span class="keywordflow">return</span> bytebuf_cPopLen(uart_if[intfnum]-&gt;rxbuf, (<span class="keywordtype">void</span> *)buffer, len);</div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>    <span class="keywordflow">return</span> bytebuf_cPopLen(<a class="code hl_variable" href="if_8h.html#ae2c8854ca1d07fdd4f2d1a478282b0d2">uart_if</a>[intfnum]-&gt;rxbuf, (<span class="keywordtype">void</span> *)buffer, len);</div>
 <div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>}</div>
 <div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span>    </div>
 <div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span><span class="keyword">static</span> <span class="keyword">inline</span> HAL_BASE_t uart_population_rxb(HAL_BASE_t intfnum){</div>
-<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span>    <span class="keywordflow">return</span> bytebuf_cPopulation(uart_if[intfnum]-&gt;rxbuf);</div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span>    <span class="keywordflow">return</span> bytebuf_cPopulation(<a class="code hl_variable" href="if_8h.html#ae2c8854ca1d07fdd4f2d1a478282b0d2">uart_if</a>[intfnum]-&gt;rxbuf);</div>
 <div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>}</div>
 <div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span> </div>
 <div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> uart_discard_rxb(HAL_BASE_t intfnum){</div>
-<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>    bytebuf_vFlush(uart_if[intfnum]-&gt;rxbuf);</div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>    bytebuf_vFlush(<a class="code hl_variable" href="if_8h.html#ae2c8854ca1d07fdd4f2d1a478282b0d2">uart_if</a>[intfnum]-&gt;rxbuf);</div>
 <div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span>}</div>
 <div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span> </div>
 <div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> uart_send_trigger(HAL_BASE_t intfnum){</div>
-<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span>    <span class="keywordflow">if</span> (uart_if[intfnum]-&gt;hwif-&gt;fifomode){</div>
-<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span>        <span class="keywordflow">if</span> (!(* (HAL_SFR_t *) (uart_if[intfnum]-&gt;hwif-&gt;base + OFS_UART_CR3) &amp; USART_CR3_TXFTIE)) {</div>
-<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span>            * (HAL_SFR_t *) (uart_if[intfnum]-&gt;hwif-&gt;base + OFS_UART_CR3) |= USART_CR3_TXFTIE;</div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="if_8h.html#ae2c8854ca1d07fdd4f2d1a478282b0d2">uart_if</a>[intfnum]-&gt;hwif-&gt;fifomode){</div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span>        <span class="keywordflow">if</span> (!(* (HAL_SFR_t *) (<a class="code hl_variable" href="if_8h.html#ae2c8854ca1d07fdd4f2d1a478282b0d2">uart_if</a>[intfnum]-&gt;hwif-&gt;base + <a class="code hl_define" href="__uart_2registers_8h.html#a31a6d6b1733d1dcfb4ca8c14906123fe">OFS_UART_CR3</a>) &amp; USART_CR3_TXFTIE)) {</div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span>            * (HAL_SFR_t *) (<a class="code hl_variable" href="if_8h.html#ae2c8854ca1d07fdd4f2d1a478282b0d2">uart_if</a>[intfnum]-&gt;hwif-&gt;base + <a class="code hl_define" href="__uart_2registers_8h.html#a31a6d6b1733d1dcfb4ca8c14906123fe">OFS_UART_CR3</a>) |= USART_CR3_TXFTIE;</div>
 <div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span>        }</div>
 <div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span>    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span>        <span class="keywordflow">if</span> (!(* (HAL_SFR_t *) (uart_if[intfnum]-&gt;hwif-&gt;base + OFS_UART_CR1) &amp; USART_CR1_TXEIE)){</div>
-<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span>            * (HAL_SFR_t *) (uart_if[intfnum]-&gt;hwif-&gt;base + OFS_UART_CR1) |= USART_CR1_TXEIE;</div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span>        <span class="keywordflow">if</span> (!(* (HAL_SFR_t *) (<a class="code hl_variable" href="if_8h.html#ae2c8854ca1d07fdd4f2d1a478282b0d2">uart_if</a>[intfnum]-&gt;hwif-&gt;base + <a class="code hl_define" href="__uart_2registers_8h.html#a3af8fd35f86c615c01fefd5db7616667">OFS_UART_CR1</a>) &amp; USART_CR1_TXEIE)){</div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span>            * (HAL_SFR_t *) (<a class="code hl_variable" href="if_8h.html#ae2c8854ca1d07fdd4f2d1a478282b0d2">uart_if</a>[intfnum]-&gt;hwif-&gt;base + <a class="code hl_define" href="__uart_2registers_8h.html#a3af8fd35f86c615c01fefd5db7616667">OFS_UART_CR1</a>) |= USART_CR1_TXEIE;</div>
 <div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span>        }</div>
 <div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span>    }</div>
 <div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span>}</div>
@@ -411,36 +411,41 @@ $(document).ready(function(){initNavTree('u0xx_2uart__impl_8h_source.html',''); 
 <div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span> </div>
 <div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span><span class="keyword">static</span> <span class="keyword">inline</span> HAL_BASE_t uart_reqlock(HAL_BASE_t intfnum, HAL_BASE_t len, uint8_t token){</div>
 <div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span>    <span class="keywordflow">if</span> (len){</div>
-<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span>        <span class="keywordflow">return</span> bytebuf_cPushReqLock(uart_if[intfnum]-&gt;txbuf, len, token);</div>
+<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span>        <span class="keywordflow">return</span> bytebuf_cPushReqLock(<a class="code hl_variable" href="if_8h.html#ae2c8854ca1d07fdd4f2d1a478282b0d2">uart_if</a>[intfnum]-&gt;txbuf, len, token);</div>
 <div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span>    }</div>
 <div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span>    <span class="keywordflow">else</span>{</div>
-<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span>        <span class="keywordflow">return</span> bytebuf_cPushReqBlindLock(uart_if[intfnum]-&gt;txbuf, token);</div>
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span>        <span class="keywordflow">return</span> bytebuf_cPushReqBlindLock(<a class="code hl_variable" href="if_8h.html#ae2c8854ca1d07fdd4f2d1a478282b0d2">uart_if</a>[intfnum]-&gt;txbuf, token);</div>
 <div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span>    }</div>
 <div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>}</div>
 <div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span> </div>
 <div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span><span class="keyword">static</span> <span class="keyword">inline</span> HAL_BASE_t uart_rellock(HAL_BASE_t intfnum, uint8_t token){</div>
-<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span>    <span class="keywordflow">return</span> bytebuf_cPushRelinquishLock(uart_if[intfnum]-&gt;txbuf, token);</div>
+<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span>    <span class="keywordflow">return</span> bytebuf_cPushRelinquishLock(<a class="code hl_variable" href="if_8h.html#ae2c8854ca1d07fdd4f2d1a478282b0d2">uart_if</a>[intfnum]-&gt;txbuf, token);</div>
 <div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span>}</div>
 <div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span> </div>
 <div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> uart_putc_bare(HAL_BASE_t intfnum, uint8_t <span class="keywordtype">byte</span>){</div>
-<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span>    HAL_SFR_t * tdr = (HAL_SFR_t *)(uart_if[intfnum]-&gt;hwif-&gt;base + OFS_UART_TDR);</div>
+<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span>    HAL_SFR_t * tdr = (HAL_SFR_t *)(<a class="code hl_variable" href="if_8h.html#ae2c8854ca1d07fdd4f2d1a478282b0d2">uart_if</a>[intfnum]-&gt;hwif-&gt;base + <a class="code hl_define" href="__uart_2registers_8h.html#a7e0d0be1c980a5a299e48345d68adbe2">OFS_UART_TDR</a>);</div>
 <div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span>    *tdr = byte;</div>
 <div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span>}</div>
 <div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span> </div>
 <div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span><span class="keyword">static</span> <span class="keyword">inline</span> uint8_t uart_getc_bare(HAL_BASE_t intfnum){</div>
-<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span>    HAL_SFR_t * rdr = (HAL_SFR_t *)(uart_if[intfnum]-&gt;hwif-&gt;base + OFS_UART_RDR);</div>
+<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span>    HAL_SFR_t * rdr = (HAL_SFR_t *)(<a class="code hl_variable" href="if_8h.html#ae2c8854ca1d07fdd4f2d1a478282b0d2">uart_if</a>[intfnum]-&gt;hwif-&gt;base + <a class="code hl_define" href="__uart_2registers_8h.html#ac2662387f041d7926d51e53f8d4c2421">OFS_UART_RDR</a>);</div>
 <div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span>    <span class="keywordflow">return</span> *rdr &amp; 0xFF;</div>
 <div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span>}    </div>
 <div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span> </div>
 <div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span><span class="preprocessor">#endif</span></div>
 <div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="a__uart_2registers_8h_html_a31a6d6b1733d1dcfb4ca8c14906123fe"><div class="ttname"><a href="__uart_2registers_8h.html#a31a6d6b1733d1dcfb4ca8c14906123fe">OFS_UART_CR3</a></div><div class="ttdeci">#define OFS_UART_CR3</div><div class="ttdef"><b>Definition</b> <a href="__uart_2registers_8h_source.html#l00005">registers.h:5</a></div></div>
+<div class="ttc" id="a__uart_2registers_8h_html_a3af8fd35f86c615c01fefd5db7616667"><div class="ttname"><a href="__uart_2registers_8h.html#a3af8fd35f86c615c01fefd5db7616667">OFS_UART_CR1</a></div><div class="ttdeci">#define OFS_UART_CR1</div><div class="ttdef"><b>Definition</b> <a href="__uart_2registers_8h_source.html#l00003">registers.h:3</a></div></div>
+<div class="ttc" id="a__uart_2registers_8h_html_a7e0d0be1c980a5a299e48345d68adbe2"><div class="ttname"><a href="__uart_2registers_8h.html#a7e0d0be1c980a5a299e48345d68adbe2">OFS_UART_TDR</a></div><div class="ttdeci">#define OFS_UART_TDR</div><div class="ttdef"><b>Definition</b> <a href="__uart_2registers_8h_source.html#l00013">registers.h:13</a></div></div>
+<div class="ttc" id="a__uart_2registers_8h_html_ac2662387f041d7926d51e53f8d4c2421"><div class="ttname"><a href="__uart_2registers_8h.html#ac2662387f041d7926d51e53f8d4c2421">OFS_UART_RDR</a></div><div class="ttdeci">#define OFS_UART_RDR</div><div class="ttdef"><b>Definition</b> <a href="__uart_2registers_8h_source.html#l00012">registers.h:12</a></div></div>
+<div class="ttc" id="aif_8h_html_ae2c8854ca1d07fdd4f2d1a478282b0d2"><div class="ttname"><a href="if_8h.html#ae2c8854ca1d07fdd4f2d1a478282b0d2">uart_if</a></div><div class="ttdeci">const uart_if_t *const uart_if[uC_UARTS_ENABLED+1]</div><div class="ttdef"><b>Definition</b> <a href="if_8h_source.html#l00088">if.h:88</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_7da9fa3e46f3496e22e0d53e72e5a458.html">hal_platform</a></li><li class="navelem"><a class="el" href="dir_e6e81f65b81118890ab216e7e6c72be2.html">u0xx</a></li><li class="navelem"><a class="el" href="u0xx_2uart__impl_8h.html">uart_impl.h</a></li>
-    <li class="footer">Generated on Thu Jan 9 2025 14:35:04 for ebs-hal-uc-stm32 by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Sat Jan 11 2025 13:26:13 for ebs-hal-uc-stm32 by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

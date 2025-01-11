@@ -1,9 +1,11 @@
 <map id="hal_platform/h7rsxx/uc_map_impl.h" name="hal_platform/h7rsxx/uc_map_impl.h">
-<area shape="rect" id="Node000001" title=" " alt="" coords="113,5,266,45"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="187,5,341,45"/>
 <area shape="rect" id="Node000002" title=" " alt="" coords="5,93,112,119"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="159,48,91,88,88,84,156,43"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="216,48,103,91,101,86,214,43"/>
 <area shape="rect" id="Node000003" title=" " alt="" coords="136,93,243,119"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="192,46,192,79,187,79,187,46"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="248,47,212,85,208,81,244,44"/>
 <area shape="rect" id="Node000004" title=" " alt="" coords="267,93,413,119"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="227,43,307,84,304,89,224,48"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="284,44,321,81,317,85,280,47"/>
+<area shape="rect" id="Node000005" href="$enables_8h.html" title=" " alt="" coords="437,93,560,119"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="321,43,452,87,451,92,319,48"/>
 </map>
