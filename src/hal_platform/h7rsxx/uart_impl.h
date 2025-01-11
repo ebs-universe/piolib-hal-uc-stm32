@@ -83,6 +83,7 @@
 #include <hal/uc/uart.h>
 #include <hal/types/uart.h>
 #include <ds/bytebuf.h>
+#include <printf/printf.h>
 
 #if uC_UART_ENABLED
 
@@ -115,146 +116,10 @@ typedef struct UART_IF_t {
 // APB2 : USART 1
 // APB4 : LPUART 1 (UART6)
 
-#define UART_DEFAULT_BAUD                 115200
-#define UART_DEFAULT_PARITY               UART_PARITY_NONE
-#define UART_DEFAULT_STOPBITS             UART_STOPBITS_1
-#define UART_DEFAULT_WORDLENGTH           UART_WORDLENGTH_8B
-
-#define UART_DEFAULT_ENDIANNESS           UART_ADVFEATURE_MSBFIRST_DISABLE
-#define UART_DEFAULT_POLARITY_DATA        UART_ADVFEATURE_DATAINV_DISABLE
-#define UART_DEFAULT_POLARITY_TX          UART_ADVFEATURE_TXINV_DISABLE          
-#define UART_DEFAULT_POLARITY_RX          UART_ADVFEATURE_RXINV_DISABLE
-#define UART_DEFAULT_SWAP_TXRX            UART_ADVFEATURE_SWAP_DISABLE
-
-#define UART_DEFAULT_USE_HWFIFO           EBS_FALSE
-#define UART_DEFAULT_TH_TX_HWFIFO         UART_TXFIFO_THRESHOLD_7_8
-#define UART_DEFAULT_TH_RX_HWFIFO         UART_RXFIFO_THRESHOLD_1_8
-#define UART_DEFAULT_HWF_TX_CSIZE         7
-#define UART_DEFAULT_HWF_RX_CSIZE         1
-
-#define UART_DEFAULT_OVERSAMPLING         UART_OVERSAMPLING_16
-#define UART_DEFAULT_ONEBIT               UART_ONE_BIT_SAMPLE_DISABLE
-
-#define OFS_UART_CR1    0x00
-#define OFS_UART_CR2    0x04
-#define OFS_UART_CR3    0x08
-#define OFS_UART_BRR    0x0C
-#define OFS_UART_GTPR   0x10    // Not for LPUART
-#define OFS_UART_RTOR   0x14    // Not for LPUART
-#define OFS_UART_RQR    0x18
-#define OFS_UART_ISR    0x1C
-#define OFS_UART_ICR    0x20
-#define OFS_UART_RDR    0x24
-#define OFS_UART_TDR    0x28
-#define OFS_UART_PRESC  0x2C
-
+#include "_uart/registers.h"
+#include "_uart/defaults.h"
 
 extern const uart_if_t *const uart_if[];
-
-#if uC_UART1_ENABLED
-    extern bytebuf uart1_txbuf;
-    extern bytebuf uart1_rxbuf;
-    extern const uart_if_t uart1_if;
-#endif
-
-#if uC_UART2_ENABLED
-    extern bytebuf uart2_txbuf;
-    extern bytebuf uart2_rxbuf;
-    extern const uart_if_t uart2_if;    
-#endif
-
-#if uC_UART3_ENABLED
-    extern bytebuf uart3_txbuf;
-    extern bytebuf uart3_rxbuf;
-    extern const uart_if_t uart3_if;
-
-    #ifndef uC_UART3_BAUD
-    #define uC_UART3_BAUD            UART_DEFAULT_BAUD
-    #endif
-
-    #ifndef uC_UART3_PARITY
-    #define uC_UART3_PARITY          UART_DEFAULT_PARITY
-    #endif
-
-    #ifndef uC_UART3_STOPBITS
-    #define uC_UART3_STOPBITS        UART_DEFAULT_STOPBITS
-    #endif
-
-    #ifndef uC_UART3_WORDLENGTH
-    #define uC_UART3_WORDLENGTH      UART_DEFAULT_WORDLENGTH          
-    #endif
-
-    #ifndef uC_UART3_ENDIANNESS
-    #define uC_UART3_ENDIANNESS      UART_DEFAULT_ENDIANNESS
-    #endif
-
-    #ifndef uC_UART3_POLARITY_DATA
-    #define uC_UART3_POLARITY_DATA   UART_DEFAULT_POLARITY_DATA
-    #endif
-
-    #ifndef uC_UART3_POLARITY_TX
-    #define uC_UART3_POLARITY_TX     UART_DEFAULT_POLARITY_TX
-    #endif
-
-    #ifndef uC_UART3_POLARITY_RX
-    #define uC_UART3_POLARITY_RX     UART_DEFAULT_POLARITY_RX
-    #endif
-
-    #ifndef uC_UART3_SWAP_TXRX
-    #define uC_UART3_SWAP_TXRX       UART_DEFAULT_SWAP_TXRX
-    #endif
-
-    #ifndef uC_UART3_USE_HWFIFO
-    #define uC_UART3_USE_HWFIFO      UART_DEFAULT_USE_HWFIFO          
-    #endif
-
-    #ifndef uC_UART3_TH_TX_HWFIFO
-    #define uC_UART3_TH_TX_HWFIFO    UART_DEFAULT_TH_TX_HWFIFO
-    #endif
-
-    #ifndef uC_UART3_TH_RX_HWFIFO
-    #define uC_UART3_TH_RX_HWFIFO    UART_DEFAULT_TH_RX_HWFIFO
-    #endif
-
-    #ifndef uC_UART3_OVERSAMPLING
-    #define uC_UART3_OVERSAMPLING    UART_DEFAULT_OVERSAMPLING
-    #endif
-
-    #ifndef uC_UART3_ONEBIT
-    #define uC_UART3_ONEBIT          UART_DEFAULT_ONEBIT
-    #endif
-#endif
-
-#if uC_UART4_ENABLED
-    extern bytebuf uart4_txbuf;
-    extern bytebuf uart4_rxbuf;
-    extern const uart_if_t uart4_if;
-#endif
-
-#if uC_UART5_ENABLED
-    extern bytebuf uart5_txbuf;
-    extern bytebuf uart5_rxbuf;
-    extern const uart_if_t uart5_if;
-#endif
-
-#if uC_UART6_ENABLED
-    extern bytebuf uart6_txbuf;
-    extern bytebuf uart6_rxbuf;
-    extern const uart_if_t uart6_if;
-#endif
-
-#if uC_UART7_ENABLED
-    extern bytebuf uart7_txbuf;
-    extern bytebuf uart7_rxbuf;
-    extern const uart_if_t uart7_if;
-#endif
-
-#if uC_UART8_ENABLED
-    extern bytebuf uart8_txbuf;
-    extern bytebuf uart8_rxbuf;
-    extern const uart_if_t uart8_if;
-#endif
-
 
 static inline HAL_BASE_t uart_putc(HAL_BASE_t intfnum, uint8_t byte, uint8_t token, HAL_BASE_t handlelock){
     uint8_t stat=1;
@@ -302,7 +167,7 @@ static inline void uart_send_trigger(HAL_BASE_t intfnum){
             * (HAL_SFR_t *) (uart_if[intfnum]->hwif->base + OFS_UART_CR1) |= USART_CR1_TXEIE;
         }
     }
-}
+}   
 
 static inline void uart_send_flush(HAL_BASE_t intfnum){
     uart_send_trigger(intfnum);
