@@ -2,6 +2,8 @@
 #include "dma_impl.h"
 #include <string.h>
 
+#define EBS_DMA_COMPILATION_UNIT
+
 #if uC_DMA_ENABLED
 
 static inline void _dma_chn_init(
@@ -42,7 +44,7 @@ static inline void _dma_chn_init(
 
 #endif
 
-#include "_dma/channel_if.h"
+#include "_dma/channel_if.c"
 
 #if uC_DMA_MAX_LLIS
     dma_lli_t MM_DMA_LL __attribute__((aligned(4))) _lli[uC_DMA_MAX_LLIS] = {0};

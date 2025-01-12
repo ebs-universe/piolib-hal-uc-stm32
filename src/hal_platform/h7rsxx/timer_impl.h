@@ -65,75 +65,12 @@ typedef struct TIMER_IF_t {
 
 extern const timer_if_t *const timer_if[uC_TIMERS_ENABLED + 1];
 
-#define OFS_TIMx_CR1    0x000
-#define OFS_TIMx_CR2    0x004
-#define OFS_TIMx_SMCR   0x008
-#define OFS_TIMx_DIER   0x00C
-#define OFS_TIMx_SR     0x010
-#define OFS_TIMx_EGR    0x014
-#define OFS_TIMx_CCMR1  0x018
-#define OFS_TIMx_CCMR2  0x01C
-#define OFS_TIMx_CCER   0x020
-#define OFS_TIMx_CNT    0x024
-#define OFS_TIMx_PSC    0x028
-#define OFS_TIMx_ARR    0x02C
-#define OFS_TIMx_RCR    0x030 
-#define OFS_TIMx_CCR1   0x034
-#define OFS_TIMx_CCR2   0x038
-#define OFS_TIMx_CCR3   0x03C
-#define OFS_TIMx_CCR4   0x040
-#define OFS_TIMx_BDTR   0x044
-#define OFS_TIMx_CCR5   0x048
-#define OFS_TIMx_CCR6   0x04C
-#define OFS_TIMx_CCMR3  0x050
-#define OFS_TIMx_DTR2   0x054
-#define OFS_TIMx_ECR    0x058
-#define OFS_TIMx_TISEL  0x05C
-#define OFS_TIMx_AF1    0x060
-#define OFS_TIMx_AF2    0x064
-#define OFS_TIMx_DCR    0x3DC
-#define OFS_TIMx_DMAR   0x3E0
-
-#ifndef uC_TIMER_DEFAULT_CLK_FREQ
-  #define uC_TIMER_DEFAULT_CLK_FREQ    100000000ULL
-#endif
-
-#define uC_TIMER_DEFAULT_BUFFERED_TOP  EBS_TRUE
+#include "_timer/registers.h"
+#include "_timer/defaults.h"
 
 #if uC_TIM15_ENABLED
     extern const timer_if_t tim15_if;
     extern timer_state_t tim15_state;
-
-    #ifndef uC_TIM15_CLK_FREQ
-      #define uC_TIM15_CLK_FREQ           uC_TIMER_DEFAULT_CLK_FREQ
-    #endif
-    #ifndef uC_TIM15_PRESCALER
-      #define uC_TIM15_PRESCALER          (CLOCKTREE_TIM15_FREQ / uC_TIM15_CLK_FREQ)
-    #endif
-    #ifndef uC_TIM15_INTERRUPTS_ENABLE
-      #define uC_TIM15_INTERRUPTS_ENABLE     0
-    #endif
-    #ifndef uC_TIM15_INTERRUPT_TOP_ENABLE
-      #define uC_TIM15_INTERRUPT_TOP_ENABLE  0
-    #endif
-    #ifndef uC_TIM15_CYCLE_FREQ 
-        #define uC_TIM15_CYCLE_FREQ       100000
-    #endif
-    #ifndef uC_TIM15_CYCLE_TOP
-        #define uC_TIM15_CYCLE_TOP        (uC_TIM15_CLK_FREQ / uC_TIM15_CYCLE_FREQ)
-    #endif
-    #ifndef uC_TIM15_BUFFERED_TOP
-        #define uC_TIM15_BUFFERED_TOP     uC_TIMER_DEFAULT_BUFFERED_TOP
-    #endif
-    #ifndef uC_TIM15_CH1_OUTPUT_MODE
-        #define uC_TIM15_CH1_OUTPUT_MODE  TIMER_OUTMODE_NONE
-    #endif
-    #ifndef uC_TIM15_CH2_OUTPUT_MODE
-        #define uC_TIM15_CH2_OUTPUT_MODE  TIMER_OUTMODE_NONE
-    #endif
-    #ifndef uC_TIM15_TRIGGEN_SRC
-        #define uC_TIM15_TRIGGEN_SRC      TIMER_TRIGGEN_NONE
-    #endif
 #endif
 
 void _timer_set_mode(const _timer_hwif_t *const hwif, TIMER_MODE_t mode);

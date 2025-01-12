@@ -1,4 +1,5 @@
 
+#ifdef EBS_DMA_COMPILATION_UNIT
 
 #if uC_DMA1_CH0_ENABLED
     
@@ -930,3 +931,5 @@ const dma_chn_if_t dma_chn_if[] = {
         },
     #endif      
 };    
+
+#endif

@@ -1,0 +1,13 @@
+
+
+#if uC_TIM15_CH1_OUTPUT_MODE != TIMER_OUTMODE_NONE
+    #define uC_TIM15_CH1_OUTPUT_ENABLED     1
+#else
+    #define uC_TIM15_CH1_OUTPUT_ENABLED     0
+#endif
+
+#if uC_TIM15_CH2_OUTPUT_MODE != TIMER_OUTMODE_NONE
+    #define uC_TIM15_CH2_OUTPUT_ENABLED     1
+#else
+    #define uC_TIM15_CH2_OUTPUT_ENABLED     0
+#endif

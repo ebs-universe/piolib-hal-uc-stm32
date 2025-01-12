@@ -1,5 +1,7 @@
 
 
+#ifdef EBS_UART_COMPILATION_UNIT
+
 #if uC_UART1_ENABLED
 
 #endif
@@ -109,3 +111,5 @@ const uart_if_t *const uart_if[uC_UARTS_ENABLED + 1] = {
     #endif
     NULL
 };
+
+#endif
