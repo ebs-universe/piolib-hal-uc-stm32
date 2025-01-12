@@ -2,7 +2,7 @@ var searchData=
 [
   ['channel_5fdefaults_2eh_0',['channel_defaults.h',['../channel__defaults_8h.html',1,'']]],
   ['channel_5fenables_2eh_1',['channel_enables.h',['../__adc_2channel__enables_8h.html',1,'(Global Namespace)'],['../__dma_2channel__enables_8h.html',1,'(Global Namespace)']]],
-  ['channel_5fif_2eh_2',['channel_if.h',['../channel__if_8h.html',1,'']]],
+  ['channel_5fif_2ec_2',['channel_if.c',['../channel__if_8c.html',1,'']]],
   ['clock_20configuration_3',['Timer Clock Configuration',['..//home/runner/work/piolib-hal-uc-stm32/piolib-hal-uc-stm32/src/hal_platform/h7rsxx/timer_impl.h#autotoc_md0',1,'']]],
   ['configuration_4',['Timer Clock Configuration',['..//home/runner/work/piolib-hal-uc-stm32/piolib-hal-uc-stm32/src/hal_platform/h7rsxx/timer_impl.h#autotoc_md0',1,'']]],
   ['configure_5fmemory_5flayout_5',['configure_memory_layout',['../h7rsxx_2core__impl_8h.html#a5d6fdab6b0091a54a4bec25323e4eabf',1,'core_impl.h']]],
