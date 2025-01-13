@@ -1,6 +1,6 @@
 {
     "name": "ebs-hal-uc-stm32",
-    "version": "0.2.4",
+    "version": "0.3.0",
     "description": "EBS uC HAL implementation for ST STM32 uCs",
     "keywords": "ebs",
     "repository": {
@@ -20,8 +20,7 @@
     "dependencies": [
         { 
             "owner": "chintal",
-            "name": "ebs-ds",
-            "version": "^0.2.0"
+            "name": "ebs-ds"
         }
     ],
     "build": {
