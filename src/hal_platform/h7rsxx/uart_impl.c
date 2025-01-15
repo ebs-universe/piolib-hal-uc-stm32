@@ -54,13 +54,10 @@ static inline void _uart_conf_baud(
     }
 }
 
-static inline uint32_t _exp_uart_fifomode(EBS_BOOL_t fifomode){
-    switch (fifomode)
-    {
-    case EBS_TRUE:
+static inline uint32_t _exp_uart_fifomode(bool fifomode){
+    if (fifomode){
         return UART_FIFOMODE_ENABLE;
-    case EBS_FALSE:
-    default:
+    } else {
         return UART_FIFOMODE_DISABLE;
     }
 }
@@ -69,7 +66,7 @@ static inline void _uart_init(
         const _uart_hwif_t *const hwif, 
         uint32_t kerclk,
         uint32_t wordlength,
-        EBS_BOOL_t fifomode,
+        bool fifomode,
         uint32_t txfifo_threshold,
         uint32_t rxfifo_threshold,
         uint32_t stopbits,

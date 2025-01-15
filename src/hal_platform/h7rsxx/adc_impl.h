@@ -187,9 +187,9 @@ typedef struct _ADC_STATE_t{
         void (*handler_eos)(void);
     #endif
     #if uC_ADC_SUPPORT_DMA
-        volatile uint16_t *buf1;
-        volatile uint16_t *buf2;
-        void (*handler_eob)(uint8_t);
+        uint16_t * buf1;
+        uint16_t * buf2;
+        void (* handler_eob)(uint8_t);
     #endif
     void (*handler_eoc)(HAL_BASE_t, void *);
 } adc_state_t;
