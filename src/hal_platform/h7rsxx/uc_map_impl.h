@@ -145,8 +145,9 @@
 #endif
 
 #if APP_ENABLE_TIMER
-    #include "_timer/enables.h"
     #define uC_TIMER_CCR_t      uint32_t
+    #include "_timer/enables.h"
+    #include "_timer/outputs.h"
 #endif
 
 #if APP_ENABLE_ADC
