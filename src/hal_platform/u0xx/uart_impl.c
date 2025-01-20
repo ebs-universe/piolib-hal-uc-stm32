@@ -51,12 +51,9 @@ static inline void _uart_conf_baud(
 }
 
 static inline uint32_t _exp_uart_fifomode(EBS_BOOL_t fifomode){
-    switch (fifomode)
-    {
-    case EBS_TRUE:
+    if (fifomode) {
         return UART_FIFOMODE_ENABLE;
-    case EBS_FALSE:
-    default:
+    } else {
         return UART_FIFOMODE_DISABLE;
     }
 }
@@ -331,5 +328,48 @@ const uart_if_t *const uart_if[uC_UARTS_ENABLED + 1] = {
 void uart_init(HAL_BASE_t intfnum){
     uart_if[intfnum]->init();
 }
+
+HAL_BASE_t uart_vprintf(HAL_BASE_t intfnum, const char *format, va_list args) {
+    uint8_t stat, lstat;
+    stat = bytebuf_cPushReqBlindLock(uart_if[intfnum]->txbuf, BYTEBUF_TOKEN_PRINT);
+    if (stat){
+        stat = vbprintf(uart_if[intfnum]->txbuf, format, args);
+        lstat = bytebuf_cPushRelinquishLock(uart_if[intfnum]->txbuf, BYTEBUF_TOKEN_PRINT);
+        uart_send_trigger(intfnum);
+        if (lstat){
+            return stat;
+        }
+        else{
+            return 0;
+        }
+    }
+    else{
+        va_end(args);       
+        return 0;
+    }
+}
+
+HAL_BASE_t uart_printf(HAL_BASE_t intfnum, const char *format, ...){
+    uint8_t stat, lstat;
+    va_list args;
+    va_start(args, format);
+    stat = bytebuf_cPushReqBlindLock(uart_if[intfnum]->txbuf, BYTEBUF_TOKEN_PRINT);
+    if (stat){
+        stat = vbprintf(uart_if[intfnum]->txbuf, format, args);
+        va_end(args);
+        lstat = bytebuf_cPushRelinquishLock(uart_if[intfnum]->txbuf, BYTEBUF_TOKEN_PRINT);
+        uart_send_trigger(intfnum);
+        if (lstat){
+            return stat;
+        }
+        else{
+            return 0;
+        }
+    }
+    else{
+        va_end(args);       
+        return 0;
+    }
+}   
 
 #endif

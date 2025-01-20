@@ -201,16 +201,16 @@ static inline void _dma_chn_init(
     uint32_t crval = 0;
 
     switch (priority){
-        case DMA_PRIORITY_IMMEDIATE:
+        case DMA_PRIO_IMMEDIATE:
             crval |= (DMA_CCR_PRIO_1 | DMA_CCR_PRIO_0);
             break;
-        case DMA_PRIORITY_HIGH:
+        case DMA_PRIO_HIGH:
             crval |= DMA_CCR_PRIO_1;
             break;
-           case DMA_PRIORITY_LOW:
+           case DMA_PRIO_LOW:
             crval |= DMA_CCR_PRIO_0;
             break;
-        case DMA_PRIORITY_BACKGROUND:
+        case DMA_PRIO_BACKGROUND:
         default:
             break;
     }

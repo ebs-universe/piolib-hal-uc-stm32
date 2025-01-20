@@ -147,12 +147,6 @@ typedef struct DMA_FLOW_CONTROL_t {
 // #define DMA_OPT_REQ_SRC         0x00
 
 #include "_dma/registers.h"
-
-#define uC_DMA_DEFAULT_PRIORITY         DMA_PRIORITY_LOW
-#define uC_DMA_DEFAULT_ENABLE_CB_TC     EBS_TRUE
-#define uC_DMA_DEFAULT_ENABLE_CB_HC     EBS_FALSE
-#define uC_DMA_DEFAULT_CHANNEL_TYPE     DMA_CHN_TYPE_LINEAR
-
 #include "_dma/channel_defaults.h"
 
 extern const dma_chn_if_t dma_chn_if[];
