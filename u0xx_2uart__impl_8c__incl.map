@@ -1,11 +1,13 @@
 <map id="hal_platform/u0xx/uart_impl.c" name="hal_platform/u0xx/uart_impl.c">
-<area shape="rect" id="Node000001" title=" " alt="" coords="109,5,279,45"/>
-<area shape="rect" id="Node000002" href="$u0xx_2uart__impl_8h.html" title=" " alt="" coords="146,93,242,119"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="197,46,197,79,191,79,191,46"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="177,5,347,45"/>
+<area shape="rect" id="Node000002" href="$u0xx_2uart__impl_8h.html" title=" " alt="" coords="214,93,310,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="265,46,265,79,259,79,259,46"/>
 <area shape="rect" id="Node000003" title=" " alt="" coords="5,167,108,192"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="173,121,92,163,90,158,171,116"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="230,121,104,165,102,160,228,116"/>
 <area shape="rect" id="Node000004" title=" " alt="" coords="132,167,256,192"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="197,119,197,153,191,153,191,119"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="253,121,217,158,213,155,249,117"/>
 <area shape="rect" id="Node000005" title=" " alt="" coords="280,167,383,192"/>
-<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="217,116,298,158,296,163,215,121"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="275,117,313,155,309,159,272,121"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="407,167,514,192"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="295,116,416,159,414,164,293,121"/>
 </map>

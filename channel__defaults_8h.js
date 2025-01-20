@@ -125,5 +125,9 @@ var channel__defaults_8h =
     [ "uC_DMA2_CH9_ENABLE_CB_HC", "channel__defaults_8h.html#a49a3e83f2fc99350af44cff7a8eb1ad3", null ],
     [ "uC_DMA2_CH9_ENABLE_CB_TC", "channel__defaults_8h.html#ab74adc66b779794189ba89233068d15a", null ],
     [ "uC_DMA2_CH9_PRIORITY", "channel__defaults_8h.html#a9e97067491923e2a7d186cd1c3c95b3a", null ],
-    [ "uC_DMA2_CH9_TYPE", "channel__defaults_8h.html#a8c0a9908d282cc899ce914c8a8761cbb", null ]
+    [ "uC_DMA2_CH9_TYPE", "channel__defaults_8h.html#a8c0a9908d282cc899ce914c8a8761cbb", null ],
+    [ "uC_DMA_DEFAULT_CHANNEL_TYPE", "channel__defaults_8h.html#a9856ebe238bbc9ffbf9aad3e5709af92", null ],
+    [ "uC_DMA_DEFAULT_ENABLE_CB_HC", "channel__defaults_8h.html#a7dad0bb139d5553c1d0981104b5e0d26", null ],
+    [ "uC_DMA_DEFAULT_ENABLE_CB_TC", "channel__defaults_8h.html#a0782def1294a3f71ff55caed9d516f55", null ],
+    [ "uC_DMA_DEFAULT_PRIORITY", "channel__defaults_8h.html#a8f9b64fbdae1c7207c47450574e18104", null ]
 ];

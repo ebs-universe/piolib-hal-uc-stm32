@@ -268,11 +268,11 @@ $(document).ready(function(){initNavTree('dma__impl_8c_source.html',''); initRes
 <div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>    EBS_BOOL_t enable_cb_hc</div>
 <div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>) {</div>
 <div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span> </div>
-<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>    HAL_SFR_t * cr = (HAL_SFR_t *)(dma_chn_if[intfnum].hwif.base + <a class="code hl_define" href="__dma_2registers_8h.html#ad3c05112df3c28772766ff406205329c">OFS_DMA_Cx_CR</a>);</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>    HAL_SFR_t * cr = (HAL_SFR_t *)(dma_chn_if[intfnum].hwif.base + <a class="code hl_define" href="h7rsxx_2__dma_2registers_8h.html#ad3c05112df3c28772766ff406205329c">OFS_DMA_Cx_CR</a>);</div>
 <div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>    *cr &amp;= ~DMA_CCR_RESET;</div>
 <div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span> </div>
 <div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>    <span class="comment">// Set to privileged mode</span></div>
-<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>    HAL_SFR_t * privcfgr = (HAL_SFR_t *)(dma_chn_if[intfnum].hwif.core-&gt;base + <a class="code hl_define" href="__dma_2registers_8h.html#a19a2b4fde2b7a144ca86229b868bee46">OFS_DMA_PRIVCFGR</a>);</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>    HAL_SFR_t * privcfgr = (HAL_SFR_t *)(dma_chn_if[intfnum].hwif.core-&gt;base + <a class="code hl_define" href="h7rsxx_2__dma_2registers_8h.html#a19a2b4fde2b7a144ca86229b868bee46">OFS_DMA_PRIVCFGR</a>);</div>
 <div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>    *privcfgr |= (1 &lt;&lt; dma_chn_if[intfnum].hwif.chnum);</div>
 <div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span> </div>
 <div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>    <span class="comment">// Clear all flags. Reset should take care of this. </span></div>
@@ -290,16 +290,16 @@ $(document).ready(function(){initNavTree('dma__impl_8c_source.html',''); initRes
 <div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>    uint32_t crval = 0;</div>
 <div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span> </div>
 <div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>    <span class="keywordflow">switch</span> (priority){</div>
-<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>        <span class="keywordflow">case</span> DMA_PRIORITY_IMMEDIATE:</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>        <span class="keywordflow">case</span> DMA_PRIO_IMMEDIATE:</div>
 <div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>            crval |= (DMA_CCR_PRIO_1 | DMA_CCR_PRIO_0);</div>
 <div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>            <span class="keywordflow">break</span>;</div>
-<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>        <span class="keywordflow">case</span> DMA_PRIORITY_HIGH:</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>        <span class="keywordflow">case</span> DMA_PRIO_HIGH:</div>
 <div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>            crval |= DMA_CCR_PRIO_1;</div>
 <div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>            <span class="keywordflow">break</span>;</div>
-<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>           <span class="keywordflow">case</span> DMA_PRIORITY_LOW:</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>           <span class="keywordflow">case</span> DMA_PRIO_LOW:</div>
 <div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>            crval |= DMA_CCR_PRIO_0;</div>
 <div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>            <span class="keywordflow">break</span>;</div>
-<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>        <span class="keywordflow">case</span> DMA_PRIORITY_BACKGROUND:</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>        <span class="keywordflow">case</span> DMA_PRIO_BACKGROUND:</div>
 <div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>        <span class="keywordflow">default</span>:</div>
 <div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>            <span class="keywordflow">break</span>;</div>
 <div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>    }</div>
@@ -314,7 +314,7 @@ $(document).ready(function(){initNavTree('dma__impl_8c_source.html',''); initRes
 <div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span> </div>
 <div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>    *cr = crval;</div>
 <div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span> </div>
-<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>    HAL_SFR_t * lbar = (HAL_SFR_t *)(dma_chn_if[intfnum].hwif.base + <a class="code hl_define" href="__dma_2registers_8h.html#afada790107b06ce857369cda3a8a6fec">OFS_DMA_Cx_LBAR</a>);</div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>    HAL_SFR_t * lbar = (HAL_SFR_t *)(dma_chn_if[intfnum].hwif.base + <a class="code hl_define" href="h7rsxx_2__dma_2registers_8h.html#afada790107b06ce857369cda3a8a6fec">OFS_DMA_Cx_LBAR</a>);</div>
 <div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>    *lbar = MEMMAP_DMA_LLI_BASE &amp; 0xFFFF0000;</div>
 <div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span> </div>
 <div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>    <span class="comment">// switch (dma_chn_if[intfnum].hwif.core-&gt;type)</span></div>
@@ -332,13 +332,13 @@ $(document).ready(function(){initNavTree('dma__impl_8c_source.html',''); initRes
 <div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>}</div>
 <div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span> </div>
 <div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span><span class="keywordtype">void</span> dma_suspend_channel(HAL_BASE_t intfnum){</div>
-<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>    HAL_SFR_t * cr = (HAL_SFR_t *)(dma_chn_if[intfnum].hwif.base + <a class="code hl_define" href="__dma_2registers_8h.html#ad3c05112df3c28772766ff406205329c">OFS_DMA_Cx_CR</a>);</div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>    HAL_SFR_t * cr = (HAL_SFR_t *)(dma_chn_if[intfnum].hwif.base + <a class="code hl_define" href="h7rsxx_2__dma_2registers_8h.html#ad3c05112df3c28772766ff406205329c">OFS_DMA_Cx_CR</a>);</div>
 <div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>    *cr |= DMA_CCR_SUSP;</div>
 <div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>    <span class="keywordflow">while</span> (!(*cr &amp; DMA_CCR_SUSP)){}</div>
 <div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>}</div>
 <div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span> </div>
 <div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span><span class="keywordtype">void</span> dma_resume_channel(HAL_BASE_t intfnum){</div>
-<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>    HAL_SFR_t * cr = (HAL_SFR_t *)(dma_chn_if[intfnum].hwif.base + <a class="code hl_define" href="__dma_2registers_8h.html#ad3c05112df3c28772766ff406205329c">OFS_DMA_Cx_CR</a>);</div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>    HAL_SFR_t * cr = (HAL_SFR_t *)(dma_chn_if[intfnum].hwif.base + <a class="code hl_define" href="h7rsxx_2__dma_2registers_8h.html#ad3c05112df3c28772766ff406205329c">OFS_DMA_Cx_CR</a>);</div>
 <div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>    *cr &amp;= ~DMA_CCR_SUSP;</div>
 <div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>}</div>
 <div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span> </div>
@@ -361,7 +361,7 @@ $(document).ready(function(){initNavTree('dma__impl_8c_source.html',''); initRes
 <div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>    }</div>
 <div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span> </div>
 <div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>    uint32_t * walker = &amp;(dma_chn_if[intfnum].state-&gt;ll_pending-&gt;llr);         </div>
-<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>    uint32_t lbar = *(HAL_SFR_t *)(dma_chn_if[intfnum].hwif.base + <a class="code hl_define" href="__dma_2registers_8h.html#afada790107b06ce857369cda3a8a6fec">OFS_DMA_Cx_LBAR</a>);</div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>    uint32_t lbar = *(HAL_SFR_t *)(dma_chn_if[intfnum].hwif.base + <a class="code hl_define" href="h7rsxx_2__dma_2registers_8h.html#afada790107b06ce857369cda3a8a6fec">OFS_DMA_Cx_LBAR</a>);</div>
 <div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span> </div>
 <div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>    <span class="keywordflow">while</span> (*walker) {</div>
 <div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>        dma_lli_t * next = (dma_lli_t *)(lbar | (*walker &amp; 0x0000FFFC)) ;</div>
@@ -474,27 +474,27 @@ $(document).ready(function(){initNavTree('dma__impl_8c_source.html',''); initRes
 <div class="line"><a id="l00393" name="l00393"></a><span class="lineno">  393</span>}   </div>
 <div class="line"><a id="l00394" name="l00394"></a><span class="lineno">  394</span> </div>
 <div class="line"><a id="l00395" name="l00395"></a><span class="lineno">  395</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> _dma_exec(HAL_BASE_t intfnum, dma_lli_t * lli){</div>
-<div class="line"><a id="l00396" name="l00396"></a><span class="lineno">  396</span>    HAL_SFR_t * tr1 = (HAL_SFR_t *)(dma_chn_if[intfnum].hwif.base + <a class="code hl_define" href="__dma_2registers_8h.html#a365a52451ae33492e33fe62981ac47fb">OFS_DMA_Cx_TR1</a>);</div>
+<div class="line"><a id="l00396" name="l00396"></a><span class="lineno">  396</span>    HAL_SFR_t * tr1 = (HAL_SFR_t *)(dma_chn_if[intfnum].hwif.base + <a class="code hl_define" href="h7rsxx_2__dma_2registers_8h.html#a365a52451ae33492e33fe62981ac47fb">OFS_DMA_Cx_TR1</a>);</div>
 <div class="line"><a id="l00397" name="l00397"></a><span class="lineno">  397</span>    *tr1 = lli-&gt;tr1;</div>
 <div class="line"><a id="l00398" name="l00398"></a><span class="lineno">  398</span> </div>
-<div class="line"><a id="l00399" name="l00399"></a><span class="lineno">  399</span>    HAL_SFR_t * tr2 = (HAL_SFR_t *)(dma_chn_if[intfnum].hwif.base + <a class="code hl_define" href="__dma_2registers_8h.html#a766b7daae6114f223cc6fab58048ce87">OFS_DMA_Cx_TR2</a>);</div>
+<div class="line"><a id="l00399" name="l00399"></a><span class="lineno">  399</span>    HAL_SFR_t * tr2 = (HAL_SFR_t *)(dma_chn_if[intfnum].hwif.base + <a class="code hl_define" href="h7rsxx_2__dma_2registers_8h.html#a766b7daae6114f223cc6fab58048ce87">OFS_DMA_Cx_TR2</a>);</div>
 <div class="line"><a id="l00400" name="l00400"></a><span class="lineno">  400</span>    *tr2 = lli-&gt;tr2;</div>
 <div class="line"><a id="l00401" name="l00401"></a><span class="lineno">  401</span> </div>
-<div class="line"><a id="l00402" name="l00402"></a><span class="lineno">  402</span>    HAL_SFR_t * br1 = (HAL_SFR_t *)(dma_chn_if[intfnum].hwif.base + <a class="code hl_define" href="__dma_2registers_8h.html#aea91a458569447ce4f47d4419f300f32">OFS_DMA_Cx_BR1</a>);</div>
+<div class="line"><a id="l00402" name="l00402"></a><span class="lineno">  402</span>    HAL_SFR_t * br1 = (HAL_SFR_t *)(dma_chn_if[intfnum].hwif.base + <a class="code hl_define" href="h7rsxx_2__dma_2registers_8h.html#aea91a458569447ce4f47d4419f300f32">OFS_DMA_Cx_BR1</a>);</div>
 <div class="line"><a id="l00403" name="l00403"></a><span class="lineno">  403</span>    *br1 = lli-&gt;br1;</div>
 <div class="line"><a id="l00404" name="l00404"></a><span class="lineno">  404</span>    </div>
-<div class="line"><a id="l00405" name="l00405"></a><span class="lineno">  405</span>    HAL_SFR_t * sar = (HAL_SFR_t *)(dma_chn_if[intfnum].hwif.base + <a class="code hl_define" href="__dma_2registers_8h.html#aefc7eae395375ecad369860515c358d7">OFS_DMA_Cx_SAR</a>);</div>
+<div class="line"><a id="l00405" name="l00405"></a><span class="lineno">  405</span>    HAL_SFR_t * sar = (HAL_SFR_t *)(dma_chn_if[intfnum].hwif.base + <a class="code hl_define" href="h7rsxx_2__dma_2registers_8h.html#aefc7eae395375ecad369860515c358d7">OFS_DMA_Cx_SAR</a>);</div>
 <div class="line"><a id="l00406" name="l00406"></a><span class="lineno">  406</span>    *sar = lli-&gt;sar;</div>
 <div class="line"><a id="l00407" name="l00407"></a><span class="lineno">  407</span> </div>
-<div class="line"><a id="l00408" name="l00408"></a><span class="lineno">  408</span>    HAL_SFR_t * dar = (HAL_SFR_t *)(dma_chn_if[intfnum].hwif.base + <a class="code hl_define" href="__dma_2registers_8h.html#a0287914f46855d56ee0a7c71f0d38d82">OFS_DMA_Cx_DAR</a>);</div>
+<div class="line"><a id="l00408" name="l00408"></a><span class="lineno">  408</span>    HAL_SFR_t * dar = (HAL_SFR_t *)(dma_chn_if[intfnum].hwif.base + <a class="code hl_define" href="h7rsxx_2__dma_2registers_8h.html#a0287914f46855d56ee0a7c71f0d38d82">OFS_DMA_Cx_DAR</a>);</div>
 <div class="line"><a id="l00409" name="l00409"></a><span class="lineno">  409</span>    *dar = lli-&gt;dar;</div>
 <div class="line"><a id="l00410" name="l00410"></a><span class="lineno">  410</span> </div>
-<div class="line"><a id="l00411" name="l00411"></a><span class="lineno">  411</span>    HAL_SFR_t * llr = (HAL_SFR_t *)(dma_chn_if[intfnum].hwif.base + <a class="code hl_define" href="__dma_2registers_8h.html#aaf6008f8499b6077976db8ed539c2e8a">OFS_DMA_Cx_LLR</a>);</div>
+<div class="line"><a id="l00411" name="l00411"></a><span class="lineno">  411</span>    HAL_SFR_t * llr = (HAL_SFR_t *)(dma_chn_if[intfnum].hwif.base + <a class="code hl_define" href="h7rsxx_2__dma_2registers_8h.html#aaf6008f8499b6077976db8ed539c2e8a">OFS_DMA_Cx_LLR</a>);</div>
 <div class="line"><a id="l00412" name="l00412"></a><span class="lineno">  412</span>    *llr = lli-&gt;llr;</div>
 <div class="line"><a id="l00413" name="l00413"></a><span class="lineno">  413</span>}</div>
 <div class="line"><a id="l00414" name="l00414"></a><span class="lineno">  414</span> </div>
 <div class="line"><a id="l00415" name="l00415"></a><span class="lineno">  415</span><span class="keywordtype">void</span> dma_activate(HAL_BASE_t intfnum){</div>
-<div class="line"><a id="l00416" name="l00416"></a><span class="lineno">  416</span>    HAL_SFR_t * cr = (HAL_SFR_t *)(dma_chn_if[intfnum].hwif.base + <a class="code hl_define" href="__dma_2registers_8h.html#ad3c05112df3c28772766ff406205329c">OFS_DMA_Cx_CR</a>);</div>
+<div class="line"><a id="l00416" name="l00416"></a><span class="lineno">  416</span>    HAL_SFR_t * cr = (HAL_SFR_t *)(dma_chn_if[intfnum].hwif.base + <a class="code hl_define" href="h7rsxx_2__dma_2registers_8h.html#ad3c05112df3c28772766ff406205329c">OFS_DMA_Cx_CR</a>);</div>
 <div class="line"><a id="l00417" name="l00417"></a><span class="lineno">  417</span>    <span class="keywordflow">if</span> (dma_chn_if[intfnum].state-&gt;ll_active){</div>
 <div class="line"><a id="l00424" name="l00424"></a><span class="lineno">  424</span>        <span class="keywordflow">return</span>;</div>
 <div class="line"><a id="l00425" name="l00425"></a><span class="lineno">  425</span>    }</div>
@@ -531,12 +531,12 @@ $(document).ready(function(){initNavTree('dma__impl_8c_source.html',''); initRes
 <div class="line"><a id="l00456" name="l00456"></a><span class="lineno">  456</span> </div>
 <div class="line"><a id="l00457" name="l00457"></a><span class="lineno">  457</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> dma_process_tc_linear(HAL_BASE_t intfnum){</div>
 <div class="line"><a id="l00458" name="l00458"></a><span class="lineno">  458</span>    <span class="comment">// All of the LL is done</span></div>
-<div class="line"><a id="l00459" name="l00459"></a><span class="lineno">  459</span>    HAL_SFR_t * cr = (HAL_SFR_t *)(dma_chn_if[intfnum].hwif.base + <a class="code hl_define" href="__dma_2registers_8h.html#ad3c05112df3c28772766ff406205329c">OFS_DMA_Cx_CR</a>);</div>
+<div class="line"><a id="l00459" name="l00459"></a><span class="lineno">  459</span>    HAL_SFR_t * cr = (HAL_SFR_t *)(dma_chn_if[intfnum].hwif.base + <a class="code hl_define" href="h7rsxx_2__dma_2registers_8h.html#ad3c05112df3c28772766ff406205329c">OFS_DMA_Cx_CR</a>);</div>
 <div class="line"><a id="l00460" name="l00460"></a><span class="lineno">  460</span>    dma_lli_t * lli = dma_chn_if[intfnum].state-&gt;ll_active;</div>
 <div class="line"><a id="l00461" name="l00461"></a><span class="lineno">  461</span>    _dma_process_tc_single(lli);</div>
 <div class="line"><a id="l00462" name="l00462"></a><span class="lineno">  462</span> </div>
 <div class="line"><a id="l00463" name="l00463"></a><span class="lineno">  463</span>    uint32_t * walker = &amp;(lli-&gt;llr);         </div>
-<div class="line"><a id="l00464" name="l00464"></a><span class="lineno">  464</span>    uint32_t lbar = *(HAL_SFR_t *)(dma_chn_if[intfnum].hwif.base + <a class="code hl_define" href="__dma_2registers_8h.html#afada790107b06ce857369cda3a8a6fec">OFS_DMA_Cx_LBAR</a>);</div>
+<div class="line"><a id="l00464" name="l00464"></a><span class="lineno">  464</span>    uint32_t lbar = *(HAL_SFR_t *)(dma_chn_if[intfnum].hwif.base + <a class="code hl_define" href="h7rsxx_2__dma_2registers_8h.html#afada790107b06ce857369cda3a8a6fec">OFS_DMA_Cx_LBAR</a>);</div>
 <div class="line"><a id="l00465" name="l00465"></a><span class="lineno">  465</span>    </div>
 <div class="line"><a id="l00466" name="l00466"></a><span class="lineno">  466</span>    <span class="keywordflow">while</span> (*walker) {</div>
 <div class="line"><a id="l00467" name="l00467"></a><span class="lineno">  467</span>        dma_lli_t * next = (dma_lli_t *)(lbar | (*walker &amp; 0x0000FFFC)) ;</div>
@@ -564,7 +564,7 @@ $(document).ready(function(){initNavTree('dma__impl_8c_source.html',''); initRes
 <div class="line"><a id="l00489" name="l00489"></a><span class="lineno">  489</span>        lli-&gt;cb_tc(lli-&gt;token);</div>
 <div class="line"><a id="l00490" name="l00490"></a><span class="lineno">  490</span>    }       </div>
 <div class="line"><a id="l00491" name="l00491"></a><span class="lineno">  491</span> </div>
-<div class="line"><a id="l00492" name="l00492"></a><span class="lineno">  492</span>    uint32_t lbar = *(HAL_SFR_t *)(dma_chn_if[intfnum].hwif.base + <a class="code hl_define" href="__dma_2registers_8h.html#afada790107b06ce857369cda3a8a6fec">OFS_DMA_Cx_LBAR</a>);</div>
+<div class="line"><a id="l00492" name="l00492"></a><span class="lineno">  492</span>    uint32_t lbar = *(HAL_SFR_t *)(dma_chn_if[intfnum].hwif.base + <a class="code hl_define" href="h7rsxx_2__dma_2registers_8h.html#afada790107b06ce857369cda3a8a6fec">OFS_DMA_Cx_LBAR</a>);</div>
 <div class="line"><a id="l00493" name="l00493"></a><span class="lineno">  493</span> </div>
 <div class="line"><a id="l00494" name="l00494"></a><span class="lineno">  494</span>    <span class="keywordflow">if</span> (lli-&gt;llr){</div>
 <div class="line"><a id="l00495" name="l00495"></a><span class="lineno">  495</span>        <span class="comment">// Rotate active forward</span></div>
@@ -576,8 +576,8 @@ $(document).ready(function(){initNavTree('dma__impl_8c_source.html',''); initRes
 <div class="line"><a id="l00501" name="l00501"></a><span class="lineno">  501</span>}</div>
 <div class="line"><a id="l00502" name="l00502"></a><span class="lineno">  502</span> </div>
 <div class="line"><a id="l00503" name="l00503"></a><span class="lineno">  503</span><span class="keywordtype">void</span> dma_process_events(HAL_BASE_t intfnum){</div>
-<div class="line"><a id="l00504" name="l00504"></a><span class="lineno">  504</span>    uint32_t sr = *(HAL_SFR_t *)(dma_chn_if[intfnum].hwif.base + <a class="code hl_define" href="__dma_2registers_8h.html#a25f360dcc6cb5a9e3fd4f879f56ef25e">OFS_DMA_Cx_SR</a>);</div>
-<div class="line"><a id="l00505" name="l00505"></a><span class="lineno">  505</span>    HAL_SFR_t * fcr = (HAL_SFR_t *)(dma_chn_if[intfnum].hwif.base + <a class="code hl_define" href="__dma_2registers_8h.html#a9dc839bca6d1b5663403458367ba3be4">OFS_DMA_Cx_FCR</a>);</div>
+<div class="line"><a id="l00504" name="l00504"></a><span class="lineno">  504</span>    uint32_t sr = *(HAL_SFR_t *)(dma_chn_if[intfnum].hwif.base + <a class="code hl_define" href="h7rsxx_2__dma_2registers_8h.html#a25f360dcc6cb5a9e3fd4f879f56ef25e">OFS_DMA_Cx_SR</a>);</div>
+<div class="line"><a id="l00505" name="l00505"></a><span class="lineno">  505</span>    HAL_SFR_t * fcr = (HAL_SFR_t *)(dma_chn_if[intfnum].hwif.base + <a class="code hl_define" href="h7rsxx_2__dma_2registers_8h.html#a9dc839bca6d1b5663403458367ba3be4">OFS_DMA_Cx_FCR</a>);</div>
 <div class="line"><a id="l00506" name="l00506"></a><span class="lineno">  506</span> </div>
 <div class="line"><a id="l00507" name="l00507"></a><span class="lineno">  507</span>    <span class="keywordflow">if</span> (!sr){</div>
 <div class="line"><a id="l00508" name="l00508"></a><span class="lineno">  508</span>        <span class="keywordflow">return</span>;     </div>
@@ -707,18 +707,18 @@ $(document).ready(function(){initNavTree('dma__impl_8c_source.html',''); initRes
 <div class="line"><a id="l00656" name="l00656"></a><span class="lineno">  656</span> </div>
 <div class="line"><a id="l00657" name="l00657"></a><span class="lineno">  657</span><span class="preprocessor">#endif</span></div>
 <div class="line"><a id="l00658" name="l00658"></a><span class="lineno">  658</span> </div>
-<div class="ttc" id="a__dma_2registers_8h_html_a0287914f46855d56ee0a7c71f0d38d82"><div class="ttname"><a href="__dma_2registers_8h.html#a0287914f46855d56ee0a7c71f0d38d82">OFS_DMA_Cx_DAR</a></div><div class="ttdeci">#define OFS_DMA_Cx_DAR</div><div class="ttdef"><b>Definition</b> <a href="__dma_2registers_8h_source.html#l00015">registers.h:15</a></div></div>
-<div class="ttc" id="a__dma_2registers_8h_html_a19a2b4fde2b7a144ca86229b868bee46"><div class="ttname"><a href="__dma_2registers_8h.html#a19a2b4fde2b7a144ca86229b868bee46">OFS_DMA_PRIVCFGR</a></div><div class="ttdeci">#define OFS_DMA_PRIVCFGR</div><div class="ttdef"><b>Definition</b> <a href="__dma_2registers_8h_source.html#l00002">registers.h:2</a></div></div>
-<div class="ttc" id="a__dma_2registers_8h_html_a25f360dcc6cb5a9e3fd4f879f56ef25e"><div class="ttname"><a href="__dma_2registers_8h.html#a25f360dcc6cb5a9e3fd4f879f56ef25e">OFS_DMA_Cx_SR</a></div><div class="ttdeci">#define OFS_DMA_Cx_SR</div><div class="ttdef"><b>Definition</b> <a href="__dma_2registers_8h_source.html#l00009">registers.h:9</a></div></div>
-<div class="ttc" id="a__dma_2registers_8h_html_a365a52451ae33492e33fe62981ac47fb"><div class="ttname"><a href="__dma_2registers_8h.html#a365a52451ae33492e33fe62981ac47fb">OFS_DMA_Cx_TR1</a></div><div class="ttdeci">#define OFS_DMA_Cx_TR1</div><div class="ttdef"><b>Definition</b> <a href="__dma_2registers_8h_source.html#l00011">registers.h:11</a></div></div>
-<div class="ttc" id="a__dma_2registers_8h_html_a766b7daae6114f223cc6fab58048ce87"><div class="ttname"><a href="__dma_2registers_8h.html#a766b7daae6114f223cc6fab58048ce87">OFS_DMA_Cx_TR2</a></div><div class="ttdeci">#define OFS_DMA_Cx_TR2</div><div class="ttdef"><b>Definition</b> <a href="__dma_2registers_8h_source.html#l00012">registers.h:12</a></div></div>
-<div class="ttc" id="a__dma_2registers_8h_html_a9dc839bca6d1b5663403458367ba3be4"><div class="ttname"><a href="__dma_2registers_8h.html#a9dc839bca6d1b5663403458367ba3be4">OFS_DMA_Cx_FCR</a></div><div class="ttdeci">#define OFS_DMA_Cx_FCR</div><div class="ttdef"><b>Definition</b> <a href="__dma_2registers_8h_source.html#l00008">registers.h:8</a></div></div>
-<div class="ttc" id="a__dma_2registers_8h_html_aaf6008f8499b6077976db8ed539c2e8a"><div class="ttname"><a href="__dma_2registers_8h.html#aaf6008f8499b6077976db8ed539c2e8a">OFS_DMA_Cx_LLR</a></div><div class="ttdeci">#define OFS_DMA_Cx_LLR</div><div class="ttdef"><b>Definition</b> <a href="__dma_2registers_8h_source.html#l00018">registers.h:18</a></div></div>
-<div class="ttc" id="a__dma_2registers_8h_html_ad3c05112df3c28772766ff406205329c"><div class="ttname"><a href="__dma_2registers_8h.html#ad3c05112df3c28772766ff406205329c">OFS_DMA_Cx_CR</a></div><div class="ttdeci">#define OFS_DMA_Cx_CR</div><div class="ttdef"><b>Definition</b> <a href="__dma_2registers_8h_source.html#l00010">registers.h:10</a></div></div>
-<div class="ttc" id="a__dma_2registers_8h_html_aea91a458569447ce4f47d4419f300f32"><div class="ttname"><a href="__dma_2registers_8h.html#aea91a458569447ce4f47d4419f300f32">OFS_DMA_Cx_BR1</a></div><div class="ttdeci">#define OFS_DMA_Cx_BR1</div><div class="ttdef"><b>Definition</b> <a href="__dma_2registers_8h_source.html#l00013">registers.h:13</a></div></div>
-<div class="ttc" id="a__dma_2registers_8h_html_aefc7eae395375ecad369860515c358d7"><div class="ttname"><a href="__dma_2registers_8h.html#aefc7eae395375ecad369860515c358d7">OFS_DMA_Cx_SAR</a></div><div class="ttdeci">#define OFS_DMA_Cx_SAR</div><div class="ttdef"><b>Definition</b> <a href="__dma_2registers_8h_source.html#l00014">registers.h:14</a></div></div>
-<div class="ttc" id="a__dma_2registers_8h_html_afada790107b06ce857369cda3a8a6fec"><div class="ttname"><a href="__dma_2registers_8h.html#afada790107b06ce857369cda3a8a6fec">OFS_DMA_Cx_LBAR</a></div><div class="ttdeci">#define OFS_DMA_Cx_LBAR</div><div class="ttdef"><b>Definition</b> <a href="__dma_2registers_8h_source.html#l00007">registers.h:7</a></div></div>
 <div class="ttc" id="achannel__if_8c_html"><div class="ttname"><a href="channel__if_8c.html">channel_if.c</a></div></div>
+<div class="ttc" id="ah7rsxx_2__dma_2registers_8h_html_a0287914f46855d56ee0a7c71f0d38d82"><div class="ttname"><a href="h7rsxx_2__dma_2registers_8h.html#a0287914f46855d56ee0a7c71f0d38d82">OFS_DMA_Cx_DAR</a></div><div class="ttdeci">#define OFS_DMA_Cx_DAR</div><div class="ttdef"><b>Definition</b> <a href="h7rsxx_2__dma_2registers_8h_source.html#l00015">registers.h:15</a></div></div>
+<div class="ttc" id="ah7rsxx_2__dma_2registers_8h_html_a19a2b4fde2b7a144ca86229b868bee46"><div class="ttname"><a href="h7rsxx_2__dma_2registers_8h.html#a19a2b4fde2b7a144ca86229b868bee46">OFS_DMA_PRIVCFGR</a></div><div class="ttdeci">#define OFS_DMA_PRIVCFGR</div><div class="ttdef"><b>Definition</b> <a href="h7rsxx_2__dma_2registers_8h_source.html#l00002">registers.h:2</a></div></div>
+<div class="ttc" id="ah7rsxx_2__dma_2registers_8h_html_a25f360dcc6cb5a9e3fd4f879f56ef25e"><div class="ttname"><a href="h7rsxx_2__dma_2registers_8h.html#a25f360dcc6cb5a9e3fd4f879f56ef25e">OFS_DMA_Cx_SR</a></div><div class="ttdeci">#define OFS_DMA_Cx_SR</div><div class="ttdef"><b>Definition</b> <a href="h7rsxx_2__dma_2registers_8h_source.html#l00009">registers.h:9</a></div></div>
+<div class="ttc" id="ah7rsxx_2__dma_2registers_8h_html_a365a52451ae33492e33fe62981ac47fb"><div class="ttname"><a href="h7rsxx_2__dma_2registers_8h.html#a365a52451ae33492e33fe62981ac47fb">OFS_DMA_Cx_TR1</a></div><div class="ttdeci">#define OFS_DMA_Cx_TR1</div><div class="ttdef"><b>Definition</b> <a href="h7rsxx_2__dma_2registers_8h_source.html#l00011">registers.h:11</a></div></div>
+<div class="ttc" id="ah7rsxx_2__dma_2registers_8h_html_a766b7daae6114f223cc6fab58048ce87"><div class="ttname"><a href="h7rsxx_2__dma_2registers_8h.html#a766b7daae6114f223cc6fab58048ce87">OFS_DMA_Cx_TR2</a></div><div class="ttdeci">#define OFS_DMA_Cx_TR2</div><div class="ttdef"><b>Definition</b> <a href="h7rsxx_2__dma_2registers_8h_source.html#l00012">registers.h:12</a></div></div>
+<div class="ttc" id="ah7rsxx_2__dma_2registers_8h_html_a9dc839bca6d1b5663403458367ba3be4"><div class="ttname"><a href="h7rsxx_2__dma_2registers_8h.html#a9dc839bca6d1b5663403458367ba3be4">OFS_DMA_Cx_FCR</a></div><div class="ttdeci">#define OFS_DMA_Cx_FCR</div><div class="ttdef"><b>Definition</b> <a href="h7rsxx_2__dma_2registers_8h_source.html#l00008">registers.h:8</a></div></div>
+<div class="ttc" id="ah7rsxx_2__dma_2registers_8h_html_aaf6008f8499b6077976db8ed539c2e8a"><div class="ttname"><a href="h7rsxx_2__dma_2registers_8h.html#aaf6008f8499b6077976db8ed539c2e8a">OFS_DMA_Cx_LLR</a></div><div class="ttdeci">#define OFS_DMA_Cx_LLR</div><div class="ttdef"><b>Definition</b> <a href="h7rsxx_2__dma_2registers_8h_source.html#l00018">registers.h:18</a></div></div>
+<div class="ttc" id="ah7rsxx_2__dma_2registers_8h_html_ad3c05112df3c28772766ff406205329c"><div class="ttname"><a href="h7rsxx_2__dma_2registers_8h.html#ad3c05112df3c28772766ff406205329c">OFS_DMA_Cx_CR</a></div><div class="ttdeci">#define OFS_DMA_Cx_CR</div><div class="ttdef"><b>Definition</b> <a href="h7rsxx_2__dma_2registers_8h_source.html#l00010">registers.h:10</a></div></div>
+<div class="ttc" id="ah7rsxx_2__dma_2registers_8h_html_aea91a458569447ce4f47d4419f300f32"><div class="ttname"><a href="h7rsxx_2__dma_2registers_8h.html#aea91a458569447ce4f47d4419f300f32">OFS_DMA_Cx_BR1</a></div><div class="ttdeci">#define OFS_DMA_Cx_BR1</div><div class="ttdef"><b>Definition</b> <a href="h7rsxx_2__dma_2registers_8h_source.html#l00013">registers.h:13</a></div></div>
+<div class="ttc" id="ah7rsxx_2__dma_2registers_8h_html_aefc7eae395375ecad369860515c358d7"><div class="ttname"><a href="h7rsxx_2__dma_2registers_8h.html#aefc7eae395375ecad369860515c358d7">OFS_DMA_Cx_SAR</a></div><div class="ttdeci">#define OFS_DMA_Cx_SAR</div><div class="ttdef"><b>Definition</b> <a href="h7rsxx_2__dma_2registers_8h_source.html#l00014">registers.h:14</a></div></div>
+<div class="ttc" id="ah7rsxx_2__dma_2registers_8h_html_afada790107b06ce857369cda3a8a6fec"><div class="ttname"><a href="h7rsxx_2__dma_2registers_8h.html#afada790107b06ce857369cda3a8a6fec">OFS_DMA_Cx_LBAR</a></div><div class="ttdeci">#define OFS_DMA_Cx_LBAR</div><div class="ttdef"><b>Definition</b> <a href="h7rsxx_2__dma_2registers_8h_source.html#l00007">registers.h:7</a></div></div>
 <div class="ttc" id="ah7rsxx_2dma__impl_8h_html"><div class="ttname"><a href="h7rsxx_2dma__impl_8h.html">dma_impl.h</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
@@ -726,7 +726,7 @@ $(document).ready(function(){initNavTree('dma__impl_8c_source.html',''); initRes
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_7da9fa3e46f3496e22e0d53e72e5a458.html">hal_platform</a></li><li class="navelem"><a class="el" href="dir_ecba37078b2646ad8615f0f92eab48bb.html">h7rsxx</a></li><li class="navelem"><a class="el" href="dma__impl_8c.html">dma_impl.c</a></li>
-    <li class="footer">Generated on Fri Jan 17 2025 16:49:55 for ebs-hal-uc-stm32 by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Mon Jan 20 2025 18:46:46 for ebs-hal-uc-stm32 by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

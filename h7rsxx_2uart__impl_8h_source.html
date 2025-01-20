@@ -218,8 +218,8 @@ $(document).ready(function(){initNavTree('h7rsxx_2uart__impl_8h_source.html','')
 <div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span><span class="comment">// APB2 : USART 1</span></div>
 <div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span><span class="comment">// APB4 : LPUART 1 (UART6)</span></div>
 <div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span> </div>
-<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span><span class="preprocessor">#include &quot;<a class="code" href="__uart_2registers_8h.html">_uart/registers.h</a>&quot;</span></div>
-<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span><span class="preprocessor">#include &quot;<a class="code" href="__uart_2defaults_8h.html">_uart/defaults.h</a>&quot;</span></div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span><span class="preprocessor">#include &quot;_uart/registers.h&quot;</span></div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span><span class="preprocessor">#include &quot;_uart/defaults.h&quot;</span></div>
 <div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span> </div>
 <div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span><span class="keyword">extern</span> <span class="keyword">const</span> uart_if_t *<span class="keyword">const</span> uart_if[];</div>
 <div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span> </div>
@@ -261,12 +261,12 @@ $(document).ready(function(){initNavTree('h7rsxx_2uart__impl_8h_source.html','')
 <div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span> </div>
 <div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> uart_send_trigger(HAL_BASE_t intfnum){</div>
 <div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>    <span class="keywordflow">if</span> (uart_if[intfnum]-&gt;hwif-&gt;fifomode){</div>
-<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>        <span class="keywordflow">if</span> (!(* (HAL_SFR_t *) (uart_if[intfnum]-&gt;hwif-&gt;base + <a class="code hl_define" href="__uart_2registers_8h.html#a31a6d6b1733d1dcfb4ca8c14906123fe">OFS_UART_CR3</a>) &amp; USART_CR3_TXFTIE)) {</div>
-<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>            * (HAL_SFR_t *) (uart_if[intfnum]-&gt;hwif-&gt;base + <a class="code hl_define" href="__uart_2registers_8h.html#a31a6d6b1733d1dcfb4ca8c14906123fe">OFS_UART_CR3</a>) |= USART_CR3_TXFTIE;</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>        <span class="keywordflow">if</span> (!(* (HAL_SFR_t *) (uart_if[intfnum]-&gt;hwif-&gt;base + <a class="code hl_define" href="h7rsxx_2__uart_2registers_8h.html#a31a6d6b1733d1dcfb4ca8c14906123fe">OFS_UART_CR3</a>) &amp; USART_CR3_TXFTIE)) {</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>            * (HAL_SFR_t *) (uart_if[intfnum]-&gt;hwif-&gt;base + <a class="code hl_define" href="h7rsxx_2__uart_2registers_8h.html#a31a6d6b1733d1dcfb4ca8c14906123fe">OFS_UART_CR3</a>) |= USART_CR3_TXFTIE;</div>
 <div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>        }</div>
 <div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>        <span class="keywordflow">if</span> (!(* (HAL_SFR_t *) (uart_if[intfnum]-&gt;hwif-&gt;base + <a class="code hl_define" href="__uart_2registers_8h.html#a3af8fd35f86c615c01fefd5db7616667">OFS_UART_CR1</a>) &amp; USART_CR1_TXEIE)){</div>
-<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>            * (HAL_SFR_t *) (uart_if[intfnum]-&gt;hwif-&gt;base + <a class="code hl_define" href="__uart_2registers_8h.html#a3af8fd35f86c615c01fefd5db7616667">OFS_UART_CR1</a>) |= USART_CR1_TXEIE;</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>        <span class="keywordflow">if</span> (!(* (HAL_SFR_t *) (uart_if[intfnum]-&gt;hwif-&gt;base + <a class="code hl_define" href="h7rsxx_2__uart_2registers_8h.html#a3af8fd35f86c615c01fefd5db7616667">OFS_UART_CR1</a>) &amp; USART_CR1_TXEIE)){</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>            * (HAL_SFR_t *) (uart_if[intfnum]-&gt;hwif-&gt;base + <a class="code hl_define" href="h7rsxx_2__uart_2registers_8h.html#a3af8fd35f86c615c01fefd5db7616667">OFS_UART_CR1</a>) |= USART_CR1_TXEIE;</div>
 <div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>        }</div>
 <div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>    }</div>
 <div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>}   </div>
@@ -289,30 +289,28 @@ $(document).ready(function(){initNavTree('h7rsxx_2uart__impl_8h_source.html','')
 <div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>}</div>
 <div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span> </div>
 <div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> uart_putc_bare(HAL_BASE_t intfnum, uint8_t <span class="keywordtype">byte</span>){</div>
-<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>    HAL_SFR_t * tdr = (HAL_SFR_t *)(uart_if[intfnum]-&gt;hwif-&gt;base + <a class="code hl_define" href="__uart_2registers_8h.html#a7e0d0be1c980a5a299e48345d68adbe2">OFS_UART_TDR</a>);</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>    HAL_SFR_t * tdr = (HAL_SFR_t *)(uart_if[intfnum]-&gt;hwif-&gt;base + <a class="code hl_define" href="h7rsxx_2__uart_2registers_8h.html#a7e0d0be1c980a5a299e48345d68adbe2">OFS_UART_TDR</a>);</div>
 <div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>    *tdr = byte;</div>
 <div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>}</div>
 <div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span> </div>
 <div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span><span class="keyword">static</span> <span class="keyword">inline</span> uint8_t uart_getc_bare(HAL_BASE_t intfnum){</div>
-<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>    HAL_SFR_t * rdr = (HAL_SFR_t *)(uart_if[intfnum]-&gt;hwif-&gt;base + <a class="code hl_define" href="__uart_2registers_8h.html#ac2662387f041d7926d51e53f8d4c2421">OFS_UART_RDR</a>);</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>    HAL_SFR_t * rdr = (HAL_SFR_t *)(uart_if[intfnum]-&gt;hwif-&gt;base + <a class="code hl_define" href="h7rsxx_2__uart_2registers_8h.html#ac2662387f041d7926d51e53f8d4c2421">OFS_UART_RDR</a>);</div>
 <div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>    <span class="keywordflow">return</span> *rdr &amp; 0xFF;</div>
 <div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>}    </div>
 <div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span> </div>
 <div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span><span class="preprocessor">#endif</span></div>
 <div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span><span class="preprocessor">#endif</span></div>
-<div class="ttc" id="a__uart_2defaults_8h_html"><div class="ttname"><a href="__uart_2defaults_8h.html">defaults.h</a></div></div>
-<div class="ttc" id="a__uart_2registers_8h_html"><div class="ttname"><a href="__uart_2registers_8h.html">registers.h</a></div></div>
-<div class="ttc" id="a__uart_2registers_8h_html_a31a6d6b1733d1dcfb4ca8c14906123fe"><div class="ttname"><a href="__uart_2registers_8h.html#a31a6d6b1733d1dcfb4ca8c14906123fe">OFS_UART_CR3</a></div><div class="ttdeci">#define OFS_UART_CR3</div><div class="ttdef"><b>Definition</b> <a href="__uart_2registers_8h_source.html#l00005">registers.h:5</a></div></div>
-<div class="ttc" id="a__uart_2registers_8h_html_a3af8fd35f86c615c01fefd5db7616667"><div class="ttname"><a href="__uart_2registers_8h.html#a3af8fd35f86c615c01fefd5db7616667">OFS_UART_CR1</a></div><div class="ttdeci">#define OFS_UART_CR1</div><div class="ttdef"><b>Definition</b> <a href="__uart_2registers_8h_source.html#l00003">registers.h:3</a></div></div>
-<div class="ttc" id="a__uart_2registers_8h_html_a7e0d0be1c980a5a299e48345d68adbe2"><div class="ttname"><a href="__uart_2registers_8h.html#a7e0d0be1c980a5a299e48345d68adbe2">OFS_UART_TDR</a></div><div class="ttdeci">#define OFS_UART_TDR</div><div class="ttdef"><b>Definition</b> <a href="__uart_2registers_8h_source.html#l00013">registers.h:13</a></div></div>
-<div class="ttc" id="a__uart_2registers_8h_html_ac2662387f041d7926d51e53f8d4c2421"><div class="ttname"><a href="__uart_2registers_8h.html#ac2662387f041d7926d51e53f8d4c2421">OFS_UART_RDR</a></div><div class="ttdeci">#define OFS_UART_RDR</div><div class="ttdef"><b>Definition</b> <a href="__uart_2registers_8h_source.html#l00012">registers.h:12</a></div></div>
+<div class="ttc" id="ah7rsxx_2__uart_2registers_8h_html_a31a6d6b1733d1dcfb4ca8c14906123fe"><div class="ttname"><a href="h7rsxx_2__uart_2registers_8h.html#a31a6d6b1733d1dcfb4ca8c14906123fe">OFS_UART_CR3</a></div><div class="ttdeci">#define OFS_UART_CR3</div><div class="ttdef"><b>Definition</b> <a href="h7rsxx_2__uart_2registers_8h_source.html#l00005">registers.h:5</a></div></div>
+<div class="ttc" id="ah7rsxx_2__uart_2registers_8h_html_a3af8fd35f86c615c01fefd5db7616667"><div class="ttname"><a href="h7rsxx_2__uart_2registers_8h.html#a3af8fd35f86c615c01fefd5db7616667">OFS_UART_CR1</a></div><div class="ttdeci">#define OFS_UART_CR1</div><div class="ttdef"><b>Definition</b> <a href="h7rsxx_2__uart_2registers_8h_source.html#l00003">registers.h:3</a></div></div>
+<div class="ttc" id="ah7rsxx_2__uart_2registers_8h_html_a7e0d0be1c980a5a299e48345d68adbe2"><div class="ttname"><a href="h7rsxx_2__uart_2registers_8h.html#a7e0d0be1c980a5a299e48345d68adbe2">OFS_UART_TDR</a></div><div class="ttdeci">#define OFS_UART_TDR</div><div class="ttdef"><b>Definition</b> <a href="h7rsxx_2__uart_2registers_8h_source.html#l00013">registers.h:13</a></div></div>
+<div class="ttc" id="ah7rsxx_2__uart_2registers_8h_html_ac2662387f041d7926d51e53f8d4c2421"><div class="ttname"><a href="h7rsxx_2__uart_2registers_8h.html#ac2662387f041d7926d51e53f8d4c2421">OFS_UART_RDR</a></div><div class="ttdeci">#define OFS_UART_RDR</div><div class="ttdef"><b>Definition</b> <a href="h7rsxx_2__uart_2registers_8h_source.html#l00012">registers.h:12</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_7da9fa3e46f3496e22e0d53e72e5a458.html">hal_platform</a></li><li class="navelem"><a class="el" href="dir_ecba37078b2646ad8615f0f92eab48bb.html">h7rsxx</a></li><li class="navelem"><a class="el" href="h7rsxx_2uart__impl_8h.html">uart_impl.h</a></li>
-    <li class="footer">Generated on Fri Jan 17 2025 16:49:55 for ebs-hal-uc-stm32 by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Mon Jan 20 2025 18:46:46 for ebs-hal-uc-stm32 by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

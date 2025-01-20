@@ -114,15 +114,15 @@ $(document).ready(function(){initNavTree('timer__handlers_8c_source.html',''); i
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>FASTEXEC</div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="keywordtype">void</span> TIM15_IRQHandler(<span class="keywordtype">void</span>){</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    uint32_t flags = *(HAL_SFR_t *) (tim15_if.hwif-&gt;base + <a class="code hl_define" href="__timer_2registers_8h.html#a754ef4c121f42417349f31ce75eef1da">OFS_TIMx_SR</a>);</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    uint32_t flags = *(HAL_SFR_t *) (tim15_if.hwif-&gt;base + <a class="code hl_define" href="h7rsxx_2__timer_2registers_8h.html#a754ef4c121f42417349f31ce75eef1da">OFS_TIMx_SR</a>);</div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    <span class="keywordflow">if</span> (flags &amp; TIM_SR_UIF){</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>        *(HAL_SFR_t *) (tim15_if.hwif-&gt;base + <a class="code hl_define" href="__timer_2registers_8h.html#a754ef4c121f42417349f31ce75eef1da">OFS_TIMx_SR</a>) &amp;= ~TIM_SR_UIF;</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>        *(HAL_SFR_t *) (tim15_if.hwif-&gt;base + <a class="code hl_define" href="h7rsxx_2__timer_2registers_8h.html#a754ef4c121f42417349f31ce75eef1da">OFS_TIMx_SR</a>) &amp;= ~TIM_SR_UIF;</div>
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>        gpio_set_output_toggle(GPIO_DBG_SCOPE1);</div>
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    }</div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>}</div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#endif</span></div>
-<div class="ttc" id="a__timer_2registers_8h_html_a754ef4c121f42417349f31ce75eef1da"><div class="ttname"><a href="__timer_2registers_8h.html#a754ef4c121f42417349f31ce75eef1da">OFS_TIMx_SR</a></div><div class="ttdeci">#define OFS_TIMx_SR</div><div class="ttdef"><b>Definition</b> <a href="__timer_2registers_8h_source.html#l00007">registers.h:7</a></div></div>
+<div class="ttc" id="ah7rsxx_2__timer_2registers_8h_html_a754ef4c121f42417349f31ce75eef1da"><div class="ttname"><a href="h7rsxx_2__timer_2registers_8h.html#a754ef4c121f42417349f31ce75eef1da">OFS_TIMx_SR</a></div><div class="ttdeci">#define OFS_TIMx_SR</div><div class="ttdef"><b>Definition</b> <a href="h7rsxx_2__timer_2registers_8h_source.html#l00007">registers.h:7</a></div></div>
 <div class="ttc" id="atimer__handlers_8c_html_a133b1c07f636d1f5d9ea525df773ecab"><div class="ttname"><a href="timer__handlers_8c.html#a133b1c07f636d1f5d9ea525df773ecab">__timer_handler_inclusion</a></div><div class="ttdeci">volatile uint8_t __timer_handler_inclusion</div><div class="ttdef"><b>Definition</b> <a href="timer__handlers_8c_source.html#l00009">timer_handlers.c:9</a></div></div>
 <div class="ttc" id="au0xx_2timer__handlers_8h_html"><div class="ttname"><a href="u0xx_2timer__handlers_8h.html">timer_handlers.h</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
@@ -131,7 +131,7 @@ $(document).ready(function(){initNavTree('timer__handlers_8c_source.html',''); i
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_7da9fa3e46f3496e22e0d53e72e5a458.html">hal_platform</a></li><li class="navelem"><a class="el" href="dir_ecba37078b2646ad8615f0f92eab48bb.html">h7rsxx</a></li><li class="navelem"><a class="el" href="timer__handlers_8c.html">timer_handlers.c</a></li>
-    <li class="footer">Generated on Fri Jan 17 2025 16:49:55 for ebs-hal-uc-stm32 by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Mon Jan 20 2025 18:46:46 for ebs-hal-uc-stm32 by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

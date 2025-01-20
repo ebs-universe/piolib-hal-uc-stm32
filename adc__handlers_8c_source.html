@@ -125,10 +125,10 @@ $(document).ready(function(){initNavTree('adc__handlers_8c_source.html',''); ini
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    gpio_set_output_high(uC_ADC_TIMING_MONITOR_GPIO);</div>
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="preprocessor">    #endif</span></div>
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    uint32_t flags = *(HAL_SFR_t *)(ADC1_BASE + <a class="code hl_define" href="__adc_2registers_8h.html#a7a2afa956a459c6d5cb254ca8bee08cf">OFS_ADCn_ISR</a>);</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    uint32_t flags = *(HAL_SFR_t *)(ADC1_BASE + <a class="code hl_define" href="h7rsxx_2__adc_2registers_8h.html#a7a2afa956a459c6d5cb254ca8bee08cf">OFS_ADCn_ISR</a>);</div>
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="keywordflow">if</span> (flags &amp; ADC_FLAG_EOC){</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        adc1_state.lastresult = *(HAL_SFR_t *)(ADC1_BASE + <a class="code hl_define" href="__adc_2registers_8h.html#a9847a477dccb3400a64686ddefae3fd6">OFS_ADCn_DR</a>);</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        adc1_state.lastresult = *(HAL_SFR_t *)(ADC1_BASE + <a class="code hl_define" href="h7rsxx_2__adc_2registers_8h.html#a9847a477dccb3400a64686ddefae3fd6">OFS_ADCn_DR</a>);</div>
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        </div>
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        <span class="comment">// Dispatch result if handler is set</span></div>
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        <span class="keywordflow">if</span> (adc1_state.handler_eoc){</div>
@@ -148,7 +148,7 @@ $(document).ready(function(){initNavTree('adc__handlers_8c_source.html',''); ini
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <span class="keywordflow">if</span> (flags &amp; ADC_FLAG_EOS){</div>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>        <span class="comment">// Clear EOS flag</span></div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>        *(HAL_SFR_t *)(ADC1_BASE + <a class="code hl_define" href="__adc_2registers_8h.html#a7a2afa956a459c6d5cb254ca8bee08cf">OFS_ADCn_ISR</a>) |= ADC_ISR_EOS;</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>        *(HAL_SFR_t *)(ADC1_BASE + <a class="code hl_define" href="h7rsxx_2__adc_2registers_8h.html#a7a2afa956a459c6d5cb254ca8bee08cf">OFS_ADCn_ISR</a>) |= ADC_ISR_EOS;</div>
 <div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        <span class="keywordflow">if</span> (adc1_state.mode != ADC_MODE_CONTINUOUS) {</div>
 <div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>            adc1_state.mode = ADC_MODE_IDLE;</div>
 <div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>        }</div>
@@ -163,7 +163,7 @@ $(document).ready(function(){initNavTree('adc__handlers_8c_source.html',''); ini
 <div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    }</div>
 <div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
 <div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    <span class="keywordflow">if</span> (flags &amp; ADC_FLAG_OVR){</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>        *(HAL_SFR_t *)(ADC1_BASE + <a class="code hl_define" href="__adc_2registers_8h.html#a7a2afa956a459c6d5cb254ca8bee08cf">OFS_ADCn_ISR</a>) |= ADC_ISR_OVR;</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>        *(HAL_SFR_t *)(ADC1_BASE + <a class="code hl_define" href="h7rsxx_2__adc_2registers_8h.html#a7a2afa956a459c6d5cb254ca8bee08cf">OFS_ADCn_ISR</a>) |= ADC_ISR_OVR;</div>
 <div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>        adc1_state.overrun ++;</div>
 <div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    }</div>
 <div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
@@ -177,17 +177,17 @@ $(document).ready(function(){initNavTree('adc__handlers_8c_source.html',''); ini
 <div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>FASTEXEC</div>
 <div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>__attribute__((target(<span class="stringliteral">&quot;thumb&quot;</span>)))</div>
 <div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>static inline <span class="keywordtype">void</span> _adc1_timing_monitor(<span class="keywordtype">void</span>){</div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    uint32_t flags = *(HAL_SFR_t *)(ADC1_BASE + <a class="code hl_define" href="__adc_2registers_8h.html#a7a2afa956a459c6d5cb254ca8bee08cf">OFS_ADCn_ISR</a>);</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    uint32_t flags = *(HAL_SFR_t *)(ADC1_BASE + <a class="code hl_define" href="h7rsxx_2__adc_2registers_8h.html#a7a2afa956a459c6d5cb254ca8bee08cf">OFS_ADCn_ISR</a>);</div>
 <div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span><span class="preprocessor">    #if uC_ADC1_DM_MODE == ADC_DM_DMA</span></div>
 <div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    <span class="keywordflow">if</span> (flags &amp; ADC_FLAG_EOS){</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>        *(HAL_SFR_t *)(ADC1_BASE + <a class="code hl_define" href="__adc_2registers_8h.html#a7a2afa956a459c6d5cb254ca8bee08cf">OFS_ADCn_ISR</a>) |= ADC_ISR_EOS;</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>        *(HAL_SFR_t *)(ADC1_BASE + <a class="code hl_define" href="h7rsxx_2__adc_2registers_8h.html#a7a2afa956a459c6d5cb254ca8bee08cf">OFS_ADCn_ISR</a>) |= ADC_ISR_EOS;</div>
 <div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span><span class="preprocessor">        #ifdef uC_ADC_TIMING_MONITOR_GPIO</span></div>
 <div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>        gpio_set_output_toggle(uC_ADC_TIMING_MONITOR_GPIO);</div>
 <div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span><span class="preprocessor">        #endif</span></div>
 <div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    }</div>
 <div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span><span class="preprocessor">    #else</span></div>
 <div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    <span class="keywordflow">if</span> (flags &amp; ADC_FLAG_EOC){</div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>        *(HAL_SFR_t *)(ADC1_BASE + <a class="code hl_define" href="__adc_2registers_8h.html#a7a2afa956a459c6d5cb254ca8bee08cf">OFS_ADCn_ISR</a>) |= ADC_ISR_EOC;</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>        *(HAL_SFR_t *)(ADC1_BASE + <a class="code hl_define" href="h7rsxx_2__adc_2registers_8h.html#a7a2afa956a459c6d5cb254ca8bee08cf">OFS_ADCn_ISR</a>) |= ADC_ISR_EOC;</div>
 <div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span><span class="preprocessor">        #ifdef uC_ADC_TIMING_MONITOR_GPIO</span></div>
 <div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>        gpio_set_output_toggle(uC_ADC_TIMING_MONITOR_GPIO);</div>
 <div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span><span class="preprocessor">        #endif</span></div>
@@ -218,9 +218,9 @@ $(document).ready(function(){initNavTree('adc__handlers_8c_source.html',''); ini
 <div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    }   </div>
 <div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    </div>
 <div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span><span class="preprocessor">#endif</span></div>
-<div class="ttc" id="a__adc_2registers_8h_html_a7a2afa956a459c6d5cb254ca8bee08cf"><div class="ttname"><a href="__adc_2registers_8h.html#a7a2afa956a459c6d5cb254ca8bee08cf">OFS_ADCn_ISR</a></div><div class="ttdeci">#define OFS_ADCn_ISR</div><div class="ttdef"><b>Definition</b> <a href="__adc_2registers_8h_source.html#l00004">registers.h:4</a></div></div>
-<div class="ttc" id="a__adc_2registers_8h_html_a9847a477dccb3400a64686ddefae3fd6"><div class="ttname"><a href="__adc_2registers_8h.html#a9847a477dccb3400a64686ddefae3fd6">OFS_ADCn_DR</a></div><div class="ttdeci">#define OFS_ADCn_DR</div><div class="ttdef"><b>Definition</b> <a href="__adc_2registers_8h_source.html#l00018">registers.h:18</a></div></div>
 <div class="ttc" id="aadc__handlers_8c_html_a0e0b2a14fdeb292a5efa55e1a53341dd"><div class="ttname"><a href="adc__handlers_8c.html#a0e0b2a14fdeb292a5efa55e1a53341dd">__adc_handler_inclusion</a></div><div class="ttdeci">volatile uint8_t __adc_handler_inclusion</div><div class="ttdef"><b>Definition</b> <a href="adc__handlers_8c_source.html#l00007">adc_handlers.c:7</a></div></div>
+<div class="ttc" id="ah7rsxx_2__adc_2registers_8h_html_a7a2afa956a459c6d5cb254ca8bee08cf"><div class="ttname"><a href="h7rsxx_2__adc_2registers_8h.html#a7a2afa956a459c6d5cb254ca8bee08cf">OFS_ADCn_ISR</a></div><div class="ttdeci">#define OFS_ADCn_ISR</div><div class="ttdef"><b>Definition</b> <a href="h7rsxx_2__adc_2registers_8h_source.html#l00004">registers.h:4</a></div></div>
+<div class="ttc" id="ah7rsxx_2__adc_2registers_8h_html_a9847a477dccb3400a64686ddefae3fd6"><div class="ttname"><a href="h7rsxx_2__adc_2registers_8h.html#a9847a477dccb3400a64686ddefae3fd6">OFS_ADCn_DR</a></div><div class="ttdeci">#define OFS_ADCn_DR</div><div class="ttdef"><b>Definition</b> <a href="h7rsxx_2__adc_2registers_8h_source.html#l00018">registers.h:18</a></div></div>
 <div class="ttc" id="ah7rsxx_2adc__handlers_8h_html"><div class="ttname"><a href="h7rsxx_2adc__handlers_8h.html">adc_handlers.h</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
@@ -228,7 +228,7 @@ $(document).ready(function(){initNavTree('adc__handlers_8c_source.html',''); ini
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_7da9fa3e46f3496e22e0d53e72e5a458.html">hal_platform</a></li><li class="navelem"><a class="el" href="dir_ecba37078b2646ad8615f0f92eab48bb.html">h7rsxx</a></li><li class="navelem"><a class="el" href="adc__handlers_8c.html">adc_handlers.c</a></li>
-    <li class="footer">Generated on Fri Jan 17 2025 16:49:55 for ebs-hal-uc-stm32 by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Mon Jan 20 2025 18:46:46 for ebs-hal-uc-stm32 by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

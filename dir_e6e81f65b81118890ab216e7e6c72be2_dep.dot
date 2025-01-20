@@ -8,6 +8,10 @@ digraph "hal_platform/u0xx"
   compound=true
   subgraph clusterdir_7da9fa3e46f3496e22e0d53e72e5a458 {
     graph [ bgcolor="#eaf2e7", pencolor="grey25", label="hal_platform", fontname=Helvetica,fontsize=10 style="filled,dashed", URL="dir_7da9fa3e46f3496e22e0d53e72e5a458.html",tooltip=""]
-  dir_e6e81f65b81118890ab216e7e6c72be2 [label="u0xx", fillcolor="#eaf2e7", color="grey25", style="filled,bold", URL="dir_e6e81f65b81118890ab216e7e6c72be2.html",tooltip=""];
+  subgraph clusterdir_e6e81f65b81118890ab216e7e6c72be2 {
+    graph [ bgcolor="#eaf2e7", pencolor="grey25", label="", fontname=Helvetica,fontsize=10 style="filled,bold", URL="dir_e6e81f65b81118890ab216e7e6c72be2.html",tooltip=""]
+    dir_e6e81f65b81118890ab216e7e6c72be2 [shape=plaintext, label="u0xx"];
+  dir_f9bac1dc5d25c529cb9049867e3a7842 [label="_uart", fillcolor="#9ac18c", color="grey25", style="filled", URL="dir_f9bac1dc5d25c529cb9049867e3a7842.html",tooltip=""];
+  }
   }
 }
