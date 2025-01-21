@@ -13,6 +13,7 @@ digraph "hal_platform/h7rsxx"
     dir_ecba37078b2646ad8615f0f92eab48bb [shape=plaintext, label="h7rsxx"];
   dir_c86749a12d0b5f37729118ac0376c51e [label="_adc", fillcolor="#9ac18c", color="grey25", style="filled", URL="dir_c86749a12d0b5f37729118ac0376c51e.html",tooltip=""];
   dir_d15f750d2e50aa73cfdc2e6249ca3932 [label="_dma", fillcolor="#9ac18c", color="grey25", style="filled", URL="dir_d15f750d2e50aa73cfdc2e6249ca3932.html",tooltip=""];
+  dir_2141dbf5a847c4fa8c1adf66339706fd [label="_qdelay", fillcolor="#9ac18c", color="grey25", style="filled", URL="dir_2141dbf5a847c4fa8c1adf66339706fd.html",tooltip=""];
   dir_132285723b339faa95cf45e494bfa166 [label="_timer", fillcolor="#9ac18c", color="grey25", style="filled", URL="dir_132285723b339faa95cf45e494bfa166.html",tooltip=""];
   dir_b778205a90b9dd96ba067acdbbc1e43b [label="_uart", fillcolor="#9ac18c", color="grey25", style="filled", URL="dir_b778205a90b9dd96ba067acdbbc1e43b.html",tooltip=""];
   }

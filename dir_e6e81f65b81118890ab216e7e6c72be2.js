@@ -1,5 +1,6 @@
 var dir_e6e81f65b81118890ab216e7e6c72be2 =
 [
+    [ "_qdelay", "dir_f7614003b88892a7b02bb56ec0d05dab.html", "dir_f7614003b88892a7b02bb56ec0d05dab" ],
     [ "_uart", "dir_f9bac1dc5d25c529cb9049867e3a7842.html", "dir_f9bac1dc5d25c529cb9049867e3a7842" ],
     [ "core_handlers.c", "u0xx_2core__handlers_8c.html", "u0xx_2core__handlers_8c" ],
     [ "core_handlers.h", "u0xx_2core__handlers_8h.html", "u0xx_2core__handlers_8h" ],
@@ -20,6 +21,8 @@ var dir_e6e81f65b81118890ab216e7e6c72be2 =
     [ "gpio_impl.h", "u0xx_2gpio__impl_8h.html", null ],
     [ "id_impl.c", "u0xx_2id__impl_8c.html", null ],
     [ "id_impl.h", "u0xx_2id__impl_8h.html", null ],
+    [ "qdelay_impl.c", "u0xx_2qdelay__impl_8c.html", null ],
+    [ "qdelay_impl.h", "u0xx_2qdelay__impl_8h.html", null ],
     [ "rtc_handlers.h", "u0xx_2rtc__handlers_8h.html", null ],
     [ "rtc_impl.c", "u0xx_2rtc__impl_8c.html", null ],
     [ "rtc_impl.h", "u0xx_2rtc__impl_8h.html", null ],

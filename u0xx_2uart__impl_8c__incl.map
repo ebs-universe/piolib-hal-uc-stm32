@@ -1,13 +1,15 @@
 <map id="hal_platform/u0xx/uart_impl.c" name="hal_platform/u0xx/uart_impl.c">
-<area shape="rect" id="Node000001" title=" " alt="" coords="177,5,347,45"/>
-<area shape="rect" id="Node000002" href="$u0xx_2uart__impl_8h.html" title=" " alt="" coords="214,93,310,119"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="265,46,265,79,259,79,259,46"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="246,5,417,45"/>
+<area shape="rect" id="Node000002" href="$u0xx_2uart__impl_8h.html" title=" " alt="" coords="283,93,379,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="334,46,334,79,329,79,329,46"/>
 <area shape="rect" id="Node000003" title=" " alt="" coords="5,167,108,192"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="230,121,104,165,102,160,228,116"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="288,121,115,166,114,161,287,116"/>
 <area shape="rect" id="Node000004" title=" " alt="" coords="132,167,256,192"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="253,121,217,158,213,155,249,117"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="310,121,230,163,227,158,308,116"/>
 <area shape="rect" id="Node000005" title=" " alt="" coords="280,167,383,192"/>
-<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="275,117,313,155,309,159,272,121"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="334,119,334,153,329,153,329,119"/>
 <area shape="rect" id="Node000006" title=" " alt="" coords="407,167,514,192"/>
-<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="295,116,416,159,414,164,293,121"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="353,116,428,157,426,162,351,121"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="539,167,633,192"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="373,116,533,160,531,166,372,121"/>
 </map>

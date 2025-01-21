@@ -27,7 +27,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.png"/></td>
   <td id="projectalign">
-   <div id="projectname">ebs-hal-uc-stm32<span id="projectnumber">&#160;0.3.3</span>
+   <div id="projectname">ebs-hal-uc-stm32<span id="projectnumber">&#160;0.3.4</span>
    </div>
    <div id="projectbrief">EBS uC HAL implementation for ST STM32 uCs</div>
   </td>
@@ -141,13 +141,13 @@ $(document).ready(function(){initNavTree('u0xx_2gpio__impl_8c_source.html',''); 
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>}</div>
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="keyword">static</span> <span class="keywordtype">void</span> enable_gpio_exti_irqs(<span class="keywordtype">void</span>){</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    HAL_NVIC_SetPriority(EXTI0_1_IRQn, 0, 0);</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    HAL_NVIC_SetPriority(EXTI0_1_IRQn, PRIO_GPIO0_1, 0);</div>
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    HAL_NVIC_EnableIRQ(EXTI0_1_IRQn);</div>
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    HAL_NVIC_SetPriority(EXTI2_3_IRQn, 0, 0);</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    HAL_NVIC_SetPriority(EXTI2_3_IRQn, PRIO_GPIO2_3, 0);</div>
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    HAL_NVIC_EnableIRQ(EXTI2_3_IRQn);</div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    HAL_NVIC_SetPriority(EXTI4_15_IRQn, 0, 0);</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    HAL_NVIC_SetPriority(EXTI4_15_IRQn, PRIO_GPIO4_15, 0);</div>
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    HAL_NVIC_EnableIRQ(EXTI4_15_IRQn);</div>
 <div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>}</div>
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
@@ -286,7 +286,7 @@ $(document).ready(function(){initNavTree('u0xx_2gpio__impl_8c_source.html',''); 
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_7da9fa3e46f3496e22e0d53e72e5a458.html">hal_platform</a></li><li class="navelem"><a class="el" href="dir_e6e81f65b81118890ab216e7e6c72be2.html">u0xx</a></li><li class="navelem"><a class="el" href="u0xx_2gpio__impl_8c.html">gpio_impl.c</a></li>
-    <li class="footer">Generated on Mon Jan 20 2025 18:46:46 for ebs-hal-uc-stm32 by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Tue Jan 21 2025 20:10:07 for ebs-hal-uc-stm32 by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

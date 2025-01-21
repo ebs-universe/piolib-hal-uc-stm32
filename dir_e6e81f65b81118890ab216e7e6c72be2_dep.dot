@@ -11,6 +11,7 @@ digraph "hal_platform/u0xx"
   subgraph clusterdir_e6e81f65b81118890ab216e7e6c72be2 {
     graph [ bgcolor="#eaf2e7", pencolor="grey25", label="", fontname=Helvetica,fontsize=10 style="filled,bold", URL="dir_e6e81f65b81118890ab216e7e6c72be2.html",tooltip=""]
     dir_e6e81f65b81118890ab216e7e6c72be2 [shape=plaintext, label="u0xx"];
+  dir_f7614003b88892a7b02bb56ec0d05dab [label="_qdelay", fillcolor="#9ac18c", color="grey25", style="filled", URL="dir_f7614003b88892a7b02bb56ec0d05dab.html",tooltip=""];
   dir_f9bac1dc5d25c529cb9049867e3a7842 [label="_uart", fillcolor="#9ac18c", color="grey25", style="filled", URL="dir_f9bac1dc5d25c529cb9049867e3a7842.html",tooltip=""];
   }
   }

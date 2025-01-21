@@ -2,6 +2,7 @@ var dir_ecba37078b2646ad8615f0f92eab48bb =
 [
     [ "_adc", "dir_c86749a12d0b5f37729118ac0376c51e.html", "dir_c86749a12d0b5f37729118ac0376c51e" ],
     [ "_dma", "dir_d15f750d2e50aa73cfdc2e6249ca3932.html", "dir_d15f750d2e50aa73cfdc2e6249ca3932" ],
+    [ "_qdelay", "dir_2141dbf5a847c4fa8c1adf66339706fd.html", "dir_2141dbf5a847c4fa8c1adf66339706fd" ],
     [ "_timer", "dir_132285723b339faa95cf45e494bfa166.html", "dir_132285723b339faa95cf45e494bfa166" ],
     [ "_uart", "dir_b778205a90b9dd96ba067acdbbc1e43b.html", "dir_b778205a90b9dd96ba067acdbbc1e43b" ],
     [ "adc_handlers.c", "adc__handlers_8c.html", "adc__handlers_8c" ],
@@ -29,6 +30,8 @@ var dir_ecba37078b2646ad8615f0f92eab48bb =
     [ "gpio_impl.h", "h7rsxx_2gpio__impl_8h.html", null ],
     [ "id_impl.c", "h7rsxx_2id__impl_8c.html", null ],
     [ "id_impl.h", "h7rsxx_2id__impl_8h.html", null ],
+    [ "qdelay_impl.c", "h7rsxx_2qdelay__impl_8c.html", null ],
+    [ "qdelay_impl.h", "h7rsxx_2qdelay__impl_8h.html", null ],
     [ "rtc_handlers.h", "h7rsxx_2rtc__handlers_8h.html", null ],
     [ "rtc_impl.c", "h7rsxx_2rtc__impl_8c.html", null ],
     [ "rtc_impl.h", "h7rsxx_2rtc__impl_8h.html", null ],

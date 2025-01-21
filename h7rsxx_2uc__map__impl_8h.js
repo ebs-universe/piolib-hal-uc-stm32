@@ -6,6 +6,7 @@ var h7rsxx_2uc__map__impl_8h =
     [ "uC_I2C_ENABLED", "h7rsxx_2uc__map__impl_8h.html#a07da55874e93cd6af716961c768ad5eb", null ],
     [ "uC_I2C_PT_ENABLED", "h7rsxx_2uc__map__impl_8h.html#ac720fa670a90b83d87b628f583bce1a1", null ],
     [ "uC_ICACHE_ENABLED", "h7rsxx_2uc__map__impl_8h.html#a0bf2a5b9e96cab47fcd072e91d4be677", null ],
+    [ "uC_QDELAY_ENABLED", "h7rsxx_2uc__map__impl_8h.html#a025078af36aeb3b132c68370d424bf2e", null ],
     [ "uC_SPEC_EX_ENABLED", "h7rsxx_2uc__map__impl_8h.html#ab0f97c78c1232d2946535f94ccbab348", null ],
     [ "uC_SPI_ENABLED", "h7rsxx_2uc__map__impl_8h.html#adcbe10f1cc120a23bcc7bcb22887a184", null ],
     [ "uC_SPI_PT_ENABLED", "h7rsxx_2uc__map__impl_8h.html#a58fc5762ec334807f352e61f77db8144", null ],

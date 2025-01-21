@@ -19,6 +19,7 @@ var dir_7da9fa3e46f3496e22e0d53e72e5a458 =
     [ "families.h", "families_8h.html", "families_8h" ],
     [ "gpio_impl.h", "gpio__impl_8h.html", null ],
     [ "id_impl.h", "id__impl_8h.html", null ],
+    [ "qdelay_impl.h", "qdelay__impl_8h.html", null ],
     [ "rtc_handlers.h", "rtc__handlers_8h.html", null ],
     [ "rtc_impl.h", "rtc__impl_8h.html", null ],
     [ "shared_handlers.h", "shared__handlers_8h.html", null ],
