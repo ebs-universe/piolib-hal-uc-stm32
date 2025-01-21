@@ -93,6 +93,18 @@
     #include "_uart/enables.h"
 #endif
 
+#if APP_ENABLE_QDELAY
+    #define uC_QDELAY_ENABLED           APP_ENABLE_QDELAY
+    #ifdef APP_QDELAY_PROVIDER
+        #define uC_QDELAY_PROVIDER      APP_QDELAY_PROVIDER
+    #else
+        #define uC_QDELAY_PROVIDER      QDELAY_PROVIDER_SYSTICK
+    #endif              
+
+    #include "_qdelay/spec.h"
+#else
+    #define uC_QDELAY_ENABLED           0
+#endif
 
 // Peripherals not yet implemented for this platform
 #define uC_WDT_ENABLED                  0

@@ -278,7 +278,7 @@ void watchdog_hold(void){
 #if uC_SYSTICK_TIMER_ENABLED
 
 void core_systick_start(void) {
-    HAL_InitTick(TICK_INT_PRIORITY);
+    HAL_InitTick(PRIO_SYSTICK);
 }
 
 #endif

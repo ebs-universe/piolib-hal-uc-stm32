@@ -84,6 +84,7 @@
 #include <hal/types/uart.h>
 #include <ds/bytebuf.h>
 #include <printf/printf.h>
+#include <clocktree.h>
 
 #if uC_UART_ENABLED
 
@@ -110,14 +111,6 @@ typedef struct UART_IF_t {
     bytebuf * const rxbuf;
     void (*const init)(void);
 } uart_if_t;
-
-#ifndef CLOCKTREE_PCLK_FREQ     
-#define CLOCKTREE_PCLK_FREQ     56000000UL     
-#endif
-
-#ifndef CLOCKTREE_UART2_FREQ 
-#define CLOCKTREE_UART2_FREQ    56000000UL  
-#endif
 
 #include "_uart/defaults.h"
 #include "_uart/registers.h"

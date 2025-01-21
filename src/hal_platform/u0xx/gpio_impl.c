@@ -39,13 +39,13 @@ static void enable_gpio_clocks(void){
 }
 
 static void enable_gpio_exti_irqs(void){
-    HAL_NVIC_SetPriority(EXTI0_1_IRQn, 0, 0);
+    HAL_NVIC_SetPriority(EXTI0_1_IRQn, PRIO_GPIO0_1, 0);
     HAL_NVIC_EnableIRQ(EXTI0_1_IRQn);
 
-    HAL_NVIC_SetPriority(EXTI2_3_IRQn, 0, 0);
+    HAL_NVIC_SetPriority(EXTI2_3_IRQn, PRIO_GPIO2_3, 0);
     HAL_NVIC_EnableIRQ(EXTI2_3_IRQn);
 
-    HAL_NVIC_SetPriority(EXTI4_15_IRQn, 0, 0);
+    HAL_NVIC_SetPriority(EXTI4_15_IRQn, PRIO_GPIO4_15, 0);
     HAL_NVIC_EnableIRQ(EXTI4_15_IRQn);
 }
 
